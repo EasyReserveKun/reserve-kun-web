@@ -1,9 +1,13 @@
 import './App.css';
+import Header from './Header.js'
+import Search from './Search.js'
+
 
 function App() {
   return (
   <div className="App">
-    <h1>Hello World!</h1>
+    <Header />
+    <Search />
   </div>
   );
 }

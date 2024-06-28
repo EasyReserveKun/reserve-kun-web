@@ -1,4 +1,4 @@
-import './search.css';
+import './Search.css';
 
 function Search() {
   return (
@@ -8,7 +8,7 @@ function Search() {
           <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択"/>
         </div>
         <div className="col-md-6">
-         <select id="categorySelect" className="form-control category-select">
+          <select id="categorySelect" className="form-control category-select">
           <option value="不動産">不動産</option>
           <option value="おうちの修繕">おうちの修繕</option>
           <option value="介護">介護</option>
