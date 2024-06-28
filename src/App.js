@@ -10,12 +10,24 @@ import TaroImage from './Image/Taro.png';
 import IchiroImage from './Image/Ichiro.png';
 import MisakiImage from './Image/Misaki.png';
 import KentaImage from './Image/Kenta.png';
+import Modal from './Modal.js'
+import React, { useState} from 'react';
+
 
 function App() {
+
+  const [show, setShow] = useState(false)
+  const tFlag = true;
+  const fFlag = false;
   return (
+
     <div className="App">
       <Header />
       <Search />
+      <div>
+        <button onClick={() => setShow(!show)}>Modalの表示</button>
+        <Modal show={show} setShow={setShow} isEnable={fFlag} employee="(コンシェルジュの名前)"/>
+      </div>
       <ServiceDescription />
       <ContentItem text="建築士資格を持ち、20年以上のリフォーム業界経験を持つ佐藤花子は、住宅の修繕やリフォームのプロフェッショナルです。設計から施工までを一貫してサポートし、省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに精通しています。細部にまでこだわる丁寧な仕事が評判で、安心してお任せいただけます。おうちの修繕やリフォームは、佐藤花子にご相談ください。" imgUrl={hanakoImage} name="おうちの修繕のスーパーバイザー - 佐藤花子" />
       <ContentItem 
