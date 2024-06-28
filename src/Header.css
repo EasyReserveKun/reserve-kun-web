@@ -70,7 +70,7 @@
 }
 
 .hamburger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(11px) rotate(45deg);
 }
 
 .hamburger.open span:nth-child(2) {
@@ -78,7 +78,7 @@
 }
 
 .hamburger.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 .logo {
@@ -94,7 +94,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   text-shadow: 
-   
+
     -2px 2px 0 #FFD700,
     2px 2px 0 #FFD700; /* ゴールドの縁取り */
   padding: 5px 10px;

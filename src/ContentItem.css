@@ -1,34 +1,23 @@
 .content-item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 10px;
+  padding: 10px;
+  justify-content: space-between; 
+}
+.img-content img {
+  max-width: 80%;
+  align-items: right;
+  height: auto;
 }
 
-.image-container {
-  flex: 0 0 auto; /* 画像コンテナーの幅は固定 */
-  margin-left: 8cm; /* 画像の左側の余白 */
-  margin-right: 2cm; /* 画像と文章の間の余白 */
-}
-
-.image-container img {
-  width: 10cm; /* 画像の幅を親要素に合わせて自動調整 */
-  height: auto; /* 高さは自動調整 */
-}
-
-.text-container {
-  flex: 1; /* 説明文のコンテナーが残りのスペースを取る */
-  margin-right: 8cm; /* 説明文の右側の余白 */
-}
-
-.text-container h2 {
-  font-size: 24px; /* タイトルのフォントサイズ */
-  margin-bottom: 10px; /* タイトル下の余白 */
-}
-
-.text-container p {
+.text-content {
   font-size: 16px;
-  line-height: 1.6;
-  color: #333;
-  text-align: left; /* テキストを左揃えに設定 */
+  text-align: left;
+}
 
+.text-content h5{
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }
