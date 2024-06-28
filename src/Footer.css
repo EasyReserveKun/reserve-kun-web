@@ -1,0 +1,11 @@
+footer {
+    background-color: #2e8b57; /* Set background color to #2e8b57 */
+    color: #fff; /* Text color */
+    padding: 20px 0; /* Padding for top and bottom */
+    text-align: center; /* Center-align text */
+}
+
+.footer-bottom {
+    margin-top: 10px; /* Margin on top of the bottom section */
+    font-size: 14px; /* Font size for the bottom section */
+}
