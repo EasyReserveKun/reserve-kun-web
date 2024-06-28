@@ -1,4 +1,6 @@
 import './App.css';
+
+import Search from './Search.js'
 import ContentItem from './ContentItem';
 import Header from './Header';
 import ServiceDescription from './ServiceDescription';
@@ -13,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Search />
       <ServiceDescription />
       <ContentItem text="建築士資格を持ち、20年以上のリフォーム業界経験を持つ佐藤花子は、住宅の修繕やリフォームのプロフェッショナルです。設計から施工までを一貫してサポートし、省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに精通しています。細部にまでこだわる丁寧な仕事が評判で、安心してお任せいただけます。おうちの修繕やリフォームは、佐藤花子にご相談ください。" imgUrl={hanakoImage} name="おうちの修繕のスーパーバイザー - 佐藤花子" />
       <ContentItem 
@@ -26,7 +29,5 @@ function App() {
       <ContentItem text="保険業界で20年以上の経験を持つ中村健太は、特に自動車保険や生命保険の分野に精通したスーパーバイザーです。クライアントのライフスタイルに合わせた保険商品の提案や見直しを行い、最適な保障を提供します。また、金融商品についても幅広い知識を持ち、資産運用やリスク管理のアドバイスも行っています。車や保険、金融に関するご相談は、中村健太にお任せください。。どうぞお気軽にご利用ください。" imgUrl={KentaImage} name="車や保険・金融のスーパーバイザー - 中村健太定" />
       <Footer />
     </div>
-  );
-}
 
 export default App;
