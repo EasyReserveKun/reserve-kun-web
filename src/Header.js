@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Header.css'; // スタイルシートのインポート
-import { FaUserCircle } from 'react-icons/fa'; // アイコンのインポート
+import './Header.css';
+import logo from './img/ace-logo.png';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,7 +23,7 @@ const Header = () => {
               <li><a href="#home">ホーム画面</a></li>
               <li><a href="#category">カテゴリ</a></li>
               <li><a href="#reserve-info">予約確認/確認/キャンセル</a></li>
-              <li><a href="#faq">FAQガイドライン（よくある質問）</a></li>
+              <li><a href="#faq">FAQガイドライン <br></br>（よくある質問）</a></li>
               <li><a href="#form">問い合わせフォーム</a></li>
               <li><a href="#access">アクセス</a></li>
               <li><a href="#log‐out">ログアウト</a></li>
@@ -32,15 +32,14 @@ const Header = () => {
         )}
       </div>
       <div className="logo">
-        <h1>Ace</h1>
+        <img src={logo} alt="Logo" />
       </div>
-      <div className="icons">
-        <FaUserCircle className="user-icon" />
-        <button className="login-button">ログイン</button>
-      </div>
-      <div className="reservation">
-        <button className="reserve-button">予約する</button>
-      </div>
+
+        <div className='right-menu'>
+        <i class="bi bi-person-circle user-icon"></i>
+        <button className="menu-button">ログイン</button>
+        <button className="menu-button">予約する</button>
+        </div>
     </header>
   );
 }

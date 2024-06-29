@@ -1,9 +1,8 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #2E8B57; /* 落ち着いた緑色 */
+  background-color: #2E8B57;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -19,7 +18,7 @@
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 10;
-  width: 200px;
+  width: 240px;
 }
 
 .menu ul {
@@ -85,7 +84,7 @@
   flex: 1;
   text-align: center;
 }
-
+/* ロゴのフォント
 .logo h1 {
   margin: 0;
   font-size: 32px;
@@ -93,61 +92,40 @@
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
-  text-shadow: 
+  text-shadow:
 
     -2px 2px 0 #FFD700,
-    2px 2px 0 #FFD700; /* ゴールドの縁取り */
+    2px 2px 0 #FFD700;
   padding: 5px 10px;
   display: inline-block;
-  font-weight: bolder; /* さらに太くする */
-  font-style: italic; /* イタリックにする */
+  font-weight: bolder;
+  font-style: italic;
 }
 
-.icons {
+*/
+
+.right-menu{
   display: flex;
-  align-items: center;
 }
 
 .user-icon {
-  font-size: 24px;
+  font-size: 32px;
   color: #fff;
   margin-right: 10px;
 }
 
-.login-button {
+.menu-button {
   background-color: #fff;
   color: #2E8B57;
   border: 2px solid #2E8B57;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 5px;
 }
 
-.login-button:hover {
-  background-color: #2E8B57;
-  color: #fff;
-}
-
-.reservation {
-  margin-left: auto;
-}
-
-.reserve-button {
-  background-color: #fff;
-  color: #2E8B57;
-  border: 2px solid #2E8B57;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 5px;
-}
-
-.reserve-button:hover {
+.menu-button:hover {
   background-color: #2E8B57;
   color: #fff;
 }
