@@ -1,0 +1,22 @@
+.fixed-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #333;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 1000; /* 他の要素よりも手前に表示するために適宜設定 */
+  }
+.reserve-button{
+    background-color: #fff;
+  color: #2E8B57;
+  border: 2px solid #2E8B57;
+  padding: 10px 10px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}

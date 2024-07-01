@@ -1,5 +1,6 @@
 /* ボタンのスタイル */
 .gray-button {
+    margin: 4px;
     padding: 5px 10px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
     background-color: #f0f0f0; /* 白やグレーっぽい色 */
     color: #333; /* テキストの色 */
@@ -18,6 +19,7 @@
   
   /* 新しいボタンのスタイル */
 .green-button {
+    margin: 4px;    
     padding: 5px 10px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
     background-color: #4CAF50; /* 明るい緑色 */
     color: #ffffff; /* テキストの色 */
