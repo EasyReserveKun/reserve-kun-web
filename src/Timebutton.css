@@ -1,7 +1,7 @@
 /* ボタンのスタイル */
 .gray-button {
-    margin: 4px;
-    padding: 5px 10px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
+    margin: 2px 1px;
+    padding: 5px 5px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
     background-color: #f0f0f0; /* 白やグレーっぽい色 */
     color: #333; /* テキストの色 */
     text-align: center;
@@ -11,6 +11,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: inherit; /* フォントサイズを継承 */
+    white-space: nowrap;
   }
   
   .gray-button:hover {
@@ -18,9 +19,9 @@
   }
   
   /* 新しいボタンのスタイル */
-.green-button {
-    margin: 4px;    
-    padding: 5px 10px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
+.green-button {  
+    margin: 2px 2px;
+    padding: 5px 5px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
     background-color: #4CAF50; /* 明るい緑色 */
     color: #ffffff; /* テキストの色 */
     text-align: center;
@@ -30,6 +31,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: inherit; /* フォントサイズを継承 */
+    white-space: nowrap;
   }
   
   .green-button:hover {

@@ -7,7 +7,7 @@
     color: #333;
     padding: 10px 0;
     text-align: center;
-    z-index: 1000; /* 他の要素よりも手前に表示するために適宜設定 */
+    z-index: 999;
   }
 .reserve-button{
     background-color: #fff;

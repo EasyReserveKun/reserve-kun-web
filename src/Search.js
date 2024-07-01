@@ -10,7 +10,7 @@ const [date, setDate] = useState('')
   const handleDateChange = (event) => { setDate(event.target.value); };
   const handleCategoryChange = (event) => { setCategory(event.target.value); };
   const openModal = () => { 
-    if( category != '' && date != '' ){
+    if( category !== '' && date !== '' ){
       setShow(true);
     }
   }
