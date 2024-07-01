@@ -18,13 +18,13 @@ function Search(props) {
         <form className='form-container' method='POST' action='http://localhost:8080/reserve'>
           <h5>予約ウィンドウ</h5>
           <label>日付：</label><br></br>
-          <input type="text" name="Date" value={props.date} disabled/> <br></br>
+          <input type="text" name="Date" value={props.date}/> <br></br>
           <label></label>目的：<br></br>
-          <input type="text" name="Category" value={props.category} disabled /> <br></br>
+          <input type="text" name="Category" value={props.category}/> <br></br>
           メールアドレス：
           <input type="email" name="Eid" required /><br></br>
           時間帯：
-          <input type="number" name="time" value={time} placeholder='ボタンで時間を指定してください' disabled required></input><br></br>
+          <input type="number" name="time" value={time} placeholder='ボタンで時間を指定してください' required></input><br></br>
           <div className="row">
             <div class="col-xl-1 col-lg-2 col-md-3 col-4">
               <button type="button" onClick={onTimeDecide} className="green-button" value="10">10:00～</button>
