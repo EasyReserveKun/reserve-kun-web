@@ -15,7 +15,7 @@ function Search(props) {
     <>
     <div id="overlay">
       <div id="content">
-        <form className='form-container' method='POST' action='http://localhost8080/reserve'>
+        <form className='form-container' method='POST' action='http://localhost:8080/reserve'>
           <h5>予約ウィンドウ</h5>
           <label>日付：</label><br></br>
           <input type="text" name="Date" value={props.date} disabled/> <br></br>
