@@ -1,0 +1,33 @@
+/* Updated Registered.css */
+
+.message {
+    background-color: #2E8B57; /* Updated background color */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+  
+  .btn-primary {
+    background-color: #fff; /* White background */
+    border: 2px solid transparent; /* Transparent border */
+    color: #2E8B57; /* Updated text color */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+  }
+  
+  .btn-primary:hover {
+    background-color: #2E8B57; /* Updated background color on hover */
+    color: #fff; /* White text color on hover */
+    border-color: #2E8B57; /* Matching border color on hover */
+  }
+  

@@ -3,10 +3,12 @@ footer {
     color: #fff; /* Text color */
     padding: 10px 0; /* Padding for top and bottom */
     text-align: center; /* Center-align text */
+    margin-bottom: 65px;
 }
 
 .footer-bottom {
     margin-top: 10px; /* Margin on top of the bottom section */
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     font-size: 14px; /* Font size for the bottom section */
+
 }

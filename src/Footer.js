@@ -3,12 +3,15 @@ import './Footer.css'; // 別途作成したCSSファイルをインポートす
 
 const Footer = () => {
     return (
+
         <footer>
             
             <div className="footer-bottom">
                 &copy; 2024 YourWebsite.com | Designed by AIBS
             </div>
         </footer>
+      
+       
     );
 }
 
