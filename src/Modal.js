@@ -23,7 +23,7 @@ function Search(props) {
 
 
           <label></label>目的：<br></br>
-          <select value={props.category} id="categorySelect" className="form-control" readOnly>
+          <select value={props.category} name="eid" id="categorySelect" className="form-control" readOnly>
             <option value="0"></option>
             <option value="1">不動産</option>
             <option value="2">おうちの修繕</option>
