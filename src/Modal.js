@@ -73,7 +73,7 @@ function Search(props) {
           <input type="text" name="etc" id="etc"></input>
           <button type="submit" className='btn btn-primary'>予約する</button>
         </form>
-        <p><button onClick={() => props.setShow(false)}>close</button></p>
+        <p><span className="round_btn" onClick={() => props.setShow(false)}></span></p>
       </div>
     </div>
     </>
