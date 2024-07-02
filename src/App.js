@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter, Switch,  Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./Home";
 import Nf from "./Nf"
 

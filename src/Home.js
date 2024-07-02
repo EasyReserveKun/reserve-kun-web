@@ -9,7 +9,7 @@ import Footer from './Footer';
 import Toolbar from './Toolbar.js'
 
 //Import Images
-import hanakoImage from './Image/Hanako2.png';
+import hanakoImage from './Image/Hanako.png';
 import TaroImage from './Image/Taro.png';
 import IchiroImage from './Image/Ichiro.png';
 import MisakiImage from './Image/Misaki.png';
