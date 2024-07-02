@@ -33,33 +33,9 @@
   margin-bottom: 6px;
 }
 
-.round_btn {
-  position: absolute;
-  top: 3.5%; /* 適切な位置に調整 */
-  right: 9.5%; /* 適切な位置に調整 */
-  width: 30px;
-  height: 30px;
-  border: 2px solid #333;
-  border-radius: 50%;
-  background: #fff;
-  cursor: pointer;
-  transform: translate(calc(100% - 20px), -10px); /* 右上隅に移動するための調整 */
+.bi-x-circle {
+  background-color: transparent; /* 背景色を透明にする */
+  border: none; /* ボーダーを削除する */
+  opacity: 1; /* 不透明度を100%にする */
 }
-
-.round_btn::before, .round_btn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 3px;
-  height: 22px;
-  background: #333;
-}
-
-.round_btn::before {
-  transform: translate(-50%,-50%) rotate(45deg);
-}
-
-.round_btn::after {
-  transform: translate(-50%,-50%) rotate(-45deg);
-}
+  
