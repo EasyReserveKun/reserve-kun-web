@@ -35,11 +35,9 @@ const Header = () => {
         <img src={logo} alt="Logo" />
       </div>
 
-        <div className='right-menu'>
-        <i className="bi bi-person-circle user-icon"></i>
-        <button className="menu-button">ログイン</button>
-        <button className="menu-button">予約する</button>
-        </div>
+      <div className='right-menu'>
+        <button className="bi bi-person-circle user-icon"></button>
+      </div>
     </header>
   );
 }

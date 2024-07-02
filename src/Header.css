@@ -111,7 +111,9 @@
 .user-icon {
   font-size: 32px;
   color: #fff;
-  margin-right: 10px;
+  background-color: transparent; /* 背景色を透明にする */
+  border: none; /* ボーダーを削除する */
+  opacity: 1; /* 不透明度を100%にする */
 }
 
 .menu-button {
