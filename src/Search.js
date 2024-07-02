@@ -25,7 +25,7 @@ function Search() {
           </div>
           <div className="col-md-4">
             <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange}>
-              <option value="0"></option>
+              <option value=""></option>
               <option value="1">不動産</option>
               <option value="2">おうちの修繕</option>
               <option value="3">介護</option>
