@@ -13,15 +13,21 @@
 
 #content {
   z-index: 2;
-  width: 65%;
-  height: 90%;
+  width: 80%;
+  height: 93%;
   padding: 1em;
   background: #fff;
+  padding-top: 5px;
 }
 
 .form-container label{
   justify-content: left;
+  margin-bottom: 0px;
 }
 .form-container input{
   width: 100%;
+}
+
+#timezone {
+  margin-bottom: 6px;
 }
