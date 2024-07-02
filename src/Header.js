@@ -36,7 +36,7 @@ const Header = () => {
       </div>
 
         <div className='right-menu'>
-        <i class="bi bi-person-circle user-icon"></i>
+        <i className="bi bi-person-circle user-icon"></i>
         <button className="menu-button">ログイン</button>
         <button className="menu-button">予約する</button>
         </div>

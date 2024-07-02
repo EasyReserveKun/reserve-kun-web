@@ -23,12 +23,12 @@ return (
         </div>
         <div className="col-md-6">
           <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange}>
-          <option value=""></option>
-          <option value="不動産">不動産</option>
-          <option value="おうちの修繕">おうちの修繕</option>
-          <option value="介護">介護</option>
-          <option value="終活・相続">終活・相続</option>
-          <option value="車・保健・金融">車・保健・金融</option>
+          <option value="0"></option>
+          <option value="1">不動産</option>
+          <option value="2">おうちの修繕</option>
+          <option value="3">介護</option>
+          <option value="4">終活・相続</option>
+          <option value="5">車・保健・金融</option>
         </select>
         </div>
         <div className="col-md-3">
