@@ -1,0 +1,53 @@
+/* Updated SignUp.css */
+
+.container {
+    height: 100vh;
+}
+
+.vh-100 {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    background-color: #2E8B57; /* Updated background color */
+    color: white;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    text-align: center;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-footer {
+    border-top: 1px solid rgba(0,0,0,.125);
+    padding: 1rem;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #fff; /* White background */
+    border: 2px solid #2E8B57; /* Updated border color */
+    color: #2E8B57; /* Updated text color */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
+}
+
+.btn-primary:hover {
+    background-color: #2E8B57; /* Updated background color on hover */
+    color: #fff; /* White text color on hover */
+}
