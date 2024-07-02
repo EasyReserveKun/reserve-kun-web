@@ -17,7 +17,7 @@ function Search(props) {
     <div id="overlay">
       <div id="content">
         <form className='form-container' method='POST' action='http://localhost:8080/reserve'>
-          <h5>予約ウィンドウ</h5>
+          <h5>予約内容</h5>
           <label>日付：</label><br></br>
           <input type="text" name="date" value={props.date} readOnly/> <br></br>
 
@@ -31,8 +31,6 @@ function Search(props) {
             <option value="4">終活・相続</option>
             <option value="5">車・保健・金融</option>
           </select>
-          <br></br>
-          
           メールアドレス：
           <input type="email" name="cid" required /><br></br>
           時間帯：
