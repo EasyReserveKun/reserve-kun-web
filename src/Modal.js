@@ -36,7 +36,7 @@ function Search(props) {
           メールアドレス：
           <input type="email" name="cid" required /><br></br>
           時間帯：
-          <input type="number" name="time" value={time} placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
+          <input type="number" name="time" value={time} id="timezone" placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
           <div className="row">
             <div className="col-xl-1 col-lg-2 col-md-3 col-4">
               <button type="button" onClick={onTimeDecide} className="green-button" value="10">10:00～</button>
