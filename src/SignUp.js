@@ -15,9 +15,15 @@ const SingUp = () => {
 
         <label htmlFor="email">ID(メールアドレス)</label>
         <input type="email" id="email" name="email" required />
+
+        <label htmlFor="email">ID(確認用)</label>
+        <input type="email" id="email" name="email-check" required />
         
         <label htmlFor="password">パスワード</label>
         <input type="password" id="password" name="password" required />
+
+        <label htmlFor="password">パスワード(確認用)</label>
+        <input type="password" id="password" name="password-check" required />
         
         <button type="submit">登録</button>
       </form>

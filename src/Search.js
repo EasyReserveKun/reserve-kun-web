@@ -14,34 +14,49 @@ function Search() {
       setShow(true);
     }
   }
+  const debugFlag = false;
 
-  return (
-    <div className='reservation'>
-      <div className="container custom-container">
-      <h2>予約登録</h2>
-        <div className="row">
-          <div className="col-md-4">
-            <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} />
+  if (debugFlag) {
+    return (
+      <div className='reservation'>
+        <div className="container custom-container">
+          <h2>予約登録</h2>
+          <div className="row">
+            <div className="col-md-4">
+              <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} />
+            </div>
+            <div className="col-md-4">
+              <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange}>
+                <option value=""></option>
+                <option value="1">不動産</option>
+                <option value="2">おうちの修繕</option>
+                <option value="3">介護</option>
+                <option value="4">終活・相続</option>
+                <option value="5">車・保健・金融</option>
+              </select>
+            </div>
+            <div className="col-md-2">
+              <button onClick={() => openModal()} className="btn btn-primary search-button">検索</button>
+            </div>
           </div>
-          <div className="col-md-4">
-            <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange}>
-              <option value=""></option>
-              <option value="1">不動産</option>
-              <option value="2">おうちの修繕</option>
-              <option value="3">介護</option>
-              <option value="4">終活・相続</option>
-              <option value="5">車・保健・金融</option>
-            </select>
+          <div>
+            <Modal show={show} setShow={setShow} category={category} date={date} />
           </div>
-          <div className="col-md-2">
-            <button onClick={() => openModal()} className="btn btn-primary search-button">検索</button>
-          </div>
-        </div>
-        <div>
-          <Modal show={show} setShow={setShow} category={category} date={date} />
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <>
+        <br></br>
+        <div className='yellow-tag'>
+          <h4>※予約をするにはログインが必要です。</h4>
+          ログインは<a href="/login">こちら</a>
+        </div>
+      </>
+
+
+    );
+  }
 }
 export default Search;
