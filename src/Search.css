@@ -5,6 +5,7 @@
       border-radius: 5px;
       max-width: 600px; /* 全体の幅を指定して小さくする */
       margin: 10px auto; /* 中央揃え */
+      margin-top: 50px;
       width: 96%;
     }
 
