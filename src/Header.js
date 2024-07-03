@@ -37,7 +37,7 @@ const Header = () => {
         )}
       </div>
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <a href='/'><img src={logo} alt="Logo" /></a>
       </div>
 
       <div className='right-menu'>
