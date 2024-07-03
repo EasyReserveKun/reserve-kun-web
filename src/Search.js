@@ -14,9 +14,8 @@ function Search() {
       setShow(true);
     }
   }
-  const debugFlag = false;
 
-  if (debugFlag) {
+  if (sessionStorage.getItem('AccountName') !== null) {
     return (
       <div className='reservation'>
         <div className="container custom-container">

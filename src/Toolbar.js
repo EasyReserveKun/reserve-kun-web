@@ -11,8 +11,7 @@ const Toolbar = () => {
   function goToReserve() {
     navigate("/")
   } 
-  const debugFlag = false;
-  if(debugFlag){
+  if(sessionStorage.getItem('AccountName') !== null){
     return (
       <div className="fixed-bar">
         <button className='reserve-button' onClick={goToReserve}>今すぐ予約する！</button>

@@ -16,6 +16,7 @@ import MisakiImage from './Image/Misaki.png';
 import KentaImage from './Image/Kenta.png';
 
 import { useNavigate } from 'react-router-dom';
+import DebugSession from './DebugSession.js';
 
 
 function Home() {
@@ -27,13 +28,12 @@ function Home() {
     console.log("log outボタンが押されました。")
   };
 
-  const debugFlag = false;
 
-  if(debugFlag){
+  if(sessionStorage.getItem('AccountName') !== null){
   return (
-
     <div>
       <Header />
+      <DebugSession type="Login" /><DebugSession type="Logout" /><DebugSession type="Check" />
       <Search />
         <ServiceDescription />
         <ContentItem text="建築士資格を持ち、20年以上のリフォーム業界経験を持つ佐藤花子は、住宅の修繕やリフォームのプロフェッショナルです。設計から施工までを一貫してサポートし、省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに精通しています。細部にまでこだわる丁寧な仕事が評判で、安心してお任せいただけます。おうちの修繕やリフォームは、佐藤花子にご相談ください。" imgUrl={hanakoImage} name="おうちの修繕のスーパーバイザー - 佐藤花子" />
@@ -50,16 +50,18 @@ function Home() {
         <p>
           <a href="#form">問い合わせフォーム</a>
           　<a href="#access">アクセス</a>
-          　<button onClick={goToLogout}>ログアウト</button>
+          　<a href="#logout">ログアウト</a>
         </p>
         <Footer />
         <Toolbar />
     </div>
-  )}else{
+  );
+}else{
     return (
 
       <div>
         <Header />
+        <DebugSession type="Login" /><DebugSession type="Logout" /><DebugSession type="Check" />
         <Search />
           <ServiceDescription />
           <ContentItem text="建築士資格を持ち、20年以上のリフォーム業界経験を持つ佐藤花子は、住宅の修繕やリフォームのプロフェッショナルです。設計から施工までを一貫してサポートし、省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに精通しています。細部にまでこだわる丁寧な仕事が評判で、安心してお任せいただけます。おうちの修繕やリフォームは、佐藤花子にご相談ください。" imgUrl={hanakoImage} name="おうちの修繕のスーパーバイザー - 佐藤花子" />
@@ -76,13 +78,12 @@ function Home() {
           <p>
             <a href="#form">問い合わせフォーム</a>
             　<a href="#access">アクセス</a>
-            　<a href="/login">ログイン</a>
+            　<button onClick={goToLogin} href="/login">ログイン</button>
           </p>
           <Footer />
           <Toolbar />
       </div>
-    )
-
+    );
   }
 }
 export default Home;

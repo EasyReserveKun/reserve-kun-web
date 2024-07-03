@@ -17,8 +17,7 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const debugFlag = false;
-if(debugFlag){
+if(sessionStorage.getItem('AccountName') !== null){
   return (
     //Loginしてたら
     <header className="header">
