@@ -39,34 +39,34 @@ function Search(props) {
             <input type="number" name="time" value={time} id="timezone" placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
             <div className="row">
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="10">10:00～</button>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="10:00">10:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="gray-button" value="11" disabled>11:00～</button>
+                <button type="button" onClick={onTimeDecide} className="gray-button" value="11:00" disabled>11:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="12">12:00～</button>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="12:00">12:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="13"> 13:00～</button>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="13:00"> 13:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="gray-button" value="14" disabled>14:00～</button><br></br>
+                <button type="button" onClick={onTimeDecide} className="gray-button" value="14:00" disabled>14:00～</button><br></br>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="15">15:00～</button>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="15:00">15:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="16">16:00～</button>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="16:00">16:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="17">17:00～</button>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="17:00">17:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="gray-button" value="18" disabled>18:00～</button>
+                <button type="button" onClick={onTimeDecide} className="gray-button" value="18:00" disabled>18:00～</button>
               </div>
               <div className="col-xl-1 col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="19">19:00～</button><br></br>
+                <button type="button" onClick={onTimeDecide} className="green-button" value="19:00">19:00～</button><br></br>
               </div>
             </div>
             <label htmlFor="etc">備考</label><br></br>
