@@ -1,8 +1,11 @@
 import React from 'react';
+import Header from './Header'
 import './LoginForm.css';
 
 const SingUp = () => {
   return (
+    <>
+    <Header />
     <div className="login-container">
       <h2 className="login-title">新規登録</h2>
       <form className="login-form">
@@ -21,6 +24,7 @@ const SingUp = () => {
         <a href="/login">アカウントをお持ちの方はこちら</a>
       </div>
     </div>
+    </>
   );
 };
 

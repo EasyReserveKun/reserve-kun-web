@@ -1,8 +1,11 @@
 import React from 'react';
+import Header from "./Header"
 import './LoginForm.css';
 
 const LoginForm = () => {
   return (
+    <>
+    <Header />
     <div className="login-container">
       <h2 className="login-title">ログイン</h2>
       <form className="login-form">
@@ -18,6 +21,7 @@ const LoginForm = () => {
         <a href="/signup">アカウントをお持ちでない方はこちら</a>
       </div>
     </div>
+    </>
   );
 };
 
