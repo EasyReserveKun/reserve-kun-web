@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "./Header"
+import Footer from "./Footer"
 import './LoginForm.css';
 
 const LoginForm = () => {
@@ -21,6 +22,7 @@ const LoginForm = () => {
         <a href="/signup">アカウントをお持ちでない方はこちら</a>
       </div>
     </div>
+    <Footer />
     </>
   );
 };

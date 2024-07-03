@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header'
+import Footer from './Footer'
 import './LoginForm.css';
 
 const SingUp = () => {
@@ -24,6 +25,7 @@ const SingUp = () => {
         <a href="/login">アカウントをお持ちの方はこちら</a>
       </div>
     </div>
+    <Footer />
     </>
   );
 };
