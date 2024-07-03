@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Header.css';
 import logo from './img/ace-logo.png';
 
 const Header = () => {
+  let navigate = useNavigate();
+  function goToLogin(){
+    navigate("/login")
+  }
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -36,7 +41,7 @@ const Header = () => {
       </div>
 
       <div className='right-menu'>
-        <button className="bi bi-person-circle user-icon"></button>
+        <button className="bi bi-person-circle user-icon" onClick={goToLogin}></button>
       </div>
     </header>
   );
