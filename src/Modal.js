@@ -16,7 +16,7 @@ function Search(props) {
     return (
       <div id="overlay">
         <div id="content">
-          <form className='form-container' method='POST' action='http://localhost:8080/reserve'>
+          <form className='form-container' method='POST' action='http://easy-reserve-kun.azurewebsites/reserve'>
             <div className='row'>
               <div className='col text-right'>
                 <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>
