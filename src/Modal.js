@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 function Search(props) {
 
   const [time, setTime] = useState("");
-  const reservedTimes = ['10:00','12:00','14:00','16:00','18:00'];
+  const reservedTimes = props.reservedTimes;
 
   const onTimeDecide = (event) => {
     setTime(event.target.value);
