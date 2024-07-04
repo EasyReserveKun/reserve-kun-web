@@ -1,6 +1,5 @@
 import './Search.css';
 import Modal from './Modal.js'
-import RedirectData from './RedirectData.js'
 import React, { useState } from 'react';
 
 function Search() {
@@ -55,9 +54,6 @@ function Search() {
             <div>
               <Modal show={show} setShow={setShow} category={category} date={date} reservedTimes={reservedTimes}/>
             </div>
-            <RedirectData />
-            
-            
         </div>
       </div>
       
