@@ -18,7 +18,32 @@
 }
 
 .text-content h5{
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 20px;
+  /* font-weight: bold; */
   text-align: center;
+  
+}
+
+.text-content h5:first-letter {
+  font-size: 2em;
+  color: #7779d7;
+  font-weight: bold;
+}
+
+/* リンク全体のスタイル */
+.link-style {
+  color: inherit; /* 親要素からの継承色を使用 */
+  text-decoration: none; /* 下線を除去 */
+  color: inherit;
+ 
+}
+
+/* リンクにホバーしたときのスタイル */
+/* .link-style:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+ */
+
+/* 訪問済みのリンクのスタイル */
+.link-style:visited {
+  color: inherit; /* 訪問済みリンクも親要素の色を継承 */
 }
