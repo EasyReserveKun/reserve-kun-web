@@ -6,11 +6,39 @@ import React, { useState } from 'react';
 function Search(props) {
 
   const [time, setTime] = useState("");
+  const reservedTimes = props.reservedTimes;
 
   const onTimeDecide = (event) => {
     setTime(event.target.value);
     console.log(time);
   }
+
+  const renderTimeButtons = () => {
+    const buttons = []; 
+    
+    for (let hour = 10; hour <= 19; hour++) {
+      const time = hour + ':00';
+      const isReserved = reservedTimes.includes(time);
+  
+      const buttonClass = isReserved ? 'gray-button' : 'green-button';
+  
+      buttons.push(
+        <div key={hour} className="col-lg-2 col-md-3 col-4">
+          <button
+            type="button"
+            onClick={onTimeDecide}
+            className={buttonClass}
+            value={time}
+            disabled={isReserved}
+          >
+            {time}～
+          </button>
+        </div>
+      );
+    }
+    return buttons;
+  }
+  
 
   if (props.show) {
     return (
@@ -68,37 +96,7 @@ function Search(props) {
               </div>
             </div>
             <div className="row gx-2">
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="10:00">10:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="gray-button" value="11:00" disabled>11:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="12:00">12:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="13:00"> 13:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="gray-button" value="14:00" disabled>14:00～</button><br></br>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="15:00">15:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="16:00">16:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="17:00">17:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="gray-button" value="18:00" disabled>18:00～</button>
-              </div>
-              <div className="col-lg-2 col-md-3 col-4">
-                <button type="button" onClick={onTimeDecide} className="green-button" value="19:00">19:00～</button><br></br>
-
-              </div>
+            {renderTimeButtons()}
             </div>
             <div className='row'>
               <div className='col-2 modal-label'>
