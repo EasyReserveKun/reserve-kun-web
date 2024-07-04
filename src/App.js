@@ -5,6 +5,7 @@ import Home from "./Home";
 import Nf from "./Nf"
 import LoginForm from './LoginForm';
 import SignUp from './SignUp';
+import LogoutSuccess from './LogoutSuccess';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path={`/`} element={<Home />} />
         <Route path={`/login`} element={<LoginForm />} />
         <Route path={`/signup`} element={<SignUp />} />
+        <Route path={`/logoutSuccess`} element={<LogoutSuccess />} />
         <Route path={`/*`} element={<Nf />} />
       </Routes>
     </BrowserRouter>

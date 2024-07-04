@@ -9,7 +9,7 @@ const LoginForm = () => {
     <Header />
     <div className="login-container">
       <h2 className="login-title">ログイン</h2>
-      <form className="login-form">
+      <form className="login-form" method="POST" action='http://easy-reserve-kun.azurewebsites.net/LoginCheck'>
         <label htmlFor="email">ID(メールアドレス)</label>
         <input type="email" id="email" name="email" required />
         
