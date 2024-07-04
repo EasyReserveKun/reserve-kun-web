@@ -24,9 +24,9 @@ function Home() {
   function goToLogin(){
     navigate("/login")
   }
-  function goToLogout(){
-    console.log("log outボタンが押されました。")
-  };
+  // function goToLogout(){
+  //   console.log("log outボタンが押されました。")
+  // };
 
 
   if(sessionStorage.getItem('AccountName') !== null){
