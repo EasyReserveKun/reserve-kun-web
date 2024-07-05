@@ -13,15 +13,17 @@ function Search(props) {
     console.log(time);
   }
 
+  const isTimeEmpty = time.trim()
+
   const renderTimeButtons = () => {
-    const buttons = []; 
-    
+    const buttons = [];
+
     for (let hour = 10; hour <= 19; hour++) {
       const time = hour + ':00';
       const isReserved = reservedTimes.includes(time);
-  
+
       const buttonClass = isReserved ? 'gray-button' : 'green-button';
-  
+
       buttons.push(
         <div key={hour} className="col-lg-2 col-md-3 col-4">
           <button
@@ -38,7 +40,7 @@ function Search(props) {
     }
     return buttons;
   }
-  
+
 
   if (props.show) {
     return (
@@ -96,7 +98,7 @@ function Search(props) {
               </div>
             </div>
             <div className="row gx-2">
-            {renderTimeButtons()}
+              {renderTimeButtons()}
             </div>
             <div className='row'>
               <div className='col-2 modal-label'>
@@ -106,7 +108,7 @@ function Search(props) {
                 <input type="text" name="etc" id="etc"></input>
               </div>
             </div>
-            <button type="submit" className='btn btn-primary'>予約する</button>
+            <button type="submit" className='btn btn-primary' disabled={!isTimeEmpty}>予約する</button>
           </form>
         </div>
       </div>
