@@ -21,12 +21,14 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    const responce = await fetch("http://localhost:8080/customer/login", requestData);
-    const data = await responce.text();
+    const responce = await fetch("http://lcoalhost:8080/customer/login", requestData);
+    const data = await responce.json();
+  
     if(data === null){
       window.alert("ログインに失敗")
     }else{
-      sessionStorage.setItem('AccountName',data.result);
+      await sessionStorage.setItem('AccountName',data.Name);
+      await sessionStorage.setItem('AccountMail',data.Mail);
       navigate("/")
     }
   }
@@ -36,7 +38,7 @@ const LoginForm = () => {
     <Header />
     <div className="login-container">
       <h2 className="login-title">ログイン</h2>
-      <form className="login-form">{/*  method="POST" action='http://localhost:8080/customer/login' */}
+      <form className="login-form">
         <label htmlFor="email">ID(メールアドレス)</label>
         <input type="email" id="email" value={inputCid} onChange={handleChangeCid} required />
         

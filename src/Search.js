@@ -34,7 +34,7 @@ function Search() {
         },
         body: JSON.stringify( { date: date, eid: category } )
       }
-      const responce = await fetch("http://localhost:8080/b",requestData)
+      const responce = await fetch("http://localhost:8080/reserve/available",requestData)
       const data = await responce.text();
       await setReservedTimes(data);
       setShow(true);

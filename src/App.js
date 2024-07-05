@@ -14,7 +14,7 @@ function App() {
         <Route path={`/`} element={<Home />} />
         <Route path={`/login`} element={<LoginForm />} />
         <Route path={`/signup`} element={<SignUp />} />
-        <Route path={`/logoutSuccess`} element={<LogoutSuccess />} />
+        <Route path={`/logout`} element={<LogoutSuccess />} />
         <Route path={`/*`} element={<Nf />} />
       </Routes>
     </BrowserRouter>

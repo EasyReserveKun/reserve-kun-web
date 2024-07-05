@@ -8,8 +8,10 @@ const Header = () => {
   function goToLogin(){
     navigate("/login")
   }
-  function goToLogout(){
-    console.log("log outボタンが押されました。")
+  const goToLogout = async () => {
+    await sessionStorage.removeItem("AccountName");
+    await sessionStorage.removeItem("AccountMail");
+    navigate("/logout")
   };
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -36,7 +38,7 @@ if(sessionStorage.getItem('AccountName') !== null){
               <li><a href="#faq">FAQガイドライン <br></br>（よくある質問）</a></li>
               <li><a href="#form">問い合わせフォーム</a></li>
               <li><a href="#access">アクセス</a></li>
-              <li><button onClick={goToLogout}>ログアウト</button></li>
+              <li><button className='link-button' onClick={goToLogout}>ログアウト</button></li>
             </ul>
           </nav>
         )}
