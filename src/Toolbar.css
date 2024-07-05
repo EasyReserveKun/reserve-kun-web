@@ -43,3 +43,31 @@
 .scroll-to-top-button:hover {
   background-color: #999; /* ホバー時の背景色をより濃い灰色に変更 */
 }
+
+.reserve-button{
+  width: 150px;
+  border: 0px solid transparent;
+  padding: 10px 10px;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    #2E8B57 0%,
+    #2E8B57 50%,
+    #345944 50%,
+    #345944 100%
+  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+  transition: background-position ease 0.4s;
+
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;;
+}
+
+.reserve-button:hover {
+  background-position: 0 0;
+} 
