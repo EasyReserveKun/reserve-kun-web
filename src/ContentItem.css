@@ -41,6 +41,6 @@
 
 /* リンクにホバーしたときのスタイル */
 .link-style:hover {
-  color: #ff4343;
+  color: #82cd8f;
   text-decoration: none; /* 下線を除去 */
 }

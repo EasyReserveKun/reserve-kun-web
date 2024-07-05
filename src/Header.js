@@ -38,7 +38,7 @@ if(sessionStorage.getItem('AccountName') !== null){
               <li><a href="#faq">FAQガイドライン <br></br>（よくある質問）</a></li>
               <li><a href="#form">問い合わせフォーム</a></li>
               <li><a href="#access">アクセス</a></li>
-              <li><button className='link-button' onClick={goToLogout}>ログアウト</button></li>
+              <li><a href="">ログアウト</a></li>
             </ul>
           </nav>
         )}

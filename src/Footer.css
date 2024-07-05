@@ -1,14 +1,63 @@
+/* Footer.css */
 footer {
-    background-color: #2e8b57; /* Set background color to #2e8b57 */
-    color: #fff; /* Text color */
-    padding: 10px 0; /* Padding for top and bottom */
-    text-align: center; /* Center-align text */
+    background-color: #2e8b57;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
     margin-bottom: 65px;
 }
 
 .footer-bottom {
-    margin-top: 10px; /* Margin on top of the bottom section */
+    margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 14px; /* Font size for the bottom section */
-
+    font-size: 14px;
 }
+
+.footer-bottom a {
+    color: #f9f4f4;
+    text-decoration: none;
+}
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-menu li {
+    display: inline-block; /* リストを横並びにする */
+    margin-right: 10px; /* リストアイテム間のスペースを設定 */
+}
+
+.footer-menu li:last-child {
+    margin-right: 0; /* 最後のリストアイテムの右マージンをなくす */
+}
+
+.footer-menu a {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-menu a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    transform: translate(-100%, 0);
+    transition: transform cubic-bezier(0.215, 0.61, 0.355, 1) 0.4s;
+    content: "";
+}
+
+.footer-menu a:hover:after {
+    transform: translate(0, 0);
+}
+.copyright {
+    margin: 0;
+    padding: 20px 0 0 0;
+    font-size: 12px;
+   }
