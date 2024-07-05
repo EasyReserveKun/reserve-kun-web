@@ -30,20 +30,17 @@
   font-weight: bold;
 }
 
+
+
+
 /* リンク全体のスタイル */
 .link-style {
   color: inherit; /* 親要素からの継承色を使用 */
   text-decoration: none; /* 下線を除去 */
-  color: inherit;
- 
 }
 
 /* リンクにホバーしたときのスタイル */
-/* .link-style:hover {
-  text-decoration: underline; /* ホバー時に下線を表示 */
- */
-
-/* 訪問済みのリンクのスタイル */
-.link-style:visited {
-  color: inherit; /* 訪問済みリンクも親要素の色を継承 */
+.link-style:hover {
+  color: #ff4343;
+  text-decoration: none; /* 下線を除去 */
 }
