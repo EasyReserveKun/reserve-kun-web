@@ -1,6 +1,7 @@
 function DebugSession(props) {
   function DebugLogin(){
     sessionStorage.setItem('AccountName','テスト太郎');
+    sessionStorage.setItem('AccountMail','yota.s130319@icloud.com');
     window.alert("ログインしました：" + sessionStorage.getItem('AccountName'));
   }
   function DebugLogout(){

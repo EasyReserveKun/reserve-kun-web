@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 
@@ -6,7 +6,20 @@ import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 
+
+import { useNavigate } from 'react-router-dom';
+
+
 function LogoutSuccess() {
+  const navigate = useNavigate('');
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/');
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <div className="nf-container">
       <Header className="header" />

@@ -8,8 +8,10 @@ const Header = () => {
   function goToLogin(){
     navigate("/login")
   }
-  function goToLogout(){
-    console.log("log outボタンが押されました。")
+  const goToLogout = async () => {
+    await sessionStorage.removeItem("AccountName");
+    await sessionStorage.removeItem("AccountMail");
+    navigate("/logout")
   };
   const [menuOpen, setMenuOpen] = useState(false);
 

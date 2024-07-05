@@ -44,7 +44,7 @@ function Search(props) {
     return (
       <div id="overlay">
         <div id="content">
-          <form className='form-container' method='POST' action='http://easy-reserve-kun.azurewebsites/reserve'>
+          <form className='form-container' method='POST' action="http://localhost:8080/reserve/insert">
             <div className='row'>
               <div className='col text-right'>
                 <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>
@@ -84,7 +84,7 @@ function Search(props) {
                 <label>Eメール</label>
               </div>
               <div className='col-8  modal-input'>
-                <input type="email" name="cid" required /><br></br>
+                <input type="email" name="cid" value={sessionStorage.getItem('AccountMail')} required readOnly /><br></br>
               </div>
             </div>
             <div className='row'>

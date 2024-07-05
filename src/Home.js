@@ -16,26 +16,15 @@ import IchiroImage from './Image/Ichiro.png';
 import MisakiImage from './Image/Misaki.png';
 import KentaImage from './Image/Kenta.png';
 
-import { useNavigate } from 'react-router-dom';
 import DebugSession from './DebugSession.js';
 
 
 function Home() {
-  let navigate = useNavigate();
-  function goToLogin() {
-    navigate("/login")
-  }
-
-  // function goToLogout(){
-  //   console.log("log outボタンが押されました。")
-  // };
-
 
   if (sessionStorage.getItem('AccountName') !== null) {
     return (
       <div>
         <Header />
-        <DebugSession type="Login" /><DebugSession type="Logout" /><DebugSession type="Check" />
         <Search />
         <ServiceDescription />
         <ContentItem text="建築士資格を持ち、20年以上のリフォーム業界経験を持つ佐藤花子は、住宅の修繕やリフォームのプロフェッショナルです。設計から施工までを一貫してサポートし、省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに精通しています。細部にまでこだわる丁寧な仕事が評判で、安心してお任せいただけます。おうちの修繕やリフォームは、佐藤花子にご相談ください。" imgUrl={hanakoImage} supervisor="家の修繕のスーパーバイザー" name="佐藤花子" url="/satohanako" />
@@ -51,7 +40,16 @@ function Home() {
 
         <ContentItem text="保険業界で20年以上の経験を持つ中村健太は、特に自動車保険や生命保険の分野に精通したスーパーバイザーです。クライアントのライフスタイルに合わせた保険商品の提案や見直しを行い、最適な保障を提供します。また、金融商品についても幅広い知識を持ち、資産運用やリスク管理のアドバイスも行っています。車や保険、金融に関するご相談は、中村健太にお任せください。どうぞお気軽にご利用ください。" imgUrl={KentaImage} supervisor="車や保険・金融のスーパーバイザー" name="中村健太" url="/nakamurakenta" />
 
-        <br></br>
+        <p>
+          <a href="#category">カテゴリ</a>　
+          <a href="#reserve-info">予約確認/確認/キャンセル</a>　
+          <a href="#faq">FAQガイドライン（よくある質問）</a>　
+        </p>
+        <p>
+          <a href="#form">問い合わせフォーム</a>　
+          <a href="#access">アクセス</a>　
+          <a href="/login">ログイン</a>
+        </p>
         <Footer />
         <Toolbar />
       </div>
@@ -61,7 +59,7 @@ function Home() {
 
       <div>
         <Header />
-        <DebugSession type="Login" /><DebugSession type="Logout" /><DebugSession type="Check" />
+        <DebugSession type="Login" />
         <Search />
         <ServiceDescription />
         <ContentItem text="建築士資格を持ち、20年以上のリフォーム業界経験を持つ佐藤花子は、住宅の修繕やリフォームのプロフェッショナルです。設計から施工までを一貫してサポートし、省エネ改修やバリアフリーリフォームなど、最新の技術とトレンドに精通しています。細部にまでこだわる丁寧な仕事が評判で、安心してお任せいただけます。おうちの修繕やリフォームは、佐藤花子にご相談ください。" imgUrl={hanakoImage} supervisor="家の修繕のスーパーバイザー" name="佐藤花子" url="/satohanako" />
@@ -77,7 +75,16 @@ function Home() {
 
         <ContentItem text="保険業界で20年以上の経験を持つ中村健太は、特に自動車保険や生命保険の分野に精通したスーパーバイザーです。クライアントのライフスタイルに合わせた保険商品の提案や見直しを行い、最適な保障を提供します。また、金融商品についても幅広い知識を持ち、資産運用やリスク管理のアドバイスも行っています。車や保険、金融に関するご相談は、中村健太にお任せください。どうぞお気軽にご利用ください。" imgUrl={KentaImage} supervisor="車や保険・金融のスーパーバイザー" name="中村健太" url="/nakamurakenta" />
 
-       <br></br>
+        <p>
+          <a href="#category">カテゴリ</a>　
+          <a href="#reserve-info">予約確認/確認/キャンセル</a>　
+          <a href="#faq">FAQガイドライン（よくある質問）</a>　
+        </p>
+        <p>
+          <a href="#form">問い合わせフォーム</a>　
+          <a href="#access">アクセス</a>　
+          <a href="/login">ログイン</a>
+        </p>
         <Footer />
         <Toolbar />
       </div>
