@@ -131,3 +131,20 @@
   background-color: #2E8B57;
   color: #fff;
 }
+
+.link-button {
+  background: none;
+  border: none;
+  color: #007bff; /* リンクの色に合わせる（例として青色） */
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+.link-button:hover,
+.link-button:focus {
+  text-decoration: underline;
+  color: #0056b3; /* ホバー時やフォーカス時の色（必要に応じて変更） */
+  outline: none; /* フォーカス時のデフォルトの枠線を削除 */
+}

@@ -15,26 +15,15 @@ import IchiroImage from './Image/Ichiro.png';
 import MisakiImage from './Image/Misaki.png';
 import KentaImage from './Image/Kenta.png';
 
-import { useNavigate } from 'react-router-dom';
 import DebugSession from './DebugSession.js';
 
 
 function Home() {
-  let navigate = useNavigate();
-  function goToLogin() {
-    navigate("/login")
-  }
-
-  // function goToLogout(){
-  //   console.log("log outボタンが押されました。")
-  // };
-
 
   if (sessionStorage.getItem('AccountName') !== null) {
     return (
       <div>
         <Header />
-        <DebugSession type="Login" /><DebugSession type="Logout" /><DebugSession type="Check" />
         <Search />
         <ServiceDescription />
         <a href="/hanakosato" className="link-style">
@@ -60,7 +49,7 @@ function Home() {
         <p>
           <a href="#form">問い合わせフォーム</a>　
           <a href="#access">アクセス</a>　
-          <a href="#logout">ログアウト</a>　
+          <a href="/login">ログイン</a>
         </p>
         <Footer />
         <Toolbar />
@@ -71,7 +60,7 @@ function Home() {
 
       <div>
         <Header />
-        <DebugSession type="Login" /><DebugSession type="Logout" /><DebugSession type="Check" />
+        <DebugSession type="Login" />
         <Search />
         <ServiceDescription />
         <a href="/hanakosato" className="link-style">
@@ -97,7 +86,7 @@ function Home() {
         <p>
           <a href="#form">問い合わせフォーム</a>　
           <a href="#access">アクセス</a>　
-          <button onClick={goToLogin} href="/login">ログイン</button>
+          <a href="/login">ログイン</a>
         </p>
         <Footer />
         <Toolbar />
