@@ -51,16 +51,7 @@ function Home() {
 
         <ContentItem text="保険業界で20年以上の経験を持つ中村健太は、特に自動車保険や生命保険の分野に精通したスーパーバイザーです。クライアントのライフスタイルに合わせた保険商品の提案や見直しを行い、最適な保障を提供します。また、金融商品についても幅広い知識を持ち、資産運用やリスク管理のアドバイスも行っています。車や保険、金融に関するご相談は、中村健太にお任せください。どうぞお気軽にご利用ください。" imgUrl={KentaImage} supervisor="車や保険・金融のスーパーバイザー" name="中村健太" url="/nakamurakenta" />
 
-        <p>
-          <a href="#category">カテゴリ</a>　
-          <a href="#reserve-info">予約確認/確認/キャンセル</a>　
-          <a href="#faq">FAQガイドライン（よくある質問）</a>　
-        </p>
-        <p>
-          <a href="#form">問い合わせフォーム</a>　
-          <a href="#access">アクセス</a>　
-          <a href="#logout">ログアウト</a>　
-        </p>
+        <br></br>
         <Footer />
         <Toolbar />
       </div>
@@ -86,16 +77,7 @@ function Home() {
 
         <ContentItem text="保険業界で20年以上の経験を持つ中村健太は、特に自動車保険や生命保険の分野に精通したスーパーバイザーです。クライアントのライフスタイルに合わせた保険商品の提案や見直しを行い、最適な保障を提供します。また、金融商品についても幅広い知識を持ち、資産運用やリスク管理のアドバイスも行っています。車や保険、金融に関するご相談は、中村健太にお任せください。どうぞお気軽にご利用ください。" imgUrl={KentaImage} supervisor="車や保険・金融のスーパーバイザー" name="中村健太" url="/nakamurakenta" />
 
-        <p>
-          <a href="#category">カテゴリ</a>　
-          <a href="#reserve-info">予約確認/確認/キャンセル</a>　
-          <a href="#faq">FAQガイドライン（よくある質問）</a>　
-        </p>
-        <p>
-          <a href="#form">問い合わせフォーム</a>　
-          <a href="#access">アクセス</a>　
-          <button onClick={goToLogin} href="/login">ログイン</button>　
-        </p>
+       <br></br>
         <Footer />
         <Toolbar />
       </div>
