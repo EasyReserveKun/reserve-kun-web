@@ -11,13 +11,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 function LogoutSuccess() {
-  let navigate = useNavigate();
+  const navigate = useNavigate('');
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       navigate('/');
-    }, 3 * 1000);
-// eslint-disable-next-line
-  }, []);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <div className="nf-container">
