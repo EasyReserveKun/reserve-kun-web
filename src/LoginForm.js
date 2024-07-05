@@ -21,10 +21,10 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    const responce = await fetch("http://lcoalhost:8080/customer/login", requestData);
+    const responce = await fetch("http://localhost:8080/customer/login", requestData);
     const data = await responce.json();
   
-    if(data === null){
+    if(data.Name === undefined){
       window.alert("ログインに失敗")
     }else{
       await sessionStorage.setItem('AccountName',data.Name);
