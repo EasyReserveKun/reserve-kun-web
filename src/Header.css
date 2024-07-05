@@ -84,6 +84,7 @@
   flex: 1;
   text-align: center;
 }
+
 /* ロゴのフォント
 .logo h1 {
   margin: 0;
@@ -104,16 +105,19 @@
 
 */
 
-.right-menu{
+.right-menu {
   display: flex;
 }
 
 .user-icon {
   font-size: 32px;
   color: #fff;
-  background-color: transparent; /* 背景色を透明にする */
-  border: none; /* ボーダーを削除する */
-  opacity: 1; /* 不透明度を100%にする */
+  background-color: transparent;
+  /* 背景色を透明にする */
+  border: none;
+  /* ボーダーを削除する */
+  opacity: 1;
+  /* 不透明度を100%にする */
 }
 
 .menu-button {
@@ -135,7 +139,8 @@
 .link-button {
   background: none;
   border: none;
-  color: #007bff; /* リンクの色に合わせる（例として青色） */
+  color: #007bff;
+  /* リンクの色に合わせる（例として青色） */
   text-decoration: underline;
   cursor: pointer;
   padding: 0;
@@ -145,6 +150,12 @@
 .link-button:hover,
 .link-button:focus {
   text-decoration: underline;
-  color: #0056b3; /* ホバー時やフォーカス時の色（必要に応じて変更） */
-  outline: none; /* フォーカス時のデフォルトの枠線を削除 */
+  color: #0056b3;
+  /* ホバー時やフォーカス時の色（必要に応じて変更） */
+  outline: none;
+  /* フォーカス時のデフォルトの枠線を削除 */
+}
+
+.button-like-p {
+  all: unset
 }

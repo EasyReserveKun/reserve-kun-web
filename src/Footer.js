@@ -1,12 +1,7 @@
 import React from 'react';
 import './Footer.css'; // 別途作成したCSSファイルをインポートする
-import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
-    let navigate = useNavigate();
-    function goToLogin() {
-        navigate("/login")
-    }
 
     if (sessionStorage.getItem('AccountName') !== null) {
         return (
