@@ -1,16 +1,17 @@
 .fixed-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    color: #333;
-    padding: 10px 0;
-    text-align: center;
-    z-index: 999;
-  }
-.reserve-button{
-    background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #333;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 999;
+}
+
+.reserve-button {
+  background-color: #fff;
   color: #2E8B57;
   border: 2px solid #2E8B57;
   padding: 10px 10px;
@@ -19,4 +20,26 @@
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
   border-radius: 5px;
+}
+
+/* 一番上に戻るボタン */
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 1000; /* 必要に応じて他の要素との重なりを避けるために調整 */
+  font-size: 18px;
+  background-color: #474747; /* 灰色の背景色 */
+  color: white; /* 白色のテキスト */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  margin-top: 10cm;
+}
+
+.scroll-to-top-button:hover {
+  background-color: #999; /* ホバー時の背景色をより濃い灰色に変更 */
 }
