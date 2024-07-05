@@ -9,12 +9,14 @@ import Footer from './Footer';
 
 import { useNavigate } from 'react-router-dom';
 
+
 function LogoutSuccess() {
   let navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       navigate('/');
     }, 3 * 1000);
+// eslint-disable-next-line
   }, []);
 
   return (
