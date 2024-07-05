@@ -21,7 +21,7 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    const responce = await fetch("http://reserve-kun-server.azurewebsites.net/customer/login", requestData);
+    const responce = await fetch("http://lcoalhost:8080/customer/login", requestData);
     const data = await responce.json();
   
     if(data === null){
