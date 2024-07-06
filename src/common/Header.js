@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
-import logo from '../img/ace-logo.png';
 
 const Header = () => {
   let navigate = useNavigate();
@@ -44,7 +43,7 @@ const Header = () => {
           )}
         </div>
         <div className="logo">
-          <a href='/'><img src={logo} alt="Logo" /></a>
+          <a href='/'><img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" /></a>
         </div>
 
         <div className='right-menu'>
@@ -77,7 +76,7 @@ const Header = () => {
           )}
         </div>
         <div className="logo">
-          <a href='/'><img src={logo} alt="Logo" /></a>
+        <a href='/'><img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" /></a>
         </div>
 
         <div className='right-menu'>
