@@ -16,7 +16,7 @@
 #content {
   z-index: 2;
   width: 80%;
-  max-width: 500px;
+  max-width: 540px;
   height: 93%;
   padding: 1em;
   background: #fff;
@@ -25,14 +25,17 @@
 
 /* 罰ボタンのスタイル */
 .bi-x-circle {
-  background-color: transparent; /* 背景色を透明にする */
-  border: none; /* ボーダーを削除する */
-  opacity: 1; /* 不透明度を100%にする */
+  background-color: transparent;
+  /* 背景色を透明にする */
+  border: none;
+  /* ボーダーを削除する */
+  opacity: 1;
+  /* 不透明度を100%にする */
 }
 
-/* TODO: スタイルの確認(Searchとの競合，timezone削除の影響) */
+
 /* Modal内のフォーム各要素に適応されるスタイル */
-.form-container input{
+.modal-container input {
   width: 100%;
   margin-bottom: 6px;
 }
@@ -84,5 +87,6 @@
 }
 
 .green-button:hover {
-  background-color: #45a049; /* ホバー時の色 */
+  background-color: #45a049;
+  /* ホバー時の色 */
 }
