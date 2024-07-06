@@ -1,5 +1,8 @@
+// Import Modules
 import React from 'react';
-import './Registered.css'; // 外部のCSSファイルをインポート
+
+// Import StyleSheets
+import './Registered.css';
 
 const Registered = () => {
     return (

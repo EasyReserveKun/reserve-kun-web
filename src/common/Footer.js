@@ -1,5 +1,8 @@
+// Import Modules
 import React from 'react';
-import './Footer.css'; // 別途作成したCSSファイルをインポートする
+
+// Import StyleSheets
+import './Footer.css';
 
 const Footer = () => {
 

@@ -1,4 +1,7 @@
+// Import Modules
 import React from 'react';
+
+// Import StyleSheets
 import './ContentItem.css';
 
 const ContentItem = ({data}) => {

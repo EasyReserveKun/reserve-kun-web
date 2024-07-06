@@ -1,6 +1,11 @@
+// Import Modules
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Import StyleSheets
 import './App.css';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// Import Components
 import Home from "./home/Home";
 import Nf from "./nf/Nf"
 import LoginForm from './login/LoginForm';

@@ -1,3 +1,6 @@
+// Import Modules
+import React from 'react';
+
 function DebugSession(props) {
   function DebugLogin(){
     sessionStorage.setItem('AccountName','テスト太郎');

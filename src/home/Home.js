@@ -1,5 +1,8 @@
+// Import Modules
+import React from 'react';
+
+// Import StyleSheets
 import '../App.css';
-import '../home/components/ContentItem.css'
 
 // Import Components
 import ContentItem from './components/ContentItem';

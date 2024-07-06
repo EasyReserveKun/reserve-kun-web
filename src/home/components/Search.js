@@ -1,6 +1,10 @@
+// Import Modules
+import React, { useState, useEffect} from 'react';
+
+//Import StyleSheets
 import './Search.css';
 import Modal from './Modal.js'
-import React, { useState, useEffect} from 'react';
+
 
 function Search() {
   const [show, setShow] = useState(false)

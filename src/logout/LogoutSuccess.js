@@ -1,13 +1,14 @@
+// Import Modules
 import React, { useEffect } from 'react';
-import '../App.css';
+import { useNavigate } from 'react-router-dom';
 
+// Import StyleSheets
+import '../App.css';
 
 // Import Components
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 
-
-import { useNavigate } from 'react-router-dom';
 
 
 function LogoutSuccess() {

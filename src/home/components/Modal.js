@@ -1,7 +1,11 @@
+// Import Modules
+import React, { useState } from 'react';
+
+// Import StyleSheets
 import './Search.css';
 import './Modal.css'
 import '../../common/Timebutton'
-import React, { useState } from 'react';
+
 
 function Search(props) {
 

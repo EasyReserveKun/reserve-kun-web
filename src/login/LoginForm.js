@@ -1,8 +1,13 @@
+// Import Modules
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+
+// Import StyleSheets
+import '../common/Form.css';
+
+// Import Components
 import Header from "../common/Header"
 import Footer from "../common/Footer"
-import '../common/Form.css';
-import { useNavigate } from 'react-router-dom'
 
 const LoginForm = () => {
   const navigate = useNavigate('');

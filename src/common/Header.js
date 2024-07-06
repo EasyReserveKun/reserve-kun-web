@@ -1,5 +1,8 @@
+// Import Modules
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Import StyleSheets
 import './Header.css';
 
 const Header = () => {
