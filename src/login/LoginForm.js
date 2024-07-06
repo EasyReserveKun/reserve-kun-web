@@ -1,6 +1,7 @@
 // Import Modules
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
 import '../common/Form.css';
@@ -8,6 +9,7 @@ import '../common/Form.css';
 // Import Components
 import Header from "../common/Header"
 import Footer from "../common/Footer"
+
 
 const LoginForm = () => {
   const navigate = useNavigate('');
@@ -36,7 +38,7 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    const responce = await fetch("http://localhost:8080/customer/login", requestData);
+    const responce = await fetch(`${getApiUrl}/customer/login`, requestData);
     const data = await responce.json();
 
     if (data.status === "Success") {

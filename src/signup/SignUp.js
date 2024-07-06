@@ -1,6 +1,7 @@
 // Import Modules
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
 import '../common/Form.css';
@@ -55,7 +56,7 @@ const SingUp = (event) => {
       },
       body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
     }
-    const responce = await fetch("http://localhost:8080/customer/signup", requestData);
+    const responce = await fetch(`${getApiUrl}/customer/signup`, requestData);
     const data = await responce.json();
     console.log(data.status);
     if (data.status === "Success") {
