@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 // Import StyleSheets
 import './Search.css';
 import './Modal.css'
-import '../../common/Timebutton'
 
 
 function Search(props) {
