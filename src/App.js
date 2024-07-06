@@ -1,11 +1,11 @@
 import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from "./Home";
-import Nf from "./Nf"
-import LoginForm from './LoginForm';
-import SignUp from './SignUp';
-import LogoutSuccess from './LogoutSuccess';
+import Home from "./home/Home";
+import Nf from "./nf/Nf"
+import LoginForm from './login/LoginForm';
+import SignUp from './signup/SignUp';
+import LogoutSuccess from './logout/LogoutSuccess';
 
 function App() {
   return (

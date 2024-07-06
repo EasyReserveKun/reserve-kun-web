@@ -1,6 +1,6 @@
 import './Search.css';
 import './Modal.css'
-import './Timebutton'
+import '../../common/Timebutton'
 import React, { useState } from 'react';
 
 function Search(props) {

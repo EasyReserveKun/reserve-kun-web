@@ -1,22 +1,22 @@
-import './App.css';
-import './ContentItem.css'
+import '../App.css';
+import '../home/components/ContentItem.css'
 
 // Import Components
-import ContentItem from './ContentItem';
-import Header from './Header';
-import Search from './Search.js'
-import ServiceDescription from './ServiceDescription';
-import Footer from './Footer';
-import Toolbar from './Toolbar.js'
+import ContentItem from './components/ContentItem';
+import Header from '../common/Header.js';
+import Search from './components/Search.js'
+import ServiceDescription from './components/ServiceDescription';
+import Footer from '../common/Footer.js';
+import Toolbar from '../common/Toolbar.js'
 
 //Import Images
-import hanakoImage from './Image/Hanako.png';
-import TaroImage from './Image/Taro.png';
-import IchiroImage from './Image/Ichiro.png';
-import MisakiImage from './Image/Misaki.png';
-import KentaImage from './Image/Kenta.png';
+import hanakoImage from '../Image/Hanako.png';
+import TaroImage from '../Image/Taro.png';
+import IchiroImage from '../Image/Ichiro.png';
+import MisakiImage from '../Image/Misaki.png';
+import KentaImage from '../Image/Kenta.png';
 
-import DebugSession from './DebugSession.js';
+import DebugSession from '../common/DebugSession.js';
 
 
 function Home() {

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import '../App.css';
 
 
 // Import Components
-import Header from './Header';
-import Footer from './Footer';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
 
 
 import { useNavigate } from 'react-router-dom';

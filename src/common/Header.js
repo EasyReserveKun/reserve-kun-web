@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
-import logo from './img/ace-logo.png';
+import logo from '../img/ace-logo.png';
 
 const Header = () => {
   let navigate = useNavigate();
