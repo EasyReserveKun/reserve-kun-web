@@ -1,38 +1,18 @@
-/* Nf.css */
-
 .nf-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    text-align: center;
-    background-color: #f8f8f8;
-    color: #333;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .header {
-    width: 100%;
-  }
-  
-  .footer {
-    width: 100%;
-  }
-  
-  .message {
-    margin: 20px 0;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .message a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .message a:hover {
-    text-decoration: underline;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  text-align: center;
+  background-color: #f8f8f8;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.message {
+  margin: 20px 0;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}

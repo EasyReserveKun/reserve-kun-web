@@ -69,9 +69,9 @@ const SingUp = (event) => {
   return (
     <>
       <Header />
-      <div className="login-container">
-        <h2 className="login-title">新規登録</h2>
-        <form className="login-form">
+      <div className="form-container">
+        <h2 className="form-title">新規登録</h2>
+        <form className="form-style">
           <label htmlFor="name">名前</label>
           <input type="name" id="name" name="name" onChange={handleChangeName} required />
 
@@ -89,7 +89,7 @@ const SingUp = (event) => {
           <p style={{ color: 'red' }}>{signupError}</p>
           <button type="button" onClick={signupAuth}>登録</button>
         </form>
-        <div className="signup-link">
+        <div className="another-link">
           <a href="/login">アカウントをお持ちの方はこちら</a>
         </div>
       </div>

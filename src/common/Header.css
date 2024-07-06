@@ -1,3 +1,4 @@
+/* Header全体のスタイル */
 .header {
   display: flex;
   align-items: center;
@@ -21,6 +22,7 @@
   width: 240px;
 }
 
+/* ハンバーガーメニューのスタイル */
 .menu ul {
   list-style: none;
   padding: 0;
@@ -38,6 +40,11 @@
   display: block;
 }
 
+.menu button {
+  all: unset
+}
+
+/* ハンバーガーメニューを開くボタンのスタイル */
 .hamburger {
   display: block;
   width: 30px;
@@ -80,12 +87,13 @@
   transform: translateY(-11px) rotate(-45deg);
 }
 
+/* ロゴの画像に適応されるスタイル */
 .logo {
   flex: 1;
   text-align: center;
 }
 
-/* ロゴのフォント
+/* ロゴの画像作成の元になった文字のスタイル
 .logo h1 {
   margin: 0;
   font-size: 32px;
@@ -99,63 +107,16 @@
     2px 2px 0 #FFD700;
   padding: 5px 10px;
   display: inline-block;
-  font-weight: bolder;
+  font-weight: bolder;eeee3
   font-style: italic;
 }
 
 */
 
-.right-menu {
-  display: flex;
-}
-
 .user-icon {
+  display: flex;
   font-size: 32px;
   color: #fff;
-  background-color: transparent;
-  /* 背景色を透明にする */
-  border: none;
-  /* ボーダーを削除する */
-  opacity: 1;
-  /* 不透明度を100%にする */
-}
-
-.menu-button {
-  background-color: #fff;
-  color: #2E8B57;
-  border: 2px solid #2E8B57;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 5px;
-}
-
-.menu-button:hover {
-  background-color: #2E8B57;
-  color: #fff;
-}
-
-.link-button {
-  background: none;
-  border: none;
-  color: #007bff;
-  /* リンクの色に合わせる（例として青色） */
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
-  font: inherit;
-}
-
-.link-button:hover,
-.link-button:focus {
-  text-decoration: underline;
-  color: #0056b3;
-  /* ホバー時やフォーカス時の色（必要に応じて変更） */
-  outline: none;
-  /* フォーカス時のデフォルトの枠線を削除 */
-}
-
-.button-like-p {
-  all: unset
+  background-color: transparent; /* 背景色を透明にする */
+  border: none; /* ボーダーを削除する */
 }

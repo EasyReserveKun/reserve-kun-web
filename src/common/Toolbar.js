@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // Import StyleSheets
 import './Toolbar.css';
 
-const Toolbar = () => {
+const Toolbar = ( {search} ) => {
   let navigate = useNavigate();
 
   // スクロール位置を監視するための state
@@ -36,28 +36,30 @@ const Toolbar = () => {
     });
   };
 
+  const scrollToSearch = () => {
+    window.scrollTo({
+      top: search.current.offsetTop - 30,
+      behavior: 'smooth'
+    });
+  };
+
   function goToLogin() {
     navigate("/login");
   }
 
-  function goToReserve() {
-    navigate("/");
-  }
+
 
   return (
-    <div className="toolbar-container">
-      <div className="fixed-bar">
+      <div className="toolbar-container">
         {sessionStorage.getItem('AccountName') !== null ? (
-          <button className='reserve-button' onClick={goToReserve}>今すぐ予約する！</button>
+            <button className='reserve-button' onClick={scrollToSearch}>今すぐ予約する！</button>
         ) : (
           <button className='reserve-button' onClick={goToLogin}>今すぐ予約する！</button>
         )}
-      </div>
-      {/* 一番上に戻るボタン */}
       {showScrollButton && (
         <button className="scroll-to-top-button" onClick={scrollToTop} title="ページの一番上に戻る">Top</button>
       )}
-    </div>
+      </div>
   );
 };
 

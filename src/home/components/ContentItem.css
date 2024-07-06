@@ -1,3 +1,4 @@
+/* 全体のスタイル */
 .content-item {
   display: flex;
   align-items: center;
@@ -6,12 +7,14 @@
   justify-content: space-between;
 }
 
+/* 写真に適応されるスタイル */
 .img-content img {
   max-width: 80%;
   align-items: right;
   height: auto;
 }
 
+/* 紹介文に適応されるスタイル */
 .text-content {
   font-size: 16px;
   text-align: left;
@@ -19,12 +22,10 @@
 
 .text-content h5{
   font-size: 20px;
-  /* font-weight: bold; */
   text-align: center;
-  
 }
 
-.text-content h5:first-letter {
+.text-content h5:first-letter { /* 最初の一文字を大きくする */
   font-size: 2em;
   color: #7779d7;
   font-weight: bold;

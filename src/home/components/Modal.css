@@ -1,3 +1,4 @@
+/* 画面全体を薄暗くする */
 #overlay {
   position: fixed;
   top: 0;
@@ -11,6 +12,7 @@
   justify-content: center;
 }
 
+/* Modalの枠を作成 */
 #content {
   z-index: 2;
   width: 80%;
@@ -21,18 +23,18 @@
   padding-top: 5px;
 }
 
-.form-container input{
-  width: 100%;
-}
-
-#timezone {
-  margin-bottom: 6px;
-}
-
+/* 罰ボタンのスタイル */
 .bi-x-circle {
   background-color: transparent; /* 背景色を透明にする */
   border: none; /* ボーダーを削除する */
   opacity: 1; /* 不透明度を100%にする */
+}
+
+/* TODO: スタイルの確認(Searchとの競合，timezone削除の影響) */
+/* Modal内のフォーム各要素に適応されるスタイル */
+.form-container input{
+  width: 100%;
+  margin-bottom: 6px;
 }
 
 .modal-label {
@@ -51,36 +53,33 @@
 
 .gray-button {
   margin: 2px 1px;
-  padding: 5px 5px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
-  background-color: #f0f0f0; /* 白やグレーっぽい色 */
-  color: #333; /* テキストの色 */
+  padding: 5px 5px;
+  background-color: #f0f0f0;
+  color: #333;
   text-align: center;
   text-decoration: none;
-  border: none; /* ボーダーを削除 */
+  border: none;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: inherit; /* フォントサイズを継承 */
+  font-size: inherit;
   white-space: nowrap;
 }
 
 .gray-button:hover {
-  background-color: #e0e0e0; /* ホバー時の色 */
+  background-color: #e0e0e0;
 }
 
-/* 新しいボタンのスタイル */
-.green-button {  
+.green-button {
   margin: 2px 2px;
-  padding: 5px 5px; /* パディングを調整して、文字とほぼ同じ大きさのボタンにする */
-  background-color: #4CAF50; /* 明るい緑色 */
-  color: #ffffff; /* テキストの色 */
+  padding: 5px 5px;
+  background-color: #4CAF50;
+  color: #ffffff;
   text-align: center;
   text-decoration: none;
-  border: none; /* ボーダーを削除 */
+  border: none;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: inherit; /* フォントサイズを継承 */
+  font-size: inherit;
   white-space: nowrap;
 }
 

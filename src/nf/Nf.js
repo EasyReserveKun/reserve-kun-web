@@ -12,13 +12,13 @@ import Footer from '../common/Footer';
 function Nf() {
   return (
     <div className="nf-container">
-      <Header className="header" />
+      <Header />
       <div className="message">
         申し訳ございませんが、お探しのページは見つかりませんでした。<br />
         以下のリンクを使用してホームページに移動してください。<br />
         <a href="/">ホーム画面へ</a>
       </div>
-      <Footer className="footer" />
+      <Footer />
     </div>
   );
 }

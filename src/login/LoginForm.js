@@ -53,9 +53,9 @@ const LoginForm = () => {
   return (
     <>
       <Header />
-      <div className="login-container">
-        <h2 className="login-title">ログイン</h2>
-        <form className="login-form">
+      <div className="form-container">
+        <h2 className="form-title">ログイン</h2>
+        <form className="form-style">
           <label htmlFor="email">ID(メールアドレス)</label>
           <input type="email" id="email" value={inputCid} onChange={handleChangeCid} required />
 
@@ -64,7 +64,7 @@ const LoginForm = () => {
           <p style={{ color: 'red' }}>{loginError}</p>
           <button type="button" onClick={loginAuth}>ログイン</button>
         </form>
-        <div className="signup-link">
+        <div className="another-link">
           <a href="/signup">アカウントをお持ちでない方はこちら</a>
         </div>
       </div>

@@ -40,7 +40,7 @@ const Header = () => {
                 <li><a href="#faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
                 <li><a href="#access">アクセス</a></li>
-                <li><button className="button-like-p" onClick={goToLogout}>ログアウト</button></li>
+                <li><button onClick={goToLogout}>ログアウト</button></li>
               </ul>
             </nav>
           )}
@@ -49,9 +49,7 @@ const Header = () => {
           <a href='/'><img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" /></a>
         </div>
 
-        <div className='right-menu'>
-          <button className="bi bi-person-circle user-icon" onClick={goToLogout}></button>
-        </div>
+        <button className="bi bi-person-circle user-icon" onClick={goToLogout}></button>
       </header>
     );
   } else {
@@ -82,9 +80,7 @@ const Header = () => {
         <a href='/'><img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" /></a>
         </div>
 
-        <div className='right-menu'>
-          <button className="bi bi-person user-icon" onClick={goToLogin}></button>
-        </div>
+        <button className="bi bi-person user-icon" onClick={goToLogin}></button>
       </header>
     );
   }

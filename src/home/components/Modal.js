@@ -97,7 +97,7 @@ function Search(props) {
                 <label>時間帯</label>
               </div>
               <div className='col-8  modal-input'>
-                <input type="text" name="time" value={time} id="timezone" placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
+                <input type="text" name="time" value={time} placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
               </div>
             </div>
             <div className="row gx-2">

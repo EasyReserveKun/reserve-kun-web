@@ -1,35 +1,24 @@
+/* Footer全体のスタイル */
 footer {
     background-color: #2e8b57;
     color: #fff;
     padding: 10px 0;
     text-align: center;
     margin-bottom: 65px;
-}
-
-.footer-bottom {
-    margin-top: 10px;
-    margin-bottom: 10px;
     font-size: 14px;
 }
 
-.footer-bottom a {
-    color: #f9f4f4;
-    text-decoration: none;
-}
-
+/* Footerのページ移動メニューに適応されるスタイル */
 .footer-menu {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    margin-top: 10px;
+    text-decoration: none;
+    list-style: none;
 }
 
 .footer-menu li {
     display: inline-block; /* リストを横並びにする */
-    margin-right: 10px; /* リストアイテム間のスペースを設定 */
-}
-
-.footer-menu li:last-child {
-    margin-right: 0; /* 最後のリストアイテムの右マージンをなくす */
+    margin: 0px 5px;
 }
 
 .footer-menu a {
@@ -55,8 +44,11 @@ footer {
 .footer-menu a:hover:after {
     transform: translate(0, 0);
 }
+
+/* 権利表記に適応されるスタイル */
 .copyright {
     margin: 0;
+    margin-bottom: 10px;
     padding: 20px 0 0 0;
     font-size: 12px;
    }

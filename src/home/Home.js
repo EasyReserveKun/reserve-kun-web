@@ -1,5 +1,5 @@
 // Import Modules
-import React from 'react';
+import React, { useRef } from 'react';
 
 // Import StyleSheets
 import '../App.css';
@@ -7,7 +7,7 @@ import '../App.css';
 // Import Components
 import Header from '../common/Header.js';
 import Toolbar from '../common/Toolbar.js'
-import Footer from '../common/Footer.js';
+import Footer from '../common/Footer.js'; // eslint-disable-next-line
 import DebugSession from '../common/DebugSession.js';
 import Search from './components/Search.js'
 import ContentItem from './components/ContentItem';
@@ -15,7 +15,9 @@ import ServiceDescription from './components/ServiceDescription';
 
 
 function Home() {
+  const searchRef = useRef(null);
 
+//コンシェルジュの情報
 const objHanako = {
   "id": "satohanako",
   "name": "佐藤花子",
@@ -61,38 +63,22 @@ const objKenta = {
           "車や保険、金融に関するご相談は、中村健太にお任せください。どうぞお気軽にご利用ください。"
 }
 
-  if (sessionStorage.getItem('AccountName') !== null) {
-    return (
-      <div>
-        <Header />
-        <Search />
-        <ServiceDescription />
-        <ContentItem data={objHanako}/>
-        <ContentItem data={objTaro}/>
-        <ContentItem data={objIchiro}/>
-        <ContentItem data={objMisaki}/>
-        <ContentItem data={objKenta}/>
-        <Footer />
-        <Toolbar />
-      </div>
-    );
-  } else {
-    return (
-
-      <div>
-        <Header />
-        <DebugSession type="Login" />
-        <Search />
-        <ServiceDescription />
-        <ContentItem id={objHanako} name={objHanako.name} text={objHanako.text} supervisor={objHanako.supervisor}/>
-        <ContentItem id={objTaro} name={objTaro.name} text={objTaro.text} supervisor={objTaro.supervisor}/>
-        <ContentItem id={objIchiro} name={objIchiro.name} text={objIchiro.text} supervisor={objIchiro.supervisor}/>
-        <ContentItem id={objMisaki} name={objMisaki.name} text={objMisaki.text} supervisor={objMisaki.supervisor}/>
-        <ContentItem id={objKenta} name={objKenta.name} text={objKenta.text} supervisor={objKenta.supervisor}/>
-        <Footer />
-        <Toolbar />
-      </div>
-    );
-  }
+return (
+  <div>
+    <Header />
+    <DebugSession type="Login" />
+    <div ref={searchRef}>
+      <Search />
+    </div>
+    <ServiceDescription />
+    <ContentItem data={objHanako}/>
+    <ContentItem data={objTaro}/>
+    <ContentItem data={objIchiro}/>
+    <ContentItem data={objMisaki}/>
+    <ContentItem data={objKenta}/>
+    <Footer />
+    <Toolbar search={searchRef}/>
+  </div>
+  );
 }
 export default Home;

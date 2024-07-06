@@ -1,4 +1,5 @@
-.fixed-bar {
+/* Toolbar全体に適応されるスタイル */
+.toolbar-container {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -10,40 +11,7 @@
   z-index: 999;
 }
 
-.reserve-button {
-  background-color: #fff;
-  color: #2E8B57;
-  border: 2px solid #2E8B57;
-  padding: 10px 10px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  border-radius: 5px;
-}
-
-/* 一番上に戻るボタン */
-.scroll-to-top-button {
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-  z-index: 1000; /* 必要に応じて他の要素との重なりを避けるために調整 */
-  font-size: 18px;
-  background-color: #474747; /* 灰色の背景色 */
-  color: white; /* 白色のテキスト */
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-  margin-top: 10cm;
-}
-
-.scroll-to-top-button:hover {
-  background-color: #999; /* ホバー時の背景色をより濃い灰色に変更 */
-}
-
+/* 予約ボタンに適応されるスタイル */
 .reserve-button{
   width: 150px;
   border: 0px solid transparent;
@@ -61,7 +29,6 @@
   );
   box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
   transition: background-position ease 0.4s;
-
   color: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -70,4 +37,25 @@
 
 .reserve-button:hover {
   background-position: 0 0;
-} 
+}
+
+/* Topへボタンに適応されるスタイル */
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  font-size: 18px;
+  background-color: #474747; /* 灰色の背景色 */
+  color: white; /* 白色のテキスト */
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  margin-top: 10cm;
+}
+
+.scroll-to-top-button:hover {
+  background-color: #999; /* ホバー時の背景色をより濃い灰色に変更 */
+}
