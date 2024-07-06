@@ -39,7 +39,7 @@ function Search() {
         },
         body: JSON.stringify({ date: date, eid: category })
       }
-      const responce = await fetch(`${getApiUrl}/reserve/available`, requestData)
+      const responce = await fetch(getApiUrl() + "/customer/login", requestData)
       const data = await responce.text();
       await setReservedTimes(data);
       setShow(true);

@@ -38,7 +38,7 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    const responce = await fetch(`${getApiUrl}/customer/login`, requestData);
+    const responce = await fetch(getApiUrl() + "/customer/login", requestData);
     const data = await responce.json();
 
     if (data.status === "Success") {
