@@ -5,13 +5,13 @@ import React from 'react';
 import '../App.css';
 
 // Import Components
-import ContentItem from './components/ContentItem';
 import Header from '../common/Header.js';
-import Search from './components/Search.js'
-import ServiceDescription from './components/ServiceDescription';
-import Footer from '../common/Footer.js';
 import Toolbar from '../common/Toolbar.js'
+import Footer from '../common/Footer.js';
 import DebugSession from '../common/DebugSession.js';
+import Search from './components/Search.js'
+import ContentItem from './components/ContentItem';
+import ServiceDescription from './components/ServiceDescription';
 
 
 function Home() {
