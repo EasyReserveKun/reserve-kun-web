@@ -28,42 +28,29 @@ const SingUp = (event) => {
 
   const signupAuth = async (event) => {
     event.preventDefault();
-    setSignupError("");
-    if (!inputName.trim()) {
-      setSignupError("名前を入力してください");
-      return null;
-    }
-    if (inputEmail !== inputEmailCheck) {
-      setSignupError("IDが確認用と一致しません。もう一度入力してください。");
-      return null;
-    }
-    if (!inputEmail.trim()) {
-      setSignupError("IDを入力して下さい");
-      return null;
-    }
-    if (inputPassword !== inputPasswordCheck) {
-      setSignupError("パスワードが確認用と一致しません。もう一度入力してください。");
-      return null;
-    }
-    if (!inputPassword.trim()) {
-      setSignupError("パスワードを入力して下さい");
-      return null;
-    }
-    let requestData = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
-    }
-    const responce = await fetch(getApiUrl() + "/customer/signup", requestData);
-    const data = await responce.json();
-    console.log(data.status);
-    if (data.status === "Success") {
-      setSignupError("");
-      navigate("/")
+    await setSignupError("");
+    const errorMessage = await validation()
+
+    if (errorMessage.trim()) {
+      let requestData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
+      }
+      const responce = await fetch(getApiUrl() + "/customer/signup", requestData);
+      const data = await responce.json();
+      console.log(data.status);
+      if (data.status === "Success") {
+        setSignupError("");
+        navigate("/")
+      } else {
+        setSignupError("そのIDのアカウントは既に存在します");
+      }
     } else {
-      setSignupError("そのIDのアカウントは既に存在します");
+      setSignupError(errorMessage);
+      return null;
     }
   }
 
@@ -81,7 +68,7 @@ const SingUp = (event) => {
     }
     //id
     if (inputEmail !== inputEmailCheck) {
-      return "IDが正しくありません";
+      return "IDが確認用と一致しません。もう一度入力してください。";
     }
     if (!inputEmail.trim()) {
       return "IDを入力して下さい";
@@ -91,7 +78,7 @@ const SingUp = (event) => {
     }
     //pass
     if (inputPassword !== inputPasswordCheck) {
-      return "パスワードが正しくありません";
+      return "パスワードが確認用と一致しません。もう一度入力してください。";
     }
     if (!inputPassword.trim()) {
       return "パスワードを入力して下さい";
