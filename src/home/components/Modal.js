@@ -109,10 +109,10 @@ function Search(props) {
               {renderTimeButtons()}
             </div>
             <div className='row'>
-              <div className='col-2 modal-label'>
-                <label htmlFor="etc">備考</label><br></br>
+              <div className='col-md-3 col-12 modal-label'>
+                <label htmlFor="etc">備考(100文字以内)</label><br></br>
               </div>
-              <div className='col-8  modal-input'>
+              <div className='col-md-7 col-9 modal-input'>
                 <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange}></input>
               </div>
             </div>
