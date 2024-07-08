@@ -113,7 +113,8 @@ function Search(props) {
                 <label htmlFor="etc">備考</label><br></br>
               </div>
               <div className='col-8  modal-input'>
-                <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange}></input>
+                <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange} maxLength={100}></input>
+                <p>文字数: {etc.length}/100</p>
               </div>
             </div>
             <button type="submit" className='btn btn-primary' disabled={isReserveDisable}>予約する</button>
