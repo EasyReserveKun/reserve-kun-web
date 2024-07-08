@@ -22,48 +22,61 @@ const LoginForm = () => {
 
   const loginAuth = async (event) => {
     event.preventDefault();
-    await setLoginError("");
-    const errorMessage = await validation();
+    setLoginError("");
+    //let errorMessage = await validation();
 
-    if (errorMessage.trim()) {
-      let requestData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cid: inputCid, password: inputPassword })
-      }
-      const responce = await fetch(getApiUrl() + "/customer/login", requestData);
-      const data = await responce.json();
-
-      if (data.status === "Success") {
-        await sessionStorage.setItem('AccountName', data.results.name);
-        await sessionStorage.setItem('AccountMail', data.results.mail);
-        setLoginError("")
-        navigate("/")
-      } else {
-        setLoginError("アカウントが見つかりません")
-      }
-    } else {
-      setLoginError(errorMessage);
-      return null
-    }
-  }
-
-  const validation = () => {
     if (!inputCid.trim()) {
-      return "IDを入力してください";
+      setLoginError("IDを入力してください");
+      return null;
     }
     if (inputCid.length > 30) {
-      return "IDは30文字以下で入力してください";
+      setLoginError("IDは30文字以下で入力してください");
+      return null;
     }
     if (!inputPassword.trim()) {
-      return "パスワードを入力してください";
+      setLoginError("パスワードを入力してください");
+      return null;
     }
     if (inputPassword.length > 60) {
-      return "パスワードは60文字以下で入力してください";
+      setLoginError("パスワードは60文字以下で入力してください");
+      return null;
+    }
+
+
+    let requestData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ cid: inputCid, password: inputPassword })
+    }
+    const responce = await fetch(getApiUrl() + "/customer/login", requestData);
+    const data = await responce.json();
+
+    if (data.status === "Success") {
+      await sessionStorage.setItem('AccountName', data.results.name);
+      await sessionStorage.setItem('AccountMail', data.results.mail);
+      setLoginError("")
+      navigate("/")
+    } else {
+      setLoginError("アカウントが見つかりません")
     }
   }
+
+  // const validation = () => {
+  //   if (!inputCid.trim()) {
+  //     return "IDを入力してください";
+  //   }
+  //   if (inputCid.length > 30) {
+  //     return "IDは30文字以下で入力してください";
+  //   }
+  //   if (!inputPassword.trim()) {
+  //     return "パスワードを入力してください";
+  //   }
+  //   if (inputPassword.length > 60) {
+  //     return "パスワードは60文字以下で入力してください";
+  //   }
+  // }
 
   return (
     <>

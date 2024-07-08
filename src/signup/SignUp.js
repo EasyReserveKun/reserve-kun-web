@@ -29,68 +29,98 @@ const SingUp = (event) => {
   const signupAuth = async (event) => {
     event.preventDefault();
     await setSignupError("");
-    const errorMessage = await validation()
+    //const errorMessage = await validation()
 
-    if (errorMessage.trim()) {
-      let requestData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
-      }
-      const responce = await fetch(getApiUrl() + "/customer/signup", requestData);
-      const data = await responce.json();
-      console.log(data.status);
-      if (data.status === "Success") {
-        setSignupError("");
-        navigate("/")
-      } else {
-        setSignupError("そのIDのアカウントは既に存在します");
-      }
-    } else {
-      setSignupError(errorMessage);
-      return null;
-    }
-  }
-
-
-  const validation = () => {
     //name
     if (!inputName.trim()) {
-      return "名前を入力してください";
+      setSignupError("名前を入力してください");
     }
     if (inputName.length < 2) {
-      return "名前は2文字以上で入力してください";
+      setSignupError("名前は2文字以上で入力してください");
     }
     if (inputName.length > 30) {
-      return "名前は30文字以下で入力してください";
+      setSignupError("名前は30文字以下で入力してください");
     }
     //id
     if (inputEmail !== inputEmailCheck) {
-      return "IDが確認用と一致しません。もう一度入力してください。";
+      setSignupError("IDが確認用と一致しません。もう一度入力してください。");
     }
     if (!inputEmail.trim()) {
-      return "IDを入力して下さい";
+      setSignupError("IDを入力して下さい");
     }
     if (inputEmail.length > 30) {
-      return "IDは30文字以下で入力してください";
+      setSignupError("IDは30文字以下で入力してください");
     }
     //pass
     if (inputPassword !== inputPasswordCheck) {
-      return "パスワードが確認用と一致しません。もう一度入力してください。";
+      setSignupError("パスワードが確認用と一致しません。もう一度入力してください。");
     }
     if (!inputPassword.trim()) {
-      return "パスワードを入力して下さい";
+      setSignupError("パスワードを入力して下さい");
     }
     if (inputPassword.length > 8) {
-      return "IDは30文字以下で入力してください";
+      setSignupError("IDは30文字以下で入力してください");
     }
     if (inputPassword.length > 60) {
-      return "IDは30文字以下で入力してください";
+      setSignupError("IDは30文字以下で入力してください");
     }
-    return "";
+
+    let requestData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
+    }
+    const responce = await fetch(getApiUrl() + "/customer/signup", requestData);
+    const data = await responce.json();
+    console.log(data.status);
+    if (data.status === "Success") {
+      setSignupError("");
+      navigate("/")
+    } else {
+      setSignupError("そのIDのアカウントは既に存在します");
+    }
   }
+
+
+  // const validation = () => {
+  //   //name
+  //   if (!inputName.trim()) {
+  //     return "名前を入力してください";
+  //   }
+  //   if (inputName.length < 2) {
+  //     return "名前は2文字以上で入力してください";
+  //   }
+  //   if (inputName.length > 30) {
+  //     return "名前は30文字以下で入力してください";
+  //   }
+  //   //id
+  //   if (inputEmail !== inputEmailCheck) {
+  //     return "IDが確認用と一致しません。もう一度入力してください。";
+  //   }
+  //   if (!inputEmail.trim()) {
+  //     return "IDを入力して下さい";
+  //   }
+  //   if (inputEmail.length > 30) {
+  //     return "IDは30文字以下で入力してください";
+  //   }
+  //   //pass
+  //   if (inputPassword !== inputPasswordCheck) {
+  //     return "パスワードが確認用と一致しません。もう一度入力してください。";
+  //   }
+  //   if (!inputPassword.trim()) {
+  //     return "パスワードを入力して下さい";
+  //   }
+  //   if (inputPassword.length > 8) {
+  //     return "IDは30文字以下で入力してください";
+  //   }
+  //   if (inputPassword.length > 60) {
+  //     return "IDは30文字以下で入力してください";
+  //   }
+  //   return "";
+  // }
+
   return (
     <>
       <Header />
