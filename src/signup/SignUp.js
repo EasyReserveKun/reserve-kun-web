@@ -67,6 +67,43 @@ const SingUp = (event) => {
     }
   }
 
+
+  const validation = () => {
+    //name
+    if (!inputName.trim()) {
+      return "名前を入力してください";
+    }
+    if (inputName.length < 2) {
+      return "名前は2文字以上で入力してください";
+    }
+    if (inputName.length > 30) {
+      return "名前は30文字以下で入力してください";
+    }
+    //id
+    if (inputEmail !== inputEmailCheck) {
+      return "IDが正しくありません";
+    }
+    if (!inputEmail.trim()) {
+      return "IDを入力して下さい";
+    }
+    if (inputEmail.length > 30) {
+      return "IDは30文字以下で入力してください";
+    }
+    //pass
+    if (inputPassword !== inputPasswordCheck) {
+      return "パスワードが正しくありません";
+    }
+    if (!inputPassword.trim()) {
+      return "パスワードを入力して下さい";
+    }
+    if (inputPassword.length > 8) {
+      return "IDは30文字以下で入力してください";
+    }
+    if (inputPassword.length > 60) {
+      return "IDは30文字以下で入力してください";
+    }
+    return "";
+  }
   return (
     <>
       <Header />
