@@ -22,33 +22,40 @@ const LoginForm = () => {
 
   const loginAuth = async (event) => {
     event.preventDefault();
-    setLoginError("");
+    await setLoginError("");
+    const errorMessage = await validation();
+
+    if (errorMessage.trim()) {
+      let requestData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cid: inputCid, password: inputPassword })
+      }
+      const responce = await fetch(getApiUrl() + "/customer/login", requestData);
+      const data = await responce.json();
+
+      if (data.status === "Success") {
+        await sessionStorage.setItem('AccountName', data.results.name);
+        await sessionStorage.setItem('AccountMail', data.results.mail);
+        setLoginError("")
+        navigate("/")
+      } else {
+        setLoginError("アカウントが見つかりません")
+      }
+    } else {
+      setLoginError(errorMessage);
+      return null
+    }
+  }
+
+  const validation = () => {
     if (!inputCid.trim()) {
-      await setLoginError("IDを入力してください");
-      return null;
+      return "IDを入力してください";
     }
     if (!inputPassword.trim()) {
-      await setLoginError("パスワードを入力してください");
-      return null;
-    }
-    let requestData = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ cid: inputCid, password: inputPassword })
-    }
-    const responce = await fetch(getApiUrl() + "/customer/login", requestData);
-    const data = await responce.json();
-
-    if (data.status === "Success") {
-      await sessionStorage.setItem('AccountName', data.results.name);
-      await sessionStorage.setItem('AccountMail', data.results.mail);
-      setLoginError("")
-      navigate("/")
-    } else {
-      setLoginError("アカウントが見つかりません")
-
+      return "パスワードを入力してください";
     }
   }
 
