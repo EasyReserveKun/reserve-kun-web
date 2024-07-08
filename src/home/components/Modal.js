@@ -50,7 +50,7 @@ function Search(props) {
     return (
       <div id="overlay">
         <div id="content">
-          <form className='modal-container' method='POST' action={getApiUrl() + "/customer/login"}>
+          <form className='modal-container' method='POST' action={getApiUrl() + "/reserve/insert"}>
             <div className='row'>
               <div className='col text-right'>
                 <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>
