@@ -59,7 +59,7 @@ const LoginForm = () => {
       setLoginError("")
       navigate("/")
     } else {
-      setLoginError("アカウントが見つかりません")
+      setLoginError("IDまたはパスワードが間違っています")
     }
   }
 

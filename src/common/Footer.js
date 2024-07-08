@@ -1,20 +1,10 @@
 // Import Modules
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 // Import StyleSheets
 import './Footer.css';
 
 const Footer = () => {
-
-    let navigate = useNavigate();
-
-    const goToLogout = async () => {
-        await sessionStorage.removeItem("AccountName");
-        await sessionStorage.removeItem("AccountMail");
-        navigate("/logout")
-    };
-
     if (sessionStorage.getItem('AccountName') !== null) {
         return (
             <footer>
@@ -24,7 +14,7 @@ const Footer = () => {
                     <li><a href="#faq">FAQガイドライン</a>　</li>
                     <li><a href="#form">問い合わせフォーム</a>　</li>
                     <li><a href="#access">アクセス</a>　</li>
-                    <li><a href="" onClick={goToLogout}>ログアウト</a></li>
+                    <li><a href="/logout">ログアウト</a></li>
                 </ul>
                 <p className="copyright">
                     &copy; 2024 YourWebsite.com | Designed by AIBS
