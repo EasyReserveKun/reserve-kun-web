@@ -13,6 +13,12 @@ import Footer from '../common/Footer';
 
 function LogoutSuccess() {
   const navigate = useNavigate('');
+
+  useEffect(() => {
+    sessionStorage.removeItem("AccountName");
+    sessionStorage.removeItem("AccountMail");
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/');
