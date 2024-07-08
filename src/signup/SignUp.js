@@ -34,35 +34,45 @@ const SingUp = (event) => {
     //name
     if (!inputName.trim()) {
       setSignupError("名前を入力してください");
+      return null;
     }
     if (inputName.length < 2) {
       setSignupError("名前は2文字以上で入力してください");
+      return null;
     }
     if (inputName.length > 30) {
       setSignupError("名前は30文字以下で入力してください");
+      return null;
     }
     //id
     if (inputEmail !== inputEmailCheck) {
       setSignupError("IDが確認用と一致しません。もう一度入力してください。");
+      return null;
     }
     if (!inputEmail.trim()) {
       setSignupError("IDを入力して下さい");
+      return null;
     }
     if (inputEmail.length > 30) {
       setSignupError("IDは30文字以下で入力してください");
+      return null;
     }
     //pass
     if (inputPassword !== inputPasswordCheck) {
       setSignupError("パスワードが確認用と一致しません。もう一度入力してください。");
+      return null;
     }
     if (!inputPassword.trim()) {
       setSignupError("パスワードを入力して下さい");
+      return null;
     }
     if (inputPassword.length < 8) {
       setSignupError("パスワードは8文字以上で入力してください");
+      return null;
     }
     if (inputPassword.length > 60) {
       setSignupError("パスワードは60文字以下で入力してください");
+      return null;
     }
 
     let requestData = {
