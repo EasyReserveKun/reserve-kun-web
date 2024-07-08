@@ -48,8 +48,8 @@ const SingUp = (event) => {
     if (!inputEmail.trim()) {
       setSignupError("IDを入力して下さい");
     }
-    if (inputEmail.length > 30) {
-      setSignupError("IDは30文字以下で入力してください");
+    if (inputEmail.length > 60) {
+      setSignupError("IDは60文字以下で入力してください");
     }
     //pass
     if (inputPassword !== inputPasswordCheck) {
@@ -59,10 +59,10 @@ const SingUp = (event) => {
       setSignupError("パスワードを入力して下さい");
     }
     if (inputPassword.length > 8) {
-      setSignupError("IDは30文字以下で入力してください");
+      setSignupError("パスワードは8文字以上で入力してください");
     }
     if (inputPassword.length > 60) {
-      setSignupError("IDは30文字以下で入力してください");
+      setSignupError("パスワードは60文字以下で入力してください");
     }
 
     let requestData = {
@@ -113,10 +113,10 @@ const SingUp = (event) => {
   //     return "パスワードを入力して下さい";
   //   }
   //   if (inputPassword.length > 8) {
-  //     return "IDは30文字以下で入力してください";
+  //     return "パスワードは8文字以上で入力してください";
   //   }
   //   if (inputPassword.length > 60) {
-  //     return "IDは30文字以下で入力してください";
+  //     return "パスワードは60文字以下で入力してください";
   //   }
   //   return "";
   // }
