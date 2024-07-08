@@ -24,7 +24,7 @@ const Footer = () => {
                     <li><a href="#faq">FAQガイドライン</a>　</li>
                     <li><a href="#form">問い合わせフォーム</a>　</li>
                     <li><a href="#access">アクセス</a>　</li>
-                    <li><a href="#" onClick={goToLogout}>ログアウト</a></li>
+                    <li><a href="" onClick={goToLogout}>ログアウト</a></li>
                 </ul>
                 <p className="copyright">
                     &copy; 2024 YourWebsite.com | Designed by AIBS
@@ -38,7 +38,7 @@ const Footer = () => {
             <footer>
                 <ul className='footer-menu'>
                     <li><a href="#category">カテゴリ</a>　</li>
-                    <li> <a href="#reserve-info">予約確認/変更/キャンセル</a>　</li>
+                    <li> <a href="/login">予約確認/変更/キャンセル</a>　</li>
                     <li><a href="#faq">FAQガイドライン</a>　</li>
                     <li><a href="#form">問い合わせフォーム</a>　</li>
                     <li><a href="#access">アクセス</a>　</li>
