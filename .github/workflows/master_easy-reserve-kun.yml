@@ -6,6 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - easy-reserve-kun
 on:
   schedule:
   - cron: '0 12,17 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
