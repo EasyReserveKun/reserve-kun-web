@@ -125,7 +125,7 @@ const SingUp = (event) => {
   //     return "IDは30文字以下で入力してください";
   //   }
   //   if (inputPassword.length > 60) {
-  //     return "IDは30文字以下で入力してください";
+  //     return "パスワードは60文字以下で入力してください";
   //   }
   //   return "";
   // }
