@@ -60,6 +60,10 @@ const SingUp = (event) => {
       setSignupError("IDは30文字以下で入力してください");
       return null;
     }
+    if (!inputEmail.includes('@')) {
+      setSignupError("メールアドレスを入力してください");
+      return null;
+    }
     //pass
     if (inputPassword !== inputPasswordCheck) {
       setSignupError("パスワードが確認用と一致しません。もう一度入力してください。");
