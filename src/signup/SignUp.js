@@ -53,8 +53,8 @@ const SingUp = (event) => {
       setSignupError("IDを入力して下さい");
       return null;
     }
-    if (inputEmail.length > 30) {
-      setSignupError("IDは30文字以下で入力してください");
+    if (inputEmail.length > 60) {
+      setSignupError("IDは60文字以下で入力してください");
       return null;
     }
     //pass
@@ -93,7 +93,6 @@ const SingUp = (event) => {
     }
   }
 
-
   // const validation = () => {
   //   //name
   //   if (!inputName.trim()) {
@@ -122,7 +121,7 @@ const SingUp = (event) => {
   //   if (!inputPassword.trim()) {
   //     return "パスワードを入力して下さい";
   //   }
-  //   if (inputPassword.length > 8) {
+  //   if (inputPassword.length < 8) {
   //     return "IDは30文字以下で入力してください";
   //   }
   //   if (inputPassword.length > 60) {
@@ -130,6 +129,7 @@ const SingUp = (event) => {
   //   }
   //   return "";
   // }
+
 
   return (
     <>
