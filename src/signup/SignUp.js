@@ -58,11 +58,11 @@ const SingUp = (event) => {
     if (!inputPassword.trim()) {
       setSignupError("パスワードを入力して下さい");
     }
-    if (inputPassword.length > 8) {
-      setSignupError("IDは30文字以下で入力してください");
+    if (inputPassword.length < 8) {
+      setSignupError("パスワードは8文字以上で入力してください");
     }
     if (inputPassword.length > 60) {
-      setSignupError("IDは30文字以下で入力してください");
+      setSignupError("パスワードは60文字以下で入力してください");
     }
 
     let requestData = {
