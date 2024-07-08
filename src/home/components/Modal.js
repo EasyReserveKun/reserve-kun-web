@@ -1,5 +1,6 @@
 // Import Modules
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { getApiUrl } from '../../GetApiUrl';
 
 // Import StyleSheets
@@ -8,19 +9,41 @@ import './Modal.css'
 
 
 function Search(props) {
-
+  const navigate = useNavigate("");
   const [time, setTime] = useState("");
   const [etc, setEtc] = useState("");
   const reservedTimes = props.reservedTimes;
 
-  const onTimeDecide = (event) => {
-    setTime(event.target.value);
+
+
+  const sendReserve = async (event) => {
+    event.preventDefault();
+    const requestData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ date: props.date, eid: props.category, cid: sessionStorage.getItem('AccountMail'), time: time, etc: etc })
+    }
+    const responce = await fetch(getApiUrl() + "/reserve/insert", requestData);
+    const data = await responce.json();
+
+    if (data.status === "Success") {
+      window.alert("予約に成功しました");
+      navigate("/");
+    } else if (data.status === "Duplicated") {
+      window.alert("その時間はすでに予約されました");
+    } else if (data.status === "Doubled") {
+      window.alert("その時間はあなたはすでに予約しています")
+    }
   }
+
 
   const isEtcInRange = etc.length <= 100;
   const isTimeEmpty = time.trim() === "";
   const isReserveDisable = !isEtcInRange || isTimeEmpty;
 
+  const handleTimeChange = (event) => { setTime(event.target.value); }
   const handleEtcChange = (event) => { setEtc(event.target.value); }
 
   const renderTimeButtons = () => {
@@ -36,7 +59,7 @@ function Search(props) {
         <div key={hour} className="col-lg-2 col-md-3 col-4">
           <button
             type="button"
-            onClick={onTimeDecide}
+            onClick={handleTimeChange}
             className={buttonClass}
             value={time}
             disabled={isReserved}
@@ -46,6 +69,9 @@ function Search(props) {
         </div>
       );
     }
+
+
+
     return buttons;
   }
 
@@ -54,7 +80,7 @@ function Search(props) {
     return (
       <div id="overlay">
         <div id="content">
-          <form className='modal-container' method='POST' action={getApiUrl() + "/reserve/insert"}>
+          <form className='modal-container'>
             <div className='row'>
               <div className='col text-right'>
                 <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>
@@ -116,7 +142,7 @@ function Search(props) {
                 <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange}></input>
               </div>
             </div>
-            <button type="submit" className='btn btn-primary' disabled={isReserveDisable}>予約する</button>
+            <button type="button" className='btn btn-primary' onClick={sendReserve} disabled={isReserveDisable}>予約する</button>
           </form>
         </div>
       </div>
