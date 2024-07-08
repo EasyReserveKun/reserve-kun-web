@@ -54,8 +54,14 @@ const LoginForm = () => {
     if (!inputCid.trim()) {
       return "IDを入力してください";
     }
+    if (inputCid.length > 30) {
+      return "IDは30文字以下で入力してください";
+    }
     if (!inputPassword.trim()) {
       return "パスワードを入力してください";
+    }
+    if (inputPassword.length > 60) {
+      return "パスワードは60文字以下で入力してください";
     }
   }
 
