@@ -23,7 +23,7 @@ function Search() {
     const tomorrowISO = tomorrowDate.toISOString().split('T')[0];
     setTomorrow(tomorrowISO);
 
-    const twoMonth = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+    const twoMonth = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate() + 1);
     const maxDateISO = twoMonth.toISOString().split('T')[0];
     setMaxDate(maxDateISO);
   }, []);
