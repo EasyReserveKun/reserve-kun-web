@@ -10,14 +10,18 @@ import './Modal.css'
 function Search(props) {
 
   const [time, setTime] = useState("");
+  const [etc, setEtc] = useState("");
   const reservedTimes = props.reservedTimes;
 
   const onTimeDecide = (event) => {
     setTime(event.target.value);
-    console.log(time);
   }
 
-  const isTimeEmpty = time.trim()
+  const isEtcInRange = etc.length <= 100;
+  const isTimeEmpty = time.trim() === "";
+  const isReserveDisable = !isEtcInRange || isTimeEmpty;
+
+  const handleEtcChange = (event) => { setEtc(event.target.value); }
 
   const renderTimeButtons = () => {
     const buttons = [];
@@ -109,16 +113,14 @@ function Search(props) {
                 <label htmlFor="etc">備考</label><br></br>
               </div>
               <div className='col-8  modal-input'>
-                <input type="text" name="etc" id="etc"></input>
+                <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange}></input>
               </div>
             </div>
-            <button type="submit" className='btn btn-primary' disabled={!isTimeEmpty}>予約する</button>
+            <button type="submit" className='btn btn-primary' disabled={isReserveDisable}>予約する</button>
           </form>
         </div>
       </div>
     );
-  } else {
-    return null;
   }
 }
 export default Search;
