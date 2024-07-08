@@ -56,7 +56,7 @@ const SingUp = (event) => {
       },
       body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
     }
-    const responce = await fetch(getApiUrl() + "/customer/login", requestData);
+    const responce = await fetch(getApiUrl() + "/customer/signup", requestData);
     const data = await responce.json();
     console.log(data.status);
     if (data.status === "Success") {
