@@ -34,7 +34,7 @@ const SingUp = (event) => {
       return null;
     }
     if (inputEmail !== inputEmailCheck) {
-      setSignupError("IDが正しくありません");
+      setSignupError("IDが確認用と一致しません。もう一度入力してください。");
       return null;
     }
     if (!inputEmail.trim()) {
@@ -42,7 +42,7 @@ const SingUp = (event) => {
       return null;
     }
     if (inputPassword !== inputPasswordCheck) {
-      setSignupError("パスワードが正しくありません");
+      setSignupError("パスワードが確認用と一致しません。もう一度入力してください。");
       return null;
     }
     if (!inputPassword.trim()) {
