@@ -1,6 +1,5 @@
 // Import Modules
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
 import { getApiUrl } from '../../GetApiUrl';
 
 // Import StyleSheets
@@ -9,12 +8,9 @@ import './Modal.css'
 
 
 function Search(props) {
-  const navigate = useNavigate("");
   const [time, setTime] = useState("");
   const [etc, setEtc] = useState("");
   const reservedTimes = props.reservedTimes;
-
-
 
   const sendReserve = async (event) => {
     event.preventDefault();
@@ -30,11 +26,11 @@ function Search(props) {
 
     if (data.status === "Success") {
       window.alert("予約に成功しました");
-      navigate("/");
+      props.setShow(false);
     } else if (data.status === "Duplicated") {
       window.alert("その時間はすでに予約されました");
     } else if (data.status === "Doubled") {
-      window.alert("その時間はあなたはすでに予約しています")
+      window.alert("その時間はあなたはすでに予約しています");
     }
   }
 
