@@ -38,13 +38,21 @@ function Search() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ date: date, eid: category })
+      };
+  
+      try {
+        const response = await fetch(getApiUrl() + "/reserve/available", requestData);
+        const data = await response.text();
+        setReservedTimes(data);
+        setShow(true);
+      } catch (error) {
+        console.error('Fetch Error:', error);
+        // Handle error if needed
       }
-      const responce = await fetch(getApiUrl() + "/reserve/available", requestData)
-      const data = await responce.text();
-      await setReservedTimes(data);
-      setShow(true);
+    } else {
+      alert("日付とカテゴリーを入力してください");
     }
-  }
+  };
 
   if (sessionStorage.getItem('AccountName') !== null) {
     return (
@@ -58,7 +66,7 @@ function Search() {
             </div>
             <div className="col-md-4">
               <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange} name="eid">
-                <option value=""></option>
+                <option value="">カテゴリーを選択してください</option>
                 <option value="1">不動産</option>
                 <option value="2">おうちの修繕</option>
                 <option value="3">介護</option>
