@@ -1,5 +1,5 @@
 // Import Modules
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // Import StyleSheets
 import '../App.css';

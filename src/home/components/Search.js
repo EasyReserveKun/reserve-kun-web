@@ -29,7 +29,7 @@ function Search() {
 
   useEffect(() => {
     const formattedMinDate = `${minDate.getFullYear()}-${(minDate.getMonth() + 1).toString().padStart(2, '0')}-${(minDate.getDate() + 1).toString().padStart(2, '0')}`;
-    setDate(formattedMinDate);
+    setDate(formattedMinDate); // eslint-disable-next-line
   }, []);
 
   const handleDateChange = (event) => { setDate(event.target.value) };
