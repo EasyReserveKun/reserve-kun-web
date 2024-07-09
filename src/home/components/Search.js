@@ -12,25 +12,35 @@ function Search() {
   const [category, setCategory] = useState('')
   const [date, setDate] = useState('')
   const [reservedTimes, setReservedTimes] = useState('')
-  const [tomorrow, setTomorrow] = useState('');
-  const [maxDate, setMaxDate] = useState('');
+
+  //現在時刻を設定
+  const nowDate = new Date();
+  //最小日時を設定
+  const minDate = new Date();
+  minDate.setHours(minDate.getHours() + 1)
+  //最大日時を設定
+  const maxDate = new Date();
+  maxDate.setMonth(maxDate.getMonth() + 2);
+  maxDate.setHours(maxDate.getHours() + 1)
 
 
-  useEffect(() => {
-    const today = new Date();
-    const tomorrowDate = new Date(today);
-    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-    const tomorrowISO = tomorrowDate.toISOString().split('T')[0];
-    setTomorrow(tomorrowISO);
-
-    const twoMonth = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate() + 1);
-    const maxDateISO = twoMonth.toISOString().split('T')[0];
-    setMaxDate(maxDateISO);
-  }, []);
-
-  const handleDateChange = (event) => { setDate(event.target.value); };
+  const handleDateChange = (event) => { setDate(event.target.value) };
   const handleCategoryChange = (event) => { setCategory(event.target.value); };
   const openModal = async () => {
+    //入力した時間のバリデーション
+    //TODO: 後で時間を調整する
+    const inputDate = new Date(date);
+    inputDate.setHours(nowDate.getHours());
+    inputDate.setMinutes(nowDate.getMinutes());
+    console.log("----------------------------------")
+    console.log(minDate)
+    console.log(inputDate)
+    if (inputDate < minDate || inputDate > maxDate) {
+      alert("予約は翌日以降かつ2か月以内のみ行えます")
+      return null
+    }
+
+    //本処理
     if (category !== '' && date !== '') {
       const requestData = {
         method: 'POST',
@@ -39,7 +49,7 @@ function Search() {
         },
         body: JSON.stringify({ date: date, eid: category })
       };
-  
+
       try {
         const response = await fetch(getApiUrl() + "/reserve/available", requestData);
         const data = await response.text();
@@ -47,7 +57,7 @@ function Search() {
         setShow(true);
       } catch (error) {
         console.error('Fetch Error:', error);
-        // Handle error if needed
+        //TODO: エラー処理
       }
     } else {
       alert("日付とカテゴリーを入力してください");
@@ -62,7 +72,7 @@ function Search() {
           <div className="row">
 
             <div className="col-md-4">
-              <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} min={tomorrow} max={maxDate} />
+              <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} />
             </div>
             <div className="col-md-4">
               <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange} name="eid">
