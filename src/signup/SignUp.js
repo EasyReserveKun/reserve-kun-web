@@ -91,7 +91,7 @@ const SingUp = (event) => {
     console.log(data.status);
     if (data.status === "Success") {
       setSignupError("");
-      navigate("/")
+      navigate("/signupsuccess")
     } else {
       setSignupError("そのIDのアカウントは既に存在します");
     }

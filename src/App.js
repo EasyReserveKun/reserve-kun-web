@@ -11,6 +11,7 @@ import Nf from "./nf/Nf"
 import LoginForm from './login/LoginForm';
 import SignUp from './signup/SignUp';
 import LogoutSuccess from './logout/LogoutSuccess';
+import SignUpSuccess from './signup/SignUpSuccess';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path={`/`} element={<Home />} />
         <Route path={`/login`} element={<LoginForm />} />
         <Route path={`/signup`} element={<SignUp />} />
+        <Route path={`/signupsuccess`} element={<SignUpSuccess />} />
         <Route path={`/logout`} element={<LogoutSuccess />} />
         <Route path={`/*`} element={<Nf />} />
       </Routes>
