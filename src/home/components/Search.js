@@ -40,9 +40,6 @@ function Search() {
     const inputDate = new Date(date);
     inputDate.setHours(nowDate.getHours());
     inputDate.setMinutes(nowDate.getMinutes());
-    console.log("----------------------------------")
-    console.log(minDate)
-    console.log(inputDate)
     if (inputDate < minDate || inputDate > maxDate) {
       await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
       await setShowWarn(true);
