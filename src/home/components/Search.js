@@ -9,9 +9,9 @@ import Modal from './Modal.js'
 
 function Search() {
   const [show, setShow] = useState(false)
-  const [category, setCategory] = useState('')
-  const [date, setDate] = useState('')
   const [reservedTimes, setReservedTimes] = useState('')
+  const [category, setCategory] = useState("1")
+  const [date, setDate] = useState(null)
 
   //現在時刻を設定
   const nowDate = new Date();
@@ -23,6 +23,10 @@ function Search() {
   maxDate.setMonth(maxDate.getMonth() + 2);
   maxDate.setHours(maxDate.getHours() + 1)
 
+  useEffect(() => {
+    const formattedMinDate = `${minDate.getFullYear()}-${(minDate.getMonth() + 1).toString().padStart(2, '0')}-${(minDate.getDate() + 1).toString().padStart(2, '0')}`;
+    setDate(formattedMinDate);
+  }, []);
 
   const handleDateChange = (event) => { setDate(event.target.value) };
   const handleCategoryChange = (event) => { setCategory(event.target.value); };
@@ -76,7 +80,6 @@ function Search() {
             </div>
             <div className="col-md-4">
               <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange} name="eid">
-                <option value="">カテゴリーを選択してください</option>
                 <option value="1">不動産</option>
                 <option value="2">おうちの修繕</option>
                 <option value="3">介護</option>
