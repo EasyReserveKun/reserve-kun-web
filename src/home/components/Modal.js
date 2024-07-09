@@ -6,11 +6,15 @@ import { getApiUrl } from '../../GetApiUrl';
 import './Search.css';
 import './Modal.css'
 
+//Import Component
+import Warn from '../../common/Warn.js'
 
 function Search(props) {
   const [time, setTime] = useState("");
   const [etc, setEtc] = useState("");
   const reservedTimes = props.reservedTimes;
+  const [warnText, setWarnText] = useState("")
+  const [showWarn, setShowWarn] = useState(false)
 
   const sendReserve = async (event) => {
     event.preventDefault();
@@ -25,12 +29,16 @@ function Search(props) {
     const data = await responce.json();
 
     if (data.status === "Success") {
-      window.alert("予約に成功しました");
+      props.setWarnText("予約に成功しました")
+      props.setShowWarn(true);
       props.setShow(false);
     } else if (data.status === "Duplicated") {
-      window.alert("その時間はすでに予約されました");
+      await setWarnText("その時間はすでに予約されました");
+      setShowWarn(true);
     } else if (data.status === "Doubled") {
-      window.alert("その時間はあなたはすでに予約しています");
+      await setWarnText("その時間はあなたはすでに予約しています");
+      setShowWarn(true);
+
     }
   }
 
@@ -77,6 +85,7 @@ function Search(props) {
       <div id="overlay">
         <div id="content">
           <form className='modal-container'>
+            <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
             <div className='row'>
               <div className='col text-right'>
                 <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>

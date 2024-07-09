@@ -46,7 +46,6 @@ function Search() {
     if (inputDate < minDate || inputDate > maxDate) {
       await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
       await setShowWarn(true);
-      console.log(showWarn)
       return null;
     }
 
@@ -70,7 +69,8 @@ function Search() {
         //TODO: エラー処理
       }
     } else {
-      alert("日付とカテゴリーを入力してください");
+      await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
+      setShowWarn(true);
     }
   };
 
@@ -99,7 +99,7 @@ function Search() {
             </div>
           </div>
           <div>
-            <Modal show={show} setShow={setShow} category={category} date={date} reservedTimes={reservedTimes} />
+            <Modal show={show} setShow={setShow} setShowWarn={setShowWarn} setWarnText={setWarnText} category={category} date={date} reservedTimes={reservedTimes} />
           </div>
         </div>
       </div>
