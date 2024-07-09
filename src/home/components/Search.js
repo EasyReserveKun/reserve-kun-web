@@ -6,12 +6,16 @@ import { getApiUrl } from '../../GetApiUrl';
 import './Search.css';
 import Modal from './Modal.js'
 
+//Import Component
+import Warn from '../../common/Warn.js'
 
 function Search() {
   const [show, setShow] = useState(false)
   const [reservedTimes, setReservedTimes] = useState('')
   const [category, setCategory] = useState("1")
   const [date, setDate] = useState(null)
+  const [warnText, setWarnText] = useState("")
+  const [showWarn, setShowWarn] = useState(false)
 
   //現在時刻を設定
   const nowDate = new Date();
@@ -40,8 +44,10 @@ function Search() {
     console.log(minDate)
     console.log(inputDate)
     if (inputDate < minDate || inputDate > maxDate) {
-      alert("予約は翌日以降かつ2か月以内のみ行えます")
-      return null
+      await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
+      await setShowWarn(true);
+      console.log(showWarn)
+      return null;
     }
 
     //本処理
@@ -71,6 +77,7 @@ function Search() {
   if (sessionStorage.getItem('AccountName') !== null) {
     return (
       <div className='reservation'>
+        <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
         <div className="container custom-container">
           <h2>予約登録</h2>
           <div className="row">
