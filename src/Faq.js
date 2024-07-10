@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 // Import StyleSheets
 import './App.css';
@@ -6,14 +6,7 @@ import './Faq.css';
 
 // Import Components
 import Header from './common/Header.js';
-import Toolbar from './common/Toolbar.js'
 import Footer from './common/Footer.js'; // eslint-disable-next-line
-import Home from "./home/Home";
-import Nf from "./nf/Nf"
-import LoginForm from './login/LoginForm';
-import SignUp from './signup/SignUp';
-import LogoutSuccess from './logout/LogoutSuccess';
-import SignUpSuccess from './signup/SignUpSuccess';
 
 function Faq() {
     return (
