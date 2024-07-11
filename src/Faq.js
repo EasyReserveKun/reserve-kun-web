@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Import StyleSheets
 import './App.css';
@@ -7,8 +8,22 @@ import './Faq.css';
 // Import Components
 import Header from './common/Header.js';
 import Footer from './common/Footer.js';
+import Toolbar from './common/Toolbar.js';
 
 function Faq() {
+
+    const navigate = useNavigate();
+
+    const returnReserve = () => {
+        navigate('/');  // トップページへ遷移
+        setTimeout(() => {
+            window.scrollTo({
+                top: 85,  // スクロール位置をトップに設定
+                behavior: 'smooth',
+            });
+        });
+    };
+
     return (
         <div>
             <Header />
@@ -74,6 +89,7 @@ function Faq() {
             </div>
 
             <Footer />
+            <Toolbar onClick={returnReserve} />
         </div>
     );
 }

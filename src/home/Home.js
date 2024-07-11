@@ -17,6 +17,15 @@ import ServiceDescription from './components/ServiceDescription';
 function Home() {
   const searchRef = useRef(null);
 
+  const scrollToSearch = () => {
+    if (searchRef.current) {
+      window.scrollTo({
+        top: searchRef.current.offsetTop - 30,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   //コンシェルジュの情報
   const objHanako = {
     "id": "satohanako",
@@ -76,7 +85,7 @@ function Home() {
       <ContentItem data={objMisaki} />
       <ContentItem data={objKenta} />
       <Footer />
-      <Toolbar search={searchRef} />
+      <Toolbar onClick={scrollToSearch}/>
     </div>
   );
 }
