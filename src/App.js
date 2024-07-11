@@ -1,44 +1,50 @@
-// Import Modules
+// モジュールのインポート
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Import StyleSheets
+// スタイルシートのインポート
 import './App.css';
 
-// Import Components
+// コンポーネントのインポート
 import Home from "./home/Home";
-import Nf from "./nf/Nf"
+import Nf from "./nf/Nf";
 import LoginForm from './login/LoginForm';
 import SignUp from './signup/SignUp';
 import LogoutSuccess from './logout/LogoutSuccess';
 import SignUpSuccess from './signup/SignUpSuccess';
-import Faq from'./Faq';
-import HanakoSato from'./home/advisor/HanakoSato';
+import Faq from './Faq';
+import HanakoSato from './home/advisor/HanakoSato';
 import TaroTanaka from './home/advisor/TaroTanaka';
 import IchiroSuzuki from './home/advisor/IchiroSuzuki';
 import MisakiTakahashi from './home/advisor/MisakiTakahashi';
 import KentaNakamura from './home/advisor/KentaNakamura';
 
+// ルート設定
+const routes = [
+  { path: "/", element: <Home /> },
+  { path: "/login", element: <LoginForm /> },
+  { path: "/signup", element: <SignUp /> },
+  { path: "/signupsuccess", element: <SignUpSuccess /> },
+  { path: "/logout", element: <LogoutSuccess /> },
+  { path: "/faq", element: <Faq /> },
+  { path: "/satohanako", element: <HanakoSato /> },
+  { path: "/tanakataro", element: <TaroTanaka /> },
+  { path: "/suzukiichiro", element: <IchiroSuzuki /> },
+  { path: "/takahashimisaki", element: <MisakiTakahashi /> },
+  { path: "/nakamurakenta", element: <KentaNakamura /> },
+  { path: "*", element: <Nf /> }
+];
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`/`} element={<Home />} />
-        <Route path={`/login`} element={<LoginForm />} />
-        <Route path={`/signup`} element={<SignUp />} />
-        <Route path={`/signupsuccess`} element={<SignUpSuccess />} />
-        <Route path={`/logout`} element={<LogoutSuccess />} />
-        <Route path={`/faq`} element={<Faq />} />
-
-        <Route path={`/satohanako`} element={<HanakoSato />} />
-        <Route path={`/tanakataro`} element={<TaroTanaka />} />
-        <Route path={`/suzukiichiro`} element={<IchiroSuzuki />} />
-        <Route path={`/takahashimisaki`} element={<MisakiTakahashi />} />
-        <Route path={`/nakamurakenta`} element={<KentaNakamura />} />
-        
-        <Route path={`/*`} element={<Nf />} />
+        {routes.map(({ path, element }) => (
+          <Route key={path} path={path} element={element} />
+        ))}
       </Routes>
     </BrowserRouter>
   );
 }
+
 export default App;
