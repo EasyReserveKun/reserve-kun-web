@@ -13,6 +13,11 @@ import SignUp from './signup/SignUp';
 import LogoutSuccess from './logout/LogoutSuccess';
 import SignUpSuccess from './signup/SignUpSuccess';
 import Faq from'./Faq';
+import HanakoSato from'./home/advisor/HanakoSato';
+import TaroTanaka from './home/advisor/TaroTanaka';
+import IchiroSuzuki from './home/advisor/IchiroSuzuki';
+import MisakiTakahashi from './home/advisor/MisakiTakahashi';
+import KentaNakamura from './home/advisor/KentaNakamura';
 
 function App() {
   return (
@@ -24,6 +29,13 @@ function App() {
         <Route path={`/signupsuccess`} element={<SignUpSuccess />} />
         <Route path={`/logout`} element={<LogoutSuccess />} />
         <Route path={`/faq`} element={<Faq />} />
+
+        <Route path={`/satohanako`} element={<HanakoSato />} />
+        <Route path={`/tanakataro`} element={<TaroTanaka />} />
+        <Route path={`/suzukiichiro`} element={<IchiroSuzuki />} />
+        <Route path={`/takahashimisaki`} element={<MisakiTakahashi />} />
+        <Route path={`/nakamurakenta`} element={<KentaNakamura />} />
+        
         <Route path={`/*`} element={<Nf />} />
       </Routes>
     </BrowserRouter>
