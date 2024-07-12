@@ -22,6 +22,7 @@ function IchiroSuzuki() {
         });
     };
     const profile = {
+        img: "suzukiichiro",
         name: "鈴木 一郎",
         title: "介護のスーパーバイザー",
         expertise: "専門家プロフィール",

@@ -22,6 +22,7 @@ function HanakoSato() {
         });
     };
     const profile = {
+        img: "satohanako",
         name: "佐藤 花子",
         title: "おうちの修繕のスーパーバイザー",
         expertise: "専門家プロフィール",
