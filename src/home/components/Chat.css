@@ -36,39 +36,7 @@
 .chat-message {
     padding: 5px;
     border-radius: 5px;
-    max-width: 70%;
-}
-
-.chat-text-ai {
-    float: left;
-    text-align: left;
-    margin-left: 10px;
-}
-
-.chat-text-self {
-    float: right;
-    text-align: right;
-    margin-right: 10px;
-}
-
-.chat-text-ai p {
-    text-align: left;
-    border-radius: 8px;
-    background-color: rgb(230, 230, 230);
-    margin-bottom: 0px;
-    padding: 4px;
-    border-radius: 10px;
-    margin-right: 50px;
-}
-
-.chat-text-self p {
-    text-align: left;
-    border-radius: 8px;
-    background-color: #82f984;
-    margin-bottom: 0px;
-    padding: 6px;
-    border-radius: 10px;
-    margin-left: 50px;
+    max-width: 85%;
 }
 
 .chat-clear {
@@ -111,4 +79,81 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.chat-open-button {
+    position: fixed;
+    bottom: 65px;
+    right: 25px;
+    padding: 5px 10px;
+    background-color: #2E8B57;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 990;
+}
+
+.chat-open-button:hover {
+    background-color: #37a366;
+}
+
+.chat-open-button:focus {
+    outline: none;
+}
+
+.chat-close-button {
+    text-align: center;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 8%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-close-button:focus {
+    outline: none;
+}
+
+.chat-row-self {
+    justify-content: right;
+}
+
+.chat-row-ai {
+    justify-content: left;
+}
+
+.chat-row-ai img {
+    border: 2px solid #2E8B57;
+    border-radius: 16px;
+    background-color: rgb(230, 230, 230);
+}
+
+.chat-row-ai p {
+    text-align: left;
+    border-radius: 8px;
+    background-color: rgb(230, 230, 230);
+    margin-bottom: 0px;
+    padding: 4px;
+    border-radius: 10px;
+    margin-right: 30px;
+    word-wrap: break-word;
+}
+
+.chat-row-self p {
+    text-align: left;
+    border-radius: 8px;
+    background-color: #82f984;
+    margin-bottom: 0px;
+    padding: 6px;
+    border-radius: 10px;
+    margin-left: 30px;
+    word-wrap: break-word;
 }
