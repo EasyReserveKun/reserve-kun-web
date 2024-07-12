@@ -8,6 +8,7 @@ function AdvisorProfile({ profile }) {
         <div className="profile">
             <h1>{profile.name}</h1>
             <div className="title">{profile.title}</div>
+            <img src={`${process.env.PUBLIC_URL}/image/${profile.img}.png`} alt={profile.name}></img>
 
             <section className="section">
                 <h2>{profile.expertise}</h2>

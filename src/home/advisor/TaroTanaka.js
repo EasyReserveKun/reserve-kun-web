@@ -22,6 +22,7 @@ function TaroTanaka() {
         });
     };
     const profile = {
+        img: "tanakataro",
         name: "田中 太郎",
         title: "不動産のスーパーバイザー",
         expertise: "専門家プロフィール",

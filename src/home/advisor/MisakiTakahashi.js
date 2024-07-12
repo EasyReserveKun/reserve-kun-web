@@ -22,6 +22,7 @@ function MisakiTakahashi() {
         });
     };
     const profile = {
+        img: "takahashimisaki",
         name: "高橋 美咲",
         title: "終活・相続のスーパーバイザー",
         expertise: "専門家プロフィール",

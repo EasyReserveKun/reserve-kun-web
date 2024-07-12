@@ -22,6 +22,7 @@ function KentaNakamura() {
         });
     };
     const profile = {
+        img: "nakamurakenta",
         name: "中村 健太",
         title: "車や保険・金融のスーパーバイザー",
         expertise: "専門家プロフィール",
