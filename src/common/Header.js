@@ -51,7 +51,7 @@ const Header = () => {
                 <li><a href="#reserve-info">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
-                <li><a href="#access">アクセス</a></li>
+                <li><a href="/Access">アクセス</a></li>
                 <li><button onClick={openLogoutModal}>ログアウト</button></li>
               </ul>
             </nav>
@@ -91,7 +91,7 @@ const Header = () => {
                 <li><a href="/login">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
-                <li><a href="#access">アクセス</a></li>
+                <li><a href="/Access">アクセス</a></li>
                 <li><a href="/login">ログイン</a></li>
               </ul>
             </nav>

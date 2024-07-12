@@ -12,6 +12,7 @@ import LoginForm from './login/LoginForm';
 import SignUp from './signup/SignUp';
 import LogoutSuccess from './logout/LogoutSuccess';
 import SignUpSuccess from './signup/SignUpSuccess';
+import Access from './Access';
 import Faq from './Faq';
 import HanakoSato from './home/advisor/HanakoSato';
 import TaroTanaka from './home/advisor/TaroTanaka';
@@ -26,6 +27,7 @@ const routes = [
   { path: "/signup", element: <SignUp /> },
   { path: "/signupsuccess", element: <SignUpSuccess /> },
   { path: "/logout", element: <LogoutSuccess /> },
+  { path: "/Access", element: <Access /> },
   { path: "/faq", element: <Faq /> },
   { path: "/satohanako", element: <HanakoSato /> },
   { path: "/tanakataro", element: <TaroTanaka /> },
