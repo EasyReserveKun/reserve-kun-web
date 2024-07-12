@@ -38,7 +38,8 @@ function AdvisorProfile({ profile }) {
                 <div className="testimonials">
                     {profile.testimonials.map((testimonial, index) => (
                         <blockquote key={index}>
-                            <p>{testimonial.comment} - <strong>{testimonial.customer}</strong></p>
+                            <p>{testimonial.comment}<br /> 
+                            - <strong>{testimonial.customer}</strong></p>
                         </blockquote>
                     ))}
                 </div>
