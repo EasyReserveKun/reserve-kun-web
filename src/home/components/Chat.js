@@ -5,8 +5,14 @@ import { getApiUrl } from '../../GetApiUrl';
 
 const Chat = () => {
     const [currentText, setCurrentText] = useState("");
-    const [allMessages, setAllMessages] = useState([]);
+    const [allMessages, setAllMessages] = useState([
+        {
+            sender: "ai",
+            message: "こんにちは！わからないことがあれば気軽に質問してください！！\\n" +
+                "なるべく具体的に教えていただけると嬉しいです！"
+        }]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isChatOpen, setIsChatOpen] = useState(false);
     const chatContainerRef = useRef(null);
 
     const handleTextChange = (event) => { setCurrentText(event.target.value) };
@@ -35,23 +41,33 @@ const Chat = () => {
                 const data = await responce.json();
 
                 if (!data.answers[0].questions.length) {
-                    messages.push({
+                    await messages.push({
                         sender: "ai",
                         message: "答えが見つかりませんでした"
                     });
+                    setAllMessages([...messages])
                 } else {
-                    messages.push({
+                    await messages.push({
                         sender: "ai",
                         message: data.answers[0].answer
                     });
+                    setAllMessages([...messages])
+
+                    if (data.answers[0].dialog.prompts.length) {
+                        await messages.push({
+                            sender: "ai",
+                            message: data.answers[0].dialog.prompts[0].displayText
+                        });
+                        setAllMessages([...messages])
+                    }
                 }
             } catch (e) {
                 messages.push({
                     sender: "ai",
                     message: "エラーが発生しました。" + e
                 });
+                setAllMessages([...messages])
             }
-            setAllMessages([...messages])
             setCurrentText("");
             setIsLoading(false);
         }
@@ -65,12 +81,27 @@ const Chat = () => {
 
     const renderMessages = () => {
         const messages = [];
+
         allMessages.forEach((item) => {
-            const messageClass = 'chat-message chat-text-' + item.sender;
+            const brokeMessage = item.message.split("\\n").map(msg => {
+                return (
+                    <>
+                        {msg}<br></br>
+                    </>
+                )
+            })
+            const rowClass = 'row my-2 chat-row-' + item.sender;
             messages.push(
                 <div key={allMessages.indexOf(item)}>
-                    <div className={messageClass}>
-                        <p>{item.message}</p>
+                    <div className={rowClass}>
+                        <div className='col-2'>
+                            {item.sender === "ai"
+                                ? <img src={`${process.env.PUBLIC_URL}/image/a-logo.png`} alt="Icon" />
+                                : null}
+                        </div>
+                        <div className='col-10'>
+                            <p>{brokeMessage}</p>
+                        </div>
                     </div>
                     <div className='chat-clear' />
                 </div>
@@ -80,32 +111,42 @@ const Chat = () => {
         return messages;
     }
 
+    const toggleChat = () => {
+        setIsChatOpen(!isChatOpen);
+    }
+
     return (
         <>
-            <div className='chat-container'>
-                <div className='chat-title'>
-                    <h2>AIチャット</h2>
-                </div>
-                <div className='chat-conversation' ref={chatContainerRef}>
-                    {renderMessages()}
-                </div>
-                <div className='chat-input container'>
-                    <form>
-                        <div className='row input-row'>
-                            <div className='col-10 p-0'>
-                                <input type='text' className='chat-input-text' value={currentText} onChange={handleTextChange} disabled={isLoading}></input>
+            <button className='chat-open-button' onClick={toggleChat}>
+                {isChatOpen ? '閉じる' : 'AIチャット'}
+            </button>
+            {isChatOpen && (
+                <div className='chat-container'>
+                    <div className='chat-title'>
+                        <h2>AIチャット</h2>
+                        <button className='bi bi-x chat-close-button' onClick={toggleChat}></button>
+                    </div>
+                    <div className='chat-conversation container' ref={chatContainerRef}>
+                        {renderMessages()}
+                    </div>
+                    <div className='chat-input container'>
+                        <form>
+                            <div className='row input-row'>
+                                <div className='col-10 p-0'>
+                                    <input type='text' className='chat-input-text' placeholder='質問を入力してください...' value={currentText} onChange={handleTextChange} disabled={isLoading}></input>
+                                </div>
+                                <div className='col-2 p-0'>
+                                    {isLoading ?
+                                        <button type='button' className='bi bi-arrow-clockwise chat-input-button loading-icon'></button>
+                                        :
+                                        <button type='submit' className='bi bi-send chat-input-button' onClick={chatSend}></button>
+                                    }
+                                </div>
                             </div>
-                            <div className='col-2 p-0'>{
-                                isLoading ?
-                                    <button type='button' className='bi bi-arrow-clockwise chat-input-button loading-icon'></button>
-                                    :
-                                    <button type='submit' className='bi bi-send chat-input-button' onClick={chatSend}></button>
-                            }</div>
-                        </div>
-                    </form>
-
+                        </form>
+                    </div>
                 </div>
-            </div>
+            )}
         </>
     )
 }
