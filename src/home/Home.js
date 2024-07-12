@@ -12,7 +12,7 @@ import DebugSession from '../common/DebugSession.js';
 import Search from './components/Search.js'
 import ContentItem from './components/ContentItem';
 import ServiceDescription from './components/ServiceDescription';
-
+import Chat from './components/Chat';
 
 function Home() {
   const searchRef = useRef(null);
@@ -66,6 +66,7 @@ function Home() {
   return (
     <div>
       <Header />
+      <Chat />
       <div ref={searchRef}>
         <Search />
       </div>
