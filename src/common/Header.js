@@ -61,7 +61,7 @@ const Header = () => {
                     <li><a href="/nakamurakenta">車・保険・金融</a></li>
                   </ul>
                 </li>
-                <li><a href="#reserve-info">予約確認/変更/キャンセル</a></li>
+                <li><a href="ReserveCheck">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
                 <li><a href="/Access">アクセス</a></li>
