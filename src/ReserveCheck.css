@@ -26,7 +26,7 @@ h2 {
 }
 
 .tab-title {
-    margin-right: 100px;
+    margin-right: 50px;
     /* 予約情報の文字との間隔を保つ */
     border-bottom: 2px solid #333;
     /* 下線を追加 */
@@ -49,7 +49,7 @@ h2 {
 }
 
 .reservation-table {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
     border-collapse: collapse;
     margin-top: 20px;
@@ -64,6 +64,11 @@ h2 {
 
 .reservation-table th {
     background-color: #f0f0f0;
+    font-size: 15px;
+}
+
+.reservation-table td {
+    font-size: 15px;
 }
 
 .reservation-table tbody tr:nth-child(even) {
