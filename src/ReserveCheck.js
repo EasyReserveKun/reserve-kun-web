@@ -6,6 +6,8 @@ import Toolbar from './common/Toolbar.js';
 import DeleteComfirm from './common/DeleteComfirm.js'; // 正しいファイル名でインポート
 import './ReserveCheck.css'; // CSSファイルをインポート
 
+import { getApiUrl } from './GetApiUrl.js';
+
 function ReserveCheck() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -26,7 +28,7 @@ function ReserveCheck() {
             };
 
             try {
-                const response = await fetch("http://localhost:8080/reserve/check", requestData);
+                const response = await fetch(getApiUrl() + "/reserve/check", requestData);
                 const jsonData = await response.json();
 
                 const today = new Date().toISOString().split('T')[0]; 
@@ -76,7 +78,7 @@ function ReserveCheck() {
         };
     
         try {
-            const response = await fetch("http://localhost:8080/reserve/cancel", requestData);
+            const response = await fetch(getApiUrl() + "/reserve/cancel", requestData);
             if (response.ok) {
                 // 成功した場合の処理
                 // 例えば、データを更新してリフレッシュするなど
