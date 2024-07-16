@@ -48,7 +48,7 @@ const Header = () => {
               <ul>
                 <li><a href="/">ホーム画面</a></li>
                 <li><a href="#category">カテゴリ</a></li>
-                <li><a href="#reserve-info">予約確認/変更/キャンセル</a></li>
+                <li><a href="/ReserveCheck">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
                 <li><a href="/Access">アクセス</a></li>
