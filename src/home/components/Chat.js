@@ -126,10 +126,10 @@ const Chat = () => {
                         <h2>AIチャット</h2>
                         <button className='bi bi-x chat-close-button' onClick={toggleChat}></button>
                     </div>
-                    <div className='chat-conversation container' ref={chatContainerRef}>
+                    <div className='chat-conversation container-fluid' ref={chatContainerRef}>
                         {renderMessages()}
                     </div>
-                    <div className='chat-input container'>
+                    <div className='chat-input container-fluid'>
                         <form>
                             <div className='row input-row'>
                                 <div className='col-10 p-0'>
