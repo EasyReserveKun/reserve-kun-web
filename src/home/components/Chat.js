@@ -157,7 +157,7 @@ const Chat = () => {
                         <form>
                             <div className='row input-row'>
                                 <div className='col-10 p-0'>
-                                    <input type='text' maxlength="50" className='chat-input-text' placeholder='質問を入力してください...' value={currentText} onChange={handleTextChange} disabled={isLoading}></input>
+                                    <input type='text' maxLength="50" className='chat-input-text' placeholder='質問を入力してください...' value={currentText} onChange={handleTextChange} disabled={isLoading}></input>
                                 </div>
                                 <div className='col-2 p-0'>
                                     {isLoading ?
