@@ -4,7 +4,6 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
 }
 
 h2 {
@@ -16,17 +15,23 @@ h2 {
 
 .tab-buttons {
     display: flex;
-    align-items: center; /* 垂直方向の中央揃え */
-    justify-content: center; /* 横方向の中央揃え */
-    gap: 0; /* タブ間の隙間をなくす */
+    align-items: center;
+    /* 垂直方向の中央揃え */
+    justify-content: center;
+    /* 横方向の中央揃え */
+    gap: 0;
+    /* タブ間の隙間をなくす */
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
 .tab-title {
-    margin-right: 100px; /* 予約情報の文字との間隔を保つ */
-    border-bottom: 2px solid #333; /* 下線を追加 */
-    padding-bottom: 5px; /* 下線との間隔を設定 */
+    margin-right: 100px;
+    /* 予約情報の文字との間隔を保つ */
+    border-bottom: 2px solid #333;
+    /* 下線を追加 */
+    padding-bottom: 5px;
+    /* 下線との間隔を設定 */
 }
 
 .tab-button {
