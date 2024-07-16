@@ -155,7 +155,7 @@ function ReserveCheck() {
                             </table>
                         ) : activeTab === 'current' && data.length === 0 ? (
                             <p>本日以降の予約はありません。</p>
-                        ) : (
+                        ) : activeTab === 'previous' && preData.length > 0 ? (
                             <table className="reservation-table">
                                 <thead>
                                     <tr>
@@ -183,6 +183,8 @@ function ReserveCheck() {
                                     ))}
                                 </tbody>
                             </table>
+                        ) : (
+                            <p>以前の予約はありません。</p>
                         )}
                     </>
                 )}
@@ -191,6 +193,7 @@ function ReserveCheck() {
             <Toolbar onClick={returnReserve} />
         </div>
     );
+    
     
 }
 
