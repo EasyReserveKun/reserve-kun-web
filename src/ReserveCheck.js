@@ -108,10 +108,10 @@ function ReserveCheck() {
                         <div className="tab-buttons">
                             <h2 className="tab-title">予約情報</h2>
                             <div className={`tab-button ${activeTab === 'current' ? 'active' : ''}`} onClick={() => handleTabChange('current')}>
-                                本日以降の予約
+                                予約
                             </div>
                             <div className={`tab-button ${activeTab === 'previous' ? 'active' : ''}`} onClick={() => handleTabChange('previous')}>
-                                以前の予約
+                                履歴
                             </div>
                         </div>
     
@@ -121,7 +121,7 @@ function ReserveCheck() {
                                     <tr>
                                         <th>日付</th>
                                         <th>時間</th>
-                                        <th>カテゴリー</th>
+                                        <th>カテゴリ</th>
                                         <th>予約のキャンセル</th>
                                     </tr>
                                 </thead>
@@ -141,7 +141,7 @@ function ReserveCheck() {
                                                 }
                                             </td>
                                             <td>
-                                                <button className="delete-button" onClick={() => openDeleteModal(item.date, item.time, item.eid)}>キャンセルする</button>
+                                                <button className="delete-button" onClick={() => openDeleteModal(item.date, item.time, item.eid)}>キャンセル</button>
                                                 {showDeleteModal && (
                                                     <DeleteComfirm
                                                         onCancel={closeDeleteModal}
@@ -161,7 +161,7 @@ function ReserveCheck() {
                                     <tr>
                                         <th>日付</th>
                                         <th>時間</th>
-                                        <th>カテゴリー</th>
+                                        <th>カテゴリ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
