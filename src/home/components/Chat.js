@@ -163,7 +163,9 @@ const Chat = () => {
                                     {isLoading ?
                                         <button type='button' className='bi bi-arrow-clockwise chat-input-button loading-icon'></button>
                                         :
-                                        <button type="submit" className="bi bi-send chat-input-button" onClick={chatSend}></button>
+                                        <button type="submit" className="chat-input-button" onClick={chatSend}>
+                                            <img src={`${process.env.PUBLIC_URL}/image/send.svg`} alt="送信" />
+                                        </button>
                                     }
                                 </div>
                             </div>
