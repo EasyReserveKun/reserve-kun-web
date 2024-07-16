@@ -1,5 +1,3 @@
-// Header.js の一部
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LogoutComfirm from './LogoutComfirm'; // 新しく追加
@@ -11,9 +9,15 @@ const Header = () => {
   let navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false); // 追加
+  const [subMenuOpen, setSubMenuOpen] = useState(false); // サブメニューの状態を追加
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  const toggleSubMenu = (e) => {
+    e.stopPropagation(); // イベントのバブリングを防止
+    setSubMenuOpen(!subMenuOpen);
   };
 
   const goToLogin = () => {
@@ -47,8 +51,17 @@ const Header = () => {
             <nav className="menu">
               <ul>
                 <li><a href="/">ホーム画面</a></li>
-                <li><a href="#category">カテゴリ</a></li>
-                <li><a href="/ReserveCheck">予約確認/変更/キャンセル</a></li>
+                <li>
+                  <a href="#category" onClick={toggleSubMenu}>カテゴリ</a>
+                  <ul className={`sub-menu ${subMenuOpen ? 'open' : ''}`}>
+                    <li><a href="/satohanako">リフォーム</a></li>
+                    <li><a href="/tanakataro">不動産</a></li>
+                    <li><a href="/suzukiichiro">介護</a></li>
+                    <li><a href="/takahashimisaki">終活・相続</a></li>
+                    <li><a href="/nakamurakenta">車・保険・金融</a></li>
+                  </ul>
+                </li>
+                <li><a href="ReserveCheck">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
                 <li><a href="/Access">アクセス</a></li>
@@ -87,7 +100,16 @@ const Header = () => {
             <nav className="menu">
               <ul>
                 <li><a href="/">ホーム画面</a></li>
-                <li><a href="#category">カテゴリ</a></li>
+                <li>
+                  <a href="#category" onClick={toggleSubMenu}>カテゴリ</a>
+                  <ul className={`sub-menu ${subMenuOpen ? 'open' : ''}`}>
+                  <li><a href="/satohanako">リフォーム</a></li>
+                    <li><a href="/tanakataro">不動産</a></li>
+                    <li><a href="/suzukiichiro">介護</a></li>
+                    <li><a href="/takahashimisaki">終活・相続</a></li>
+                    <li><a href="/nakamurakenta">車・保険・金融</a></li>
+                  </ul>
+                </li>
                 <li><a href="/login">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
