@@ -168,7 +168,8 @@
     background-color: rgb(230, 230, 230);
 }
 
-.chat-row-ai p {
+.chat-row-ai p,
+.chat-row-ai a {
     display: inline-block;
     float: left;
     text-align: left;
