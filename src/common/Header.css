@@ -120,3 +120,42 @@
   background-color: transparent; /* 背景色を透明にする */
   border: none; /* ボーダーを削除する */
 }
+
+/* Header.css */
+.sub-menu {
+  display: none;
+}
+
+.sub-menu.open {
+  display: block;
+}
+
+/* サブメニューのリンクに対するスタイル */
+.menu ul .sub-menu li a {
+  position: relative;
+  text-decoration: none; /* デフォルトの下線を消す */
+}
+
+.menu ul .sub-menu li a::after {
+  content: '';
+  position: absolute;
+  left: 15%; 
+  bottom: 0;
+  width: 70%; /* 下線の長さを50%に設定 */
+  height: 2px; /* 下線の高さ */
+  background-color: #49bb4f; /* 下線の色を指定 */
+  transition: transform 0.3s ease;
+  transform: scaleX(0); /* 左から開始 */
+  transform-origin: left; /* 左から動くように設定 */
+}
+
+
+.menu ul .sub-menu li a:hover::after {
+  transform: scaleX(1); /* 左から右へ拡大 */
+  transform-origin: left; /* 左から動くように設定 */
+}
+
+.menu ul .sub-menu li {
+  padding: 10px 20px;
+  border-bottom: none; /* 下線を削除 */
+}
