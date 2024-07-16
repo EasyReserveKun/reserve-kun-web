@@ -8,6 +8,7 @@ const Chat = () => {
     const [allMessages, setAllMessages] = useState([
         {
             sender: "ai",
+            type: "message",
             message: "こんにちは！わからないことがあれば気軽に質問してください！！\\n" +
                 "なるべく具体的に教えていただけると嬉しいです！"
         }]);
@@ -24,6 +25,7 @@ const Chat = () => {
             const messages = [...allMessages];
             messages.push({
                 sender: "self",
+                type: "message",
                 message: currentText
             });
             setAllMessages([...messages]);
@@ -43,12 +45,14 @@ const Chat = () => {
                 if (!data.answers[0].questions.length) {
                     await messages.push({
                         sender: "ai",
+                        type: "message",
                         message: "答えが見つかりませんでした"
                     });
                     setAllMessages([...messages])
                 } else {
                     await messages.push({
                         sender: "ai",
+                        type: "message",
                         message: data.answers[0].answer
                     });
                     setAllMessages([...messages])
@@ -56,6 +60,7 @@ const Chat = () => {
                     if (data.answers[0].dialog.prompts.length) {
                         await messages.push({
                             sender: "ai",
+                            type: "prompt",
                             message: data.answers[0].dialog.prompts[0].displayText
                         });
                         setAllMessages([...messages])
@@ -64,6 +69,7 @@ const Chat = () => {
             } catch (e) {
                 messages.push({
                     sender: "ai",
+                    type: "message",
                     message: "エラーが発生しました。" + e
                 });
                 setAllMessages([...messages])
@@ -83,31 +89,49 @@ const Chat = () => {
         const messages = [];
 
         allMessages.forEach((item) => {
-            const brokeMessage = item.message.split("\\n").map(msg => {
-                return (
-                    <>
-                        {msg}<br></br>
-                    </>
-                )
-            })
             const rowClass = 'row my-2 chat-row-' + item.sender;
-            messages.push(
-                <div key={allMessages.indexOf(item)}>
-                    <div className={rowClass}>
-                        <div className='col-2'>
-                            {item.sender === "ai"
-                                ? <img src={`${process.env.PUBLIC_URL}/image/a-logo.png`} alt="Icon" />
-                                : null}
+            if (item.type === "message") {
+                const brokeMessage = item.message.split("\\n").map(msg => {
+                    return (
+                        <>
+                            {msg}<br></br>
+                        </>
+                    )
+                })
+                messages.push(
+                    <div key={"message-" + allMessages.indexOf(item)}>
+                        <div className={rowClass}>
+                            <div className='col-2'>
+                                {item.sender === "ai"
+                                    ? <img src={`${process.env.PUBLIC_URL}/image/a-logo.png`} alt="Icon" />
+                                    : null}
+                            </div>
+                            <div className='col-10'>
+                                <p>{brokeMessage}</p>
+                            </div>
                         </div>
-                        <div className='col-10'>
-                            <p>{brokeMessage}</p>
-                        </div>
+                        <div className='chat-clear' />
                     </div>
-                    <div className='chat-clear' />
-                </div>
-            )
-
+                )
+            } else if (item.type === "prompt") {
+                messages.push(
+                    <div key={"message-" + allMessages.indexOf(item)}>
+                        <div className={rowClass}>
+                            <div className='col-2'>
+                                {item.sender === "ai"
+                                    ? <img src={`${process.env.PUBLIC_URL}/image/a-logo.png`} alt="Icon" />
+                                    : null}
+                            </div>
+                            <div className='col-10'>
+                                <p><a href={item.message}>{item.message}</a></p>
+                            </div>
+                        </div>
+                        <div className='chat-clear' />
+                    </div>
+                )
+            }
         })
+
         return messages;
     }
 
