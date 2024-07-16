@@ -147,7 +147,7 @@ const Chat = () => {
             {isChatOpen && (
                 <div className='chat-container'>
                     <div className='chat-title'>
-                        <h2>AIチャット</h2>
+                        <h4>お助けチャット ACEくん</h4>
                         <button className='bi bi-x chat-close-button' onClick={toggleChat}></button>
                     </div>
                     <div className='chat-conversation container-fluid' ref={chatContainerRef}>
@@ -157,13 +157,15 @@ const Chat = () => {
                         <form>
                             <div className='row input-row'>
                                 <div className='col-10 p-0'>
-                                    <input type='text' className='chat-input-text' placeholder='質問を入力してください...' value={currentText} onChange={handleTextChange} disabled={isLoading}></input>
+                                    <input type='text' maxlength="50" className='chat-input-text' placeholder='質問を入力してください...' value={currentText} onChange={handleTextChange} disabled={isLoading}></input>
                                 </div>
                                 <div className='col-2 p-0'>
                                     {isLoading ?
                                         <button type='button' className='bi bi-arrow-clockwise chat-input-button loading-icon'></button>
                                         :
-                                        <button type='submit' className='bi bi-send chat-input-button' onClick={chatSend}></button>
+                                        <button type="submit" className="chat-input-button" onClick={chatSend}>
+                                            <img src={`${process.env.PUBLIC_URL}/image/send.svg`} alt="送信" />
+                                        </button>
                                     }
                                 </div>
                             </div>
