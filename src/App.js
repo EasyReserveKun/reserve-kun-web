@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // コンポーネントのインポート
+import EmpLogin from "./EmpLogin";
+import AdminPage from "./AdminPage";
 import Home from "./home/Home";
 import Nf from "./nf/Nf";
 import LoginForm from './login/LoginForm';
@@ -36,7 +38,9 @@ const routes = [
   { path: "/suzukiichiro", element: <IchiroSuzuki /> },
   { path: "/takahashimisaki", element: <MisakiTakahashi /> },
   { path: "/nakamurakenta", element: <KentaNakamura /> },
-  { path: "*", element: <Nf /> }
+  { path: "*", element: <Nf /> },
+  { path: "/empLogin", element: <EmpLogin /> },
+  { path: "/AdminPage", element: <AdminPage /> }
 ];
 
 function App() {
