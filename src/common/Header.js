@@ -65,6 +65,7 @@ const Header = () => {
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
                 <li><a href="/Access">アクセス</a></li>
+                <li><a href="/empLogin">従業員の方はこちら</a></li>
                 <li><button onClick={openLogoutModal}>ログアウト</button></li>
               </ul>
             </nav>
@@ -114,6 +115,7 @@ const Header = () => {
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
                 <li><a href="/Access">アクセス</a></li>
+                <li><a href="/empLogin">従業員の方はこちら</a></li>
                 <li><a href="/login">ログイン</a></li>
               </ul>
             </nav>

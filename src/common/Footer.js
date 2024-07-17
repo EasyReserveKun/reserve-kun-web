@@ -14,6 +14,7 @@ const Footer = () => {
                     <li><a href="/Faq">FAQガイドライン</a>　</li>
                     <li><a href="#form">問い合わせフォーム</a>　</li>
                     <li><a href="/Access">アクセス</a>　</li>
+                    <li><a href="/empLogin">従業員の方はこちら</a>　</li>
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
                 <p className="copyright">
@@ -32,6 +33,7 @@ const Footer = () => {
                     <li><a href="/Faq">FAQガイドライン</a>　</li>
                     <li><a href="#form">問い合わせフォーム</a>　</li>
                     <li><a href="/Access">アクセス</a>　</li>
+                    <li><a href="/empLogin">従業員の方はこちら</a>　</li>
                     <li><a href="/login">ログイン</a>　</li>
                 </ul>
                 <p className="copyright">
