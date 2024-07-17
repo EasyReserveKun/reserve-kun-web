@@ -1,0 +1,82 @@
+/* Form.css */
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    
+    /* フォーム全体を中央揃えにする */
+}
+.reserve-stop {
+    font-weight: bold;
+    color: rgb(165, 0, 0);
+}
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+form input[type="date"],
+form input[type="time"],
+form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    padding: 10px;
+    background-color: #e44141;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #ef8b8b;
+}
+
+/* ボタンを中央に配置する */
+form button[type="submit"] {
+    display: inline-block;
+    /* インラインブロック要素にする */
+    margin-top: 10px;
+}
+
+.time-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.time-buttons button {
+    margin: 0 5px;
+    padding: 8px 16px;
+    background-color: #3e5656;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.time-buttons button.selected {
+    background-color: #4ba8b3;
+}
+
+.gray-button:hover {
+    background-color: #e0e0e0;
+}
+
