@@ -46,9 +46,9 @@ function EmpLogin() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ password: inputPassword })
+            body: JSON.stringify({ cid: inputCid , password: inputPassword })
         }
-        const responce = await fetch(getApiUrl() + "URL", requestData);
+        const responce = await fetch(getApiUrl() + "/admin/login", requestData);
         const data = await responce.json();
         if (data.status === "Success") {
             await sessionStorage.setItem('AdName', data.results.name);

@@ -1,6 +1,6 @@
 export const getApiUrl = () => {
-    //return "https://localhost:8000"
-    return "https://reserve-kun-server.azurewebsites.net"
+    return "http://localhost:8080"
+    //return "https://reserve-kun-server.azurewebsites.net"
 }
 
 export const getWebUrl = () => {
