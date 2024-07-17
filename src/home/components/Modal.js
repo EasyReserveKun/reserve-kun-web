@@ -54,6 +54,7 @@ function Search(props) {
     const buttons = [];
 
     for (let hour = 10; hour <= 19; hour++) {
+      
       const time = hour + ':00';
       const isReserved = reservedTimes.includes(time);
 
@@ -66,6 +67,7 @@ function Search(props) {
             onClick={handleTimeChange}
             className={buttonClass}
             value={time}
+
             disabled={isReserved}
           >
             {time}～
