@@ -18,6 +18,7 @@ import LogoutSuccess from './logout/LogoutSuccess';
 import SignUpSuccess from './signup/SignUpSuccess';
 import Access from './Access';
 import ReserveCheck from './ReserveCheck';
+import ReactivationPage from './ReactivationPage';
 import Faq from './Faq';
 import HanakoSato from './home/advisor/HanakoSato';
 import TaroTanaka from './home/advisor/TaroTanaka';
@@ -34,17 +35,18 @@ const routes = [
   { path: "/logout", element: <LogoutSuccess /> },
   { path: "/Access", element: <Access /> },
   { path: "/ReserveCheck", element: <ReserveCheck /> },
+  { path: "/ReactivationPage", element: <ReactivationPage /> },
   { path: "/faq", element: <Faq /> },
   { path: "/satohanako", element: <HanakoSato /> },
   { path: "/tanakataro", element: <TaroTanaka /> },
   { path: "/suzukiichiro", element: <IchiroSuzuki /> },
   { path: "/takahashimisaki", element: <MisakiTakahashi /> },
   { path: "/nakamurakenta", element: <KentaNakamura /> },
-  { path: "*", element: <Nf /> },
   { path: "/empLogin", element: <EmpLogin /> },
   { path: "/AdminPage", element: <AdminPage /> },
   { path: "/AdmHeader", element: <AdmHeader /> },
-  { path: "ReservationList", element: <ReservationList />}
+  { path: "ReservationList", element: <ReservationList />},
+  { path: "*", element: <Nf /> }
 ];
 
 function App() {
