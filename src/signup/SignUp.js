@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getApiUrl } from '../GetApiUrl';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import StyleSheets
 import '../common/Form.css';
