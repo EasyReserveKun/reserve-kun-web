@@ -8,6 +8,7 @@ import './common/Form.css';
 
 import Header from './common/Header.js';
 import Footer from './common/Footer.js';
+import './EmpLogin.css';
 
 function EmpLogin() {
     const navigate = useNavigate();
@@ -62,15 +63,15 @@ function EmpLogin() {
         <>
             <Header />
             <div className="form-container">
-                <h2 className="form-title">従業員専用ログイン</h2>
+                <h2 className="admform-title">従業員専用ログイン</h2>
 
-                <form className="form-style">
+                <form className="admform-style">
                     <label htmlFor="email">ID</label>
                     <input type="email" id="email" value={inputCid} onChange={handleChangeCid} required />
                     <label htmlFor="password">パスワード</label>
                     <input type="password" id="password" value={inputPassword} onChange={handleChangePassword} required />
                     <p style={{ color: 'red' }}>{loginError}</p>
-                    <button type="button" onClick={loginAuth}>ログイン</button>
+                    <button type="button" className="admlogin-button" onClick={loginAuth}>ログイン</button>
                 </form>
             </div>
             <Footer />
