@@ -15,7 +15,7 @@ function SignUpSuccess() {
     <div className="sus-container">
       <Header />
       <div className="sus-message">
-        新規登録に成功しました。<br />
+        新規登録が完了しました。<br />
         ログインしてから引き続きご利用ください。<br />
         <a href="/">ホーム画面へ</a>　　<a href="/login">ログイン画面へ</a>
       </div>
