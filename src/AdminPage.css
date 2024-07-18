@@ -1,6 +1,5 @@
-/* Form.css */
-
-form {
+/* AdminPage.css */
+.admin-form {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -8,22 +7,22 @@ form {
     border-radius: 5px;
     background-color: #f9f9f9;
     text-align: center;
-    
-    /* フォーム全体を中央揃えにする */
 }
+
 .reserve-stop {
     font-weight: bold;
     color: rgb(165, 0, 0);
 }
-form label {
+
+.admin-form label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-form input[type="date"],
-form input[type="time"],
-form select {
+.admin-form input[type="date"],
+.admin-form input[type="text"],
+.admin-form select {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -33,7 +32,7 @@ form select {
     box-sizing: border-box;
 }
 
-form button {
+.submit-button {
     padding: 10px;
     background-color: #e44141;
     color: white;
@@ -43,33 +42,13 @@ form button {
     font-weight: bold;
 }
 
-form button:hover {
+.submit-button:hover {
     background-color: #ef8b8b;
 }
 
-/* ボタンを中央に配置する */
-form button[type="submit"] {
+.admin-form button[type="submit"] {
     display: inline-block;
-    /* インラインブロック要素にする */
     margin-top: 10px;
-}
-
-.time-buttons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.time-buttons button {
-    margin: 0 5px;
-    padding: 8px 16px;
-    background-color: #3e5656;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
 }
 
 .time-buttons button.selected {
@@ -80,3 +59,39 @@ form button[type="submit"] {
     background-color: #e0e0e0;
 }
 
+.gray-button {
+    margin: 2px 1px;
+    padding: 5px 5px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: inherit;
+    white-space: nowrap;
+  }
+  
+  .gray-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .red-button {
+    margin: 2px 2px;
+    padding: 5px 5px;
+    background-color: #3e5656;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: inherit;
+    white-space: nowrap;
+  }
+  
+  .red-button:hover {
+    background-color: #ef8b8b;
+    /* ホバー時の色 */
+  }

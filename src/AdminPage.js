@@ -1,78 +1,113 @@
-// Import Modules
-import React, { useState } from 'react';
-
-
-// Import StyleSheets
+import React, { useState, useEffect } from 'react';
+import { getApiUrl } from './GetApiUrl';
 import './common/Form.css';
 import './AdminPage.css';
-
-
-// Import Components
-
-import Footer from './common/Footer';
+import Header from './common/Header';
 import AdmHeader from './AdmHeader';
-
+import Warn from './common/Warn';
 
 function AdminPage() {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [employeeId, setEmployeeId] = useState('');
+    const [reservedTimes, setReservedTimes] = useState([]);
+    const [warnText, setWarnText] = useState("");
+    const [showWarn, setShowWarn] = useState(false);
 
-    // Function to block reservation
-    const blockReservation = async (blockData) => {
+    useEffect(() => {
+        const fetchData = async () => {
+            if (date && employeeId) {
+                await fetchReservedTimes();
+            }
+        };
+        fetchData();
+    }, [date, employeeId]);
+
+    const fetchReservedTimes = async () => {
+        const requestData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ date, eid: employeeId })
+        };
+
         try {
-            const response = await fetch('/api/block-reservation', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(blockData),
-            });
-
+            const response = await fetch(getApiUrl() + "/reserve/available", requestData);
             if (response.ok) {
-                alert('予約が停止されました');
+                const data = await response.json();
+                setReservedTimes(data);
+                console.log('Reserved times:', data); // デバッグ用
             } else {
-                alert('予約停止に失敗しました');
+                console.error('Fetch Error:', response.statusText);
+                setReservedTimes([]); // Fetchが失敗した場合はreservedTimesをクリア
             }
         } catch (error) {
-            console.error('エラーが発生しました:', error);
-            alert('予約停止に失敗しました');
+            console.error('Fetch Error:', error);
+            setReservedTimes([]); // Fetchがエラーを投げた場合はreservedTimesをクリア
         }
     };
 
-    // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        const blockData = {
-            date,
-            time,
-            employeeId,
-            isBlocked: true
-        };
-
-        blockReservation(blockData);
+    const handleDateChange = (event) => {
+        const selectedDate = event.target.value;
+        setDate(selectedDate);
     };
 
-    // Render time buttons
+    const handleEmployeeChange = (event) => {
+        const selectedEmployeeId = event.target.value;
+        setEmployeeId(selectedEmployeeId);
+    };
+
+    const handleTimeChange = (event) => {
+        setTime(event.target.value);
+    };
+
+    const stop = async () => {
+        const requestData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ date, eid: employeeId, time, cid: sessionStorage.getItem('AdName') })
+        };
+
+        const responce = await fetch("http://localhost:8080/employee/stop", requestData);
+        const data = await responce.json();
+
+        if (data.status === "Success") {
+            setWarnText("停止に成功しました")
+            setShowWarn(true);
+            await fetchReservedTimes();
+        } else if (data.status === "Duplicated") {
+            await setWarnText("その時間はすでに予約されました");
+            setShowWarn(true);
+            await fetchReservedTimes();
+        } else if (data.status === "Doubled") {
+            await setWarnText("その時間はあなたはすでに予約しています");
+            setShowWarn(true);
+        }
+    };
+
     const renderTimeButtons = () => {
         const buttons = [];
 
-        // Create buttons from 10:00 to 19:00
         for (let hour = 10; hour <= 19; hour++) {
-            const time = `${hour}:00`;
+            const timeSlot = `${hour}:00`;
+            const isReserved = reservedTimes.includes(timeSlot);
+            const buttonClass = isReserved ? 'gray-button' : 'red-button';
 
             buttons.push(
-                
-                <button
-                    key={hour}
-                    type="button"
-                    onClick={() => setTime(time)}
-                    className="time-button"
-                    style={{ marginRight: '10px' , marginTop: '10px' }} // ボタン間の余白を設定
-                >
-                    {time} ～
-                </button>
+                <div key={hour} className="col-lg-2 col-md-3 col-4">
+                    <button
+                        type="button"
+                        onClick={handleTimeChange}
+                        className={buttonClass}
+                        value={timeSlot}
+                        disabled={isReserved}
+                    >
+                        {timeSlot}～
+                    </button>
+                </div>
             );
         }
 
@@ -82,7 +117,8 @@ function AdminPage() {
     return (
         <>
             <AdmHeader />
-            <form onSubmit={handleSubmit} className="admin-form">
+            <form className="admin-form">
+                <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <h2 className="reserve-stop">予約を停止する</h2>
                 <div className="form-group">
                     <label htmlFor="date">日付:</label>
@@ -90,25 +126,19 @@ function AdminPage() {
                         type="date"
                         id="date"
                         value={date}
-                        onChange={(e) => setDate(e.target.value)}
+                        onChange={handleDateChange}
                         required
                     />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="time">時間:</label>
-                    <div className="time-buttons">
-                        {renderTimeButtons()}
-                    </div>
                 </div>
                 <div className="form-group">
                     <label htmlFor="employeeId">従業員:</label>
                     <select
                         id="employeeId"
                         value={employeeId}
-                        onChange={(e) => setEmployeeId(e.target.value)}
+                        onChange={handleEmployeeChange}
                         required
                     >
-                        <option value="all">全員</option>
+                        <option value="">選択してください</option>
                         <option value="1">田中太郎</option>
                         <option value="2">佐藤花子</option>
                         <option value="3">鈴木一郎</option>
@@ -116,7 +146,23 @@ function AdminPage() {
                         <option value="5">中村健太</option>
                     </select>
                 </div>
-                <button type="submit" className="submit-button">予約を停止</button>
+                <div className="form-group">
+                    <label htmlFor="time">時間:</label>
+                    <div className="col-13">
+                        <input
+                            type="text"
+                            id="time"
+                            name="time"
+                            value={time}
+                            placeholder="ボタンで時間を指定してください"
+                            className="form-control"
+                        />
+                    </div>
+                    <div className="row">
+                        {renderTimeButtons()}
+                    </div>
+                </div>
+                <button type="button" onClick={stop} className="submit-button">予約を停止</button>
             </form>
             <Footer />
         </>
