@@ -7,6 +7,7 @@ import './App.css';
 
 // コンポーネントのインポート
 import EmpLogin from "./EmpLogin";
+import ReservationList from './ReservationList';
 import AdmHeader from "./AdmHeader";
 import AdminPage from "./AdminPage";
 import Home from "./home/Home";
@@ -42,7 +43,8 @@ const routes = [
   { path: "*", element: <Nf /> },
   { path: "/empLogin", element: <EmpLogin /> },
   { path: "/AdminPage", element: <AdminPage /> },
-  { path: "/AdmHeader", element: <AdmHeader /> }
+  { path: "/AdmHeader", element: <AdmHeader /> },
+  { path: "ReservationList", element: <ReservationList />}
 ];
 
 function App() {
