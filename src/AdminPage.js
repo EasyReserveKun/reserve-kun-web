@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getApiUrl } from './GetApiUrl';
 import './common/Form.css';
 import './AdminPage.css';
-import Header from './common/Header';
 import AdmHeader from './AdmHeader';
 import Warn from './common/Warn';
 
@@ -14,16 +13,7 @@ function AdminPage() {
     const [warnText, setWarnText] = useState("");
     const [showWarn, setShowWarn] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            if (date && employeeId) {
-                await fetchReservedTimes();
-            }
-        };
-        fetchData();
-    }, [date, employeeId]);
-
-    const fetchReservedTimes = async () => {
+    const fetchReservedTimes = useCallback(async () => {
         const requestData = {
             method: 'POST',
             headers: {
@@ -46,7 +36,16 @@ function AdminPage() {
             console.error('Fetch Error:', error);
             setReservedTimes([]); // Fetchがエラーを投げた場合はreservedTimesをクリア
         }
-    };
+    }, [date, employeeId]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (date && employeeId) {
+                await fetchReservedTimes();
+            }
+        };
+        fetchData();
+    }, [date, employeeId, fetchReservedTimes]);
 
     const handleDateChange = (event) => {
         const selectedDate = event.target.value;
@@ -114,58 +113,66 @@ function AdminPage() {
         return buttons;
     };
 
-    return (
-        <>
-            <AdmHeader />
-            <form className="admin-form">
-                <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-                <h2 className="reserve-stop">予約を停止する</h2>
-                <div className="form-group">
-                    <label htmlFor="date">日付:</label>
-                    <input
-                        type="date"
-                        id="date"
-                        value={date}
-                        onChange={handleDateChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="employeeId">従業員:</label>
-                    <select
-                        id="employeeId"
-                        value={employeeId}
-                        onChange={handleEmployeeChange}
-                        required
-                    >
-                        <option value="">選択してください</option>
-                        <option value="1">田中太郎</option>
-                        <option value="2">佐藤花子</option>
-                        <option value="3">鈴木一郎</option>
-                        <option value="4">高橋美咲</option>
-                        <option value="5">中村健太</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="time">時間:</label>
-                    <div className="col-13">
+    if (!(sessionStorage.getItem('AdName') == null)) {
+        return (
+            <>
+                <AdmHeader />
+                <form className="admin-form">
+                    <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
+                    <h2 className="reserve-stop">予約を停止する</h2>
+                    <div className="form-group">
+                        <label htmlFor="date">日付:</label>
                         <input
-                            type="text"
-                            id="time"
-                            name="time"
-                            value={time}
-                            placeholder="ボタンで時間を指定してください"
-                            className="form-control"
+                            type="date"
+                            id="date"
+                            value={date}
+                            onChange={handleDateChange}
+                            required
                         />
                     </div>
-                    <div className="row">
-                        {renderTimeButtons()}
+                    <div className="form-group">
+                        <label htmlFor="employeeId">従業員:</label>
+                        <select
+                            id="employeeId"
+                            value={employeeId}
+                            onChange={handleEmployeeChange}
+                            required
+                        >
+                            <option value="">選択してください</option>
+                            <option value="1">田中太郎</option>
+                            <option value="2">佐藤花子</option>
+                            <option value="3">鈴木一郎</option>
+                            <option value="4">高橋美咲</option>
+                            <option value="5">中村健太</option>
+                        </select>
                     </div>
-                </div>
-                <button type="button" onClick={stop} className="submit-button">予約を停止</button>
-            </form>
-        </>
-    );
+                    <div className="form-group">
+                        <label htmlFor="time">時間:</label>
+                        <div className="col-13">
+                            <input
+                                type="text"
+                                id="time"
+                                name="time"
+                                value={time}
+                                placeholder="ボタンで時間を指定してください"
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="row">
+                            {renderTimeButtons()}
+                        </div>
+                    </div>
+                    <button type="button" onClick={stop} className="submit-button">予約を停止</button>
+                </form>
+            </>
+        );
+    } else {
+        return (
+            <>
+                権限がありません
+            </>
+        );
+    }
 }
 
 export default AdminPage;
