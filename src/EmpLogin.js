@@ -51,7 +51,7 @@ function EmpLogin() {
         const responce = await fetch(getApiUrl() + "/admin/login", requestData);
         const data = await responce.json();
         if (data.status === "Success") {
-            await sessionStorage.setItem('AdName', data.results.name);
+            await sessionStorage.setItem('AdName', data.results.mail);
             setLoginError("")
             navigate("/AdminPage")
         } else {
