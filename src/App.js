@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // コンポーネントのインポート
+import EmployeePortalHome from './EmployeePortalHome';
 import EmpLogin from "./EmpLogin";
 import ReservationList from './ReservationList';
 import AdmHeader from "./AdmHeader";
@@ -29,6 +30,7 @@ import KentaNakamura from './home/advisor/KentaNakamura';
 // ルート設定
 const routes = [
   { path: "/", element: <Home /> },
+  { path: "/EmployeePortalHome", element: <EmployeePortalHome />},
   { path: "/login", element: <LoginForm /> },
   { path: "/signup", element: <SignUp /> },
   { path: "/signupsuccess", element: <SignUpSuccess /> },
@@ -46,6 +48,7 @@ const routes = [
   { path: "/AdminPage", element: <AdminPage /> },
   { path: "/AdmHeader", element: <AdmHeader /> },
   { path: "ReservationList", element: <ReservationList />},
+　{ path: "EmployeePortalHome", element: <EmployeePortalHome />},
   { path: "*", element: <Nf /> }
 ];
 
