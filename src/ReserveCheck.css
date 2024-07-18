@@ -74,3 +74,22 @@ h2 {
 .reservation-table tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
+
+.home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #072e59;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 45px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  
+  }
+  
+  .home-button:hover {
+    background-color: #ababab;
+    text-decoration: none;
+    color: #ffffff;
+  }
