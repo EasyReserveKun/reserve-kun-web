@@ -168,10 +168,12 @@ function AdminPage() {
         );
     } else {
         return (
-            <>
-                権限がありません
-            </>
-        );
+            <div className="no-access">
+              <h1>アクセス権限がありません</h1>
+              <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
+              <a href="/" className="home-button">ホームページに戻る</a>
+            </div>
+          );
     }
 }
 
