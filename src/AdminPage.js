@@ -1,15 +1,16 @@
 // Import Modules
 import React, { useState } from 'react';
-import { getApiUrl } from './GetApiUrl';
+
 
 // Import StyleSheets
 import './common/Form.css';
 import './AdminPage.css';
 
-// Import Components
-import Header from './common/Header';
-import Footer from './common/Footer';
 
+// Import Components
+
+import Footer from './common/Footer';
+import AdmHeader from './AdmHeader';
 
 
 function AdminPage() {
@@ -80,7 +81,7 @@ function AdminPage() {
 
     return (
         <>
-            <Header />
+            <AdmHeader />
             <form onSubmit={handleSubmit} className="admin-form">
                 <h2 className="reserve-stop">予約を停止する</h2>
                 <div className="form-group">
