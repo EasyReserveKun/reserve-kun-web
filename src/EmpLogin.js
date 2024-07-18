@@ -54,7 +54,7 @@ function EmpLogin() {
         if (data.status === "Success") {
             await sessionStorage.setItem('AdName', data.results.mail);
             setLoginError("")
-            navigate("/AdminPage")
+            navigate("/EmployeePortalHome")
         } else {
             setLoginError("正しいIDまたは、パスワードを入力してください。")
         }
