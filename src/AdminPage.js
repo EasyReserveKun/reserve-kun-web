@@ -164,7 +164,6 @@ function AdminPage() {
                 </div>
                 <button type="button" onClick={stop} className="submit-button">予約を停止</button>
             </form>
-            
         </>
     );
 }
