@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { getApiUrl } from './GetApiUrl';
 import './common/Form.css';
 import './AdminPage.css';
-import Header from './common/Header';
+
 import AdmHeader from './AdmHeader';
 import Warn from './common/Warn';
 
-function AdminPage() {
+function ReactivationPage() {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [employeeId, setEmployeeId] = useState('');
@@ -75,7 +75,7 @@ function AdminPage() {
         const data = await responce.json();
 
         if (data.status === "Success") {
-            setWarnText("停止に成功しました")
+            setWarnText("解除に成功しました")
             setShowWarn(true);
             await fetchReservedTimes();
         } else if (data.status === "Duplicated") {
@@ -119,7 +119,7 @@ function AdminPage() {
             <AdmHeader />
             <form className="admin-form">
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-                <h2 className="reserve-stop">予約を停止する</h2>
+                <h2 className="reserve-stop">予約の停止を解除する</h2>
                 <div className="form-group">
                     <label htmlFor="date">日付:</label>
                     <input
@@ -162,11 +162,11 @@ function AdminPage() {
                         {renderTimeButtons()}
                     </div>
                 </div>
-                <button type="button" onClick={stop} className="submit-button">予約を停止</button>
+                <button type="button" onClick={stop} className="submit-button">予約の停止を解除</button>
             </form>
             
         </>
     );
 }
 
-export default AdminPage;
+export default ReactivationPage;
