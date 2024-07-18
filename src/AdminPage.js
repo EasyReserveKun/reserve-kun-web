@@ -3,7 +3,7 @@ import { getApiUrl } from './GetApiUrl';
 import './common/Form.css';
 import './AdminPage.css';
 import Header from './common/Header';
-import Footer from './common/Footer';
+import AdmHeader from './AdmHeader';
 import Warn from './common/Warn';
 
 function AdminPage() {
@@ -116,7 +116,7 @@ function AdminPage() {
 
     return (
         <>
-            <Header />
+            <AdmHeader />
             <form className="admin-form">
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <h2 className="reserve-stop">予約を停止する</h2>

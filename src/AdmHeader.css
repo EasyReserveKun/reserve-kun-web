@@ -1,0 +1,69 @@
+/* AdmHeader.css */
+
+.admsite-header {
+    background-color: #3e5656;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admsite-header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.admlogo img {
+    max-height: 40px;
+}
+
+.admnav {
+    display: flex;
+    align-items: center;
+}
+
+.admnav__toggle {
+    display: none; /* Hide toggle button for now */
+}
+
+.admnav__wrapper {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.admnav__item {
+    margin-left: 20px;
+}
+
+.admnav__item:first-child {
+    margin-left: 0;
+}
+
+.admnav__item a {
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 50px;
+    color: #fcf6f6; /* Default text color */
+    font-weight: bold;
+    
+}
+
+.admnav__item a:hover {
+    color: #ffcbcb; 
+    
+}
+
+.admbutton-link {
+    background-color: #e44141;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.admbutton-link:hover {
+    background-color: #f77b7b;
+    color: #ffffff; /* Ensure text color stays white on hover */
+}

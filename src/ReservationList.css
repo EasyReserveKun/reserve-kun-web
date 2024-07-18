@@ -1,0 +1,71 @@
+/* ReservationList.css */
+
+.reservation-list {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.employee-filter {
+    margin-bottom: 20px;
+}
+
+.employee-filter label {
+    font-weight: bold;
+}
+
+.employee-filter select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.reservation-section {
+    margin-bottom: 30px;
+}
+
+.reservation-section h2 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.reservation-item {
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+}
+
+.reservation-item p {
+    margin: 4px 0;
+}
+
+.loading {
+    text-align: center;
+    margin: 20px 0;
+    font-style: italic;
+    color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .reservation-list {
+        padding: 10px;
+    }
+
+    .reservation-section h2 {
+        font-size: 20px;
+    }
+
+    .reservation-item {
+        padding: 10px;
+    }
+}
