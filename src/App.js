@@ -7,6 +7,7 @@ import './App.css';
 
 // コンポーネントのインポート
 import EmployeePortalHome from './EmployeePortalHome';
+import BatchStopProcessing from './BatchStopProcessing';
 import EmpLogin from "./EmpLogin";
 import ReservationList from './ReservationList';
 import AdmHeader from "./AdmHeader";
@@ -30,6 +31,7 @@ import KentaNakamura from './home/advisor/KentaNakamura';
 const routes = [
   { path: "/", element: <Home /> },
   { path: "/EmployeePortalHome", element: <EmployeePortalHome />},
+  { path: "/BatchStopProcessing", element: <BatchStopProcessing />},
   { path: "/login", element: <LoginForm /> },
   { path: "/signup", element: <SignUp /> },
   { path: "/signupsuccess", element: <SignUpSuccess /> },
