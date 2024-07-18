@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import './AdmHeader.css';
@@ -30,11 +31,13 @@ const AdmHeader = () => {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
+
                     <Nav.Link href="EmployeePortalHome">Home</Nav.Link>
                     <Nav.Link href="AdminPage">予約停止 (日時選択)</Nav.Link>
                     <Nav.Link href="#">予約即時停止</Nav.Link>
                     <Nav.Link href="ReservationList">予約一覧表示</Nav.Link>
                     <Nav.Link className="admbutton-link" onClick={openLogoutModal}>Logout</Nav.Link>
+                    
                 </Nav>
             </Navbar.Collapse>
             {/* ログアウト確認モーダル */}
