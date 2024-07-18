@@ -34,6 +34,7 @@ const AdmHeader = () => {
 
                     <Nav.Link href="EmployeePortalHome">Home</Nav.Link>
                     <Nav.Link href="AdminPage">予約停止 (日時選択)</Nav.Link>
+                    <Nav.Link href="ReactivationPage">予約停止の解除 (日時選択)</Nav.Link>
                     <Nav.Link href="#">予約即時停止</Nav.Link>
                     <Nav.Link href="ReservationList">予約一覧表示</Nav.Link>
                     <Nav.Link className="admbutton-link" onClick={openLogoutModal}>Logout</Nav.Link>
