@@ -1,99 +1,115 @@
-// ReservationList.js
-
 import React, { useState, useEffect } from 'react';
 import AdmHeader from './AdmHeader';
 import './ReservationList.css';
-const Reservations = () => {
-    const [reservations, setReservations] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [employeeFilter, setEmployeeFilter] = useState(null); // null means show all employees
+import { getApiUrl } from './GetApiUrl';
 
-    useEffect(() => {
-        // Simulate API call to fetch reservations
-        const fetchReservations = async () => {
-            try {
-                // Replace with actual API call
-                const response = await fetch('/api/reservations');
-                const data = await response.json();
-                setReservations(data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching reservations:', error);
-            }
+const ReservationList = () => {
+    const [reservations, setReservations] = useState({ upcoming: [] });
+    const [loading, setLoading] = useState(true);
+    const [employeeFilter, setEmployeeFilter] = useState('all');
+    const [selectedDate, setSelectedDate] = useState('');
+
+    const fetchData = async () => {
+        const requestData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ eid: employeeFilter })
         };
 
-        fetchReservations();
-    }, []);
+        try {
+            const response = await fetch(getApiUrl() + "/reserve/employeeCheck", requestData);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-    // Filter reservations based on employee selection
-    const filteredReservations = employeeFilter
-        ? reservations.filter(reservation => reservation.employee === employeeFilter)
-        : reservations;
+            const jsonData = await response.json();
+            console.log(jsonData);
+            
+            // 今日の日付を取得
+            const today = new Date().toISOString().split('T')[0];
+            
+            // 予約データをフィルタリング
+            const upcomingReservations = jsonData.filter(item => item.date >= today);
 
-    // Filter reservations based on date
-    const today = new Date().toISOString().split('T')[0];
-    const upcomingReservations = filteredReservations.filter(reservation => reservation.date >= today);
-    const historyReservations = filteredReservations.filter(reservation => reservation.date < today);
-    if (!(sessionStorage.getItem('AdName') == null)) {
+            setReservations({ upcoming: upcomingReservations });
+        } catch (error) {
+            console.error('Fetch Error:', error);
+            // エラー表示のための状態設定などがあればここに追加
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [employeeFilter]);
+
+    const handleDateChange = (event) => {
+        const selected = event.target.value;
+        setSelectedDate(selected);
+        
+        // 選択した日付に基づいてフィルタリング
+        if (selected) {
+            const filteredReservations = reservations.upcoming.filter(reservation => reservation.date === selected);
+            setReservations({ upcoming: filteredReservations });
+        } else {
+            // 日付が選択されていない場合は全て表示
+            fetchData();
+        }
+    };
+
+    if (sessionStorage.getItem('AdName')) {
         return (
             <>
                 <AdmHeader />
                 <div className="reservation-list">
-
-
-                    {/* Employee filter dropdown */}
-                    <div className="employee-filter">
-                        <label htmlFor="employee-filter">従業員選択：</label>
-                        <select
-                            id="employee-filter"
-                            onChange={e => setEmployeeFilter(e.target.value)}
-                            value={employeeFilter || ''}
-                        >
-                            <option value="">全員</option>
-                            <option value="Employee1">従業員1</option>
-                            <option value="Employee2">従業員2</option>
-                            <option value="Employee3">従業員3</option>
-                            <option value="Employee4">従業員4</option>
-                            <option value="Employee5">従業員5</option>
-                        </select>
+                    <div className="filters-container">
+                        <div className="employee-filter">
+                            <label htmlFor="employee-filter">従業員選択：</label>
+                            <select
+                                id="employee-filter"
+                                onChange={e => setEmployeeFilter(e.target.value)}
+                                value={employeeFilter}
+                            >
+                                <option value="all">全員</option>
+                                <option value="1">田中太郎</option>
+                                <option value="2">佐藤花子</option>
+                                <option value="3">鈴木一郎</option>
+                                <option value="4">高橋美咲</option>
+                                <option value="5">中村健太</option>
+                            </select>
+                        </div>
+                        <div className="date-filter">
+                            <label htmlFor="date-filter">日付選択：</label>
+                            <input
+                                type="date"
+                                id="date-filter"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                            />
+                        </div>
                     </div>
 
-                    {/* Loading indicator */}
                     {loading && <p>Loading...</p>}
 
-                    {/* Upcoming reservations */}
+                    {/* 今日以降の予約 */}
                     <div className="reservation-section">
-                        <h2>今日以降の予約</h2>
-                        {upcomingReservations.length > 0 ? (
-                            upcomingReservations.map(reservation => (
+                        <h2>予約</h2>
+                        {reservations.upcoming.length > 0 ? (
+                            reservations.upcoming.map(reservation => (
                                 <div key={reservation.id} className="reservation-item">
                                     <p>日付：{reservation.date}</p>
                                     <p>時間：{reservation.time}</p>
-                                    <p>従業員名：{reservation.employee}</p>
-                                    <p>顧客名：{reservation.customer}</p>
-                                    <p>備考欄：{reservation.remarks}</p>
+                                    <p>従業員名：{reservation.eid}</p>
+                                    <p>連絡先：{reservation.cid}</p>
+                                    <p>備考欄：{reservation.etc}</p>
                                 </div>
                             ))
                         ) : (
-                            <p>今日以降の予約はありません。</p>
-                        )}
-                    </div>
-
-                    {/* History reservations */}
-                    <div className="reservation-section">
-                        <h2>履歴</h2>
-                        {historyReservations.length > 0 ? (
-                            historyReservations.map(reservation => (
-                                <div key={reservation.id} className="reservation-item">
-                                    <p>日付：{reservation.date}</p>
-                                    <p>時間：{reservation.time}</p>
-                                    <p>従業員名：{reservation.employee}</p>
-                                    <p>顧客名：{reservation.customer}</p>
-                                    <p>備考欄：{reservation.remarks}</p>
-                                </div>
-                            ))
-                        ) : (
-                            <p>過去の予約はありません。</p>
+                            <p>予約はありません。</p>
                         )}
                     </div>
                 </div>
@@ -110,4 +126,4 @@ const Reservations = () => {
     }
 };
 
-export default Reservations;
+export default ReservationList;

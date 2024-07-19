@@ -53,7 +53,7 @@ const EmployeePortalHome = () => {
                   </a>
                 </div>
                 <div className="tool-item">
-                  <a href="#release-reservation">
+                  <a href="/ReactivationPage">
                     <div className="icon">
                       <FontAwesomeIcon icon={faUnlockAlt} size="4x" />
                     </div>
