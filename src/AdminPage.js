@@ -70,19 +70,20 @@ function AdminPage() {
             body: JSON.stringify({ date, eid: employeeId, time, cid: sessionStorage.getItem('AdName') })
         };
 
-        const responce = await fetch("http://localhost:8080/employee/stop", requestData);
-        const data = await responce.json();
+        const response = await fetch(getApiUrl() + "/employee/stop", requestData);
+        const data = await response.json();
+        console.log(requestData);
 
         if (data.status === "Success") {
-            setWarnText("停止に成功しました")
+            setWarnText("停止に成功しました");
             setShowWarn(true);
             await fetchReservedTimes();
         } else if (data.status === "Duplicated") {
-            await setWarnText("その時間はすでに予約されました");
+            setWarnText("その時間はすでに予約されました");
             setShowWarn(true);
             await fetchReservedTimes();
         } else if (data.status === "Doubled") {
-            await setWarnText("その時間はあなたはすでに予約しています");
+            setWarnText("その時間はあなたはすでに予約しています");
             setShowWarn(true);
         }
     };
@@ -110,7 +111,22 @@ function AdminPage() {
             );
         }
 
-        return buttons;
+        // 「全時間を一括停止」ボタンを時間ボタンと同じレイアウトに統一
+        return (
+            <div className="row">
+                {buttons}
+                <div className="col-lg-2 col-md-3 col-4 mt-3">
+                    <button
+                        type="button"
+                        onClick={handleTimeChange}
+                        className="red-button"
+                        value="すべての時間" // 他の時間ボタンと同じスタイル
+                    >
+                        全時間を一括停止
+                    </button>
+                </div>
+            </div>
+        );
     };
 
     if (!(sessionStorage.getItem('AdName') == null)) {
@@ -158,9 +174,7 @@ function AdminPage() {
                                 className="form-control"
                             />
                         </div>
-                        <div className="row">
-                            {renderTimeButtons()}
-                        </div>
+                        {renderTimeButtons()}
                     </div>
                     <button type="button" onClick={stop} className="submit-button">予約を停止</button>
                 </form>
@@ -173,7 +187,7 @@ function AdminPage() {
               <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
               <a href="/" className="home-button">ホームページに戻る</a>
             </div>
-          );
+        );
     }
 }
 
