@@ -176,7 +176,7 @@ function AdminPage() {
                         </div>
                         {renderTimeButtons()}
                     </div>
-                    <button type="button" onClick={stop} className="submit-button">予約を停止</button>
+                    <button type="button" onClick={stop} className="submit-button">予約を停止する</button>
                 </form>
             </>
         );
