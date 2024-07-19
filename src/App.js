@@ -8,7 +8,6 @@ import './App.css';
 // コンポーネントのインポート
 import EmployeePortalHome from './EmployeePortalHome';
 import BatchStopProcessing from './BatchStopProcessing';
-import ReactivationPage from './ReactivationPage';
 import EmpLogin from "./EmpLogin";
 import ReservationList from './ReservationList';
 import AdmHeader from "./AdmHeader";
