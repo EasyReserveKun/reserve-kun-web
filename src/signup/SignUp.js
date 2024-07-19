@@ -22,7 +22,6 @@ const SignUp = () => {
   const [inputPasswordCheck, setInputPasswordCheck] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [codeError, setCodeError] = useState('');
-  const [verification, setVerification] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
 
@@ -62,46 +61,43 @@ const SignUp = () => {
 
 
     if (data.status === "Success") {
-      setVerification(data.code);
       setSignupError("");
       setIsModalOpen(true);
-    } else {
+    } else if (data.status === "Duplicate") {
       setSignupError("そのIDのアカウントは既に存在します");
+      document.body.style.overflow = 'auto';
+    } else {
+      setSignupError("エラーが発生しました");
       document.body.style.overflow = 'auto';
     }
   }
 
   // 認証コードのチェック
   const handleCodeSubmit = async (code) => {
-    if (code === verification) {
-
-      let requestData = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cname: inputName, cid: inputEmail, password: inputPassword })
-      }
-      const response = await fetch(getApiUrl() + "/customer/verify", requestData);
-      const data = await response.json();
-      console.log(data.status);
-      if (data.status === "Success") {
-        navigate("/signupsuccess");
-      } else {
-        setSignupError("そのIDのアカウントは既に存在します");
-        document.body.style.overflow = 'auto';
-      }
-
-
+    setCodeError('');
+    let requestData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ code: code })
+    }
+    const response = await fetch(getApiUrl() + "/customer/verify", requestData);
+    const data = await response.json();
+    if (data.status === "Success") {
+      navigate("/signupsuccess");
+    } else if (data.status === "Duplicate") {
+      setCodeError("そのIDのアカウントは既に存在します");
+    } else if (data.status === "NotFound") {
+      setCodeError("認証コードが正しくありません");
     } else {
-      setCodeError("認証コードが正しくありません。");
+      setCodeError("エラーが発生しました");
     }
   }
 
   // 認証コード用モーダル閉じる
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setVerification('');
     setCodeError('');
     document.body.style.overflow = 'auto';
   }
@@ -170,7 +166,7 @@ const SignUp = () => {
           <input type="password" id="password" name="passwordCheck" onChange={handleChangePasswordCheck} required />
           <p style={{ color: 'red' }}>{signupError}</p>
           <button type="button" onClick={signupAuth} disabled={isLoading}>
-            {isLoading ? "読み込み中..." : "登録"}
+            {isLoading ? "登録中..." : "登録"}
           </button>
         </form>
         <div className="another-link">
