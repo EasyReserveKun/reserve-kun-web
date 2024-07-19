@@ -9,7 +9,7 @@ const ReservationList = () => {
     const [employeeFilter, setEmployeeFilter] = useState('all');
     const [selectedDate, setSelectedDate] = useState('');
 
-    const fetchData = async () => {
+    const fetchData = async (employeeFilter, selectedDate) => {
         const requestData = {
             method: 'POST',
             headers: {
@@ -34,7 +34,12 @@ const ReservationList = () => {
             // 予約データをフィルタリング
             const upcomingReservations = jsonData.filter(item => item.date >= today);
 
-            setReservations({ upcoming: upcomingReservations });
+            if (selectedDate) {
+                const filteredByDate = upcomingReservations.filter(reservation => reservation.date === selectedDate);
+                setReservations({ upcoming: filteredByDate });
+            } else {
+                setReservations({ upcoming: upcomingReservations });
+            }
         } catch (error) {
             console.error('Fetch Error:', error);
             // エラー表示のための状態設定などがあればここに追加
@@ -44,21 +49,12 @@ const ReservationList = () => {
     };
 
     useEffect(() => {
-        fetchData();
-    }, [employeeFilter]);
+        fetchData(employeeFilter, selectedDate);
+    }, [employeeFilter, selectedDate]);
 
     const handleDateChange = (event) => {
         const selected = event.target.value;
         setSelectedDate(selected);
-        
-        // 選択した日付に基づいてフィルタリング
-        if (selected) {
-            const filteredReservations = reservations.upcoming.filter(reservation => reservation.date === selected);
-            setReservations({ upcoming: filteredReservations });
-        } else {
-            // 日付が選択されていない場合は全て表示
-            fetchData();
-        }
     };
 
     if (sessionStorage.getItem('AdName')) {
@@ -67,7 +63,7 @@ const ReservationList = () => {
                 <AdmHeader />
                 <div className="reservation-list">
                     <div className="filters-container">
-                        <div className="employee-filter">
+                        <div className="filter-group employee-filter">
                             <label htmlFor="employee-filter">従業員選択：</label>
                             <select
                                 id="employee-filter"
@@ -82,7 +78,7 @@ const ReservationList = () => {
                                 <option value="5">中村健太</option>
                             </select>
                         </div>
-                        <div className="date-filter">
+                        <div className="filter-group date-filter">
                             <label htmlFor="date-filter">日付選択：</label>
                             <input
                                 type="date"
