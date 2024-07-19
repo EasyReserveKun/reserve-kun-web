@@ -71,7 +71,7 @@ function ReactivationPage() {
             body: JSON.stringify({ date, eid: employeeId, time })
         };
 
-        const responce = await fetch("http://localhost:8080/employee/reactivation", requestData);
+        const responce = await fetch(getApiUrl() + "/employee/reactivation", requestData);
         const data = await responce.text();
 
             setWarnText(data);

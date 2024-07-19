@@ -57,8 +57,8 @@ function BatchStopProcessing() {
         return (
             <>
                 <AdmHeader />
+                <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <form className="batch-form">
-                    <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                     <h2 className="batch-stop">受付の即時停止</h2>
                     <p className="notice">
                         この操作は日時の指定なしに、選択した従業員のすべての予約を一括で停止します。<br></br>
