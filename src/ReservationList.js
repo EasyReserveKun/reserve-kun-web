@@ -42,7 +42,6 @@ const ReservationList = () => {
             }
         } catch (error) {
             console.error('Fetch Error:', error);
-            // エラー表示のための状態設定などがあればここに追加
         } finally {
             setLoading(false);
         }
@@ -89,21 +88,24 @@ const ReservationList = () => {
                         </div>
                     </div>
 
-                    {loading && <p>Loading...</p>}
+                    {loading && <p className="loading">Loading...</p>}
 
                     {/* 今日以降の予約 */}
                     <div className="reservation-section">
                         <h2>予約</h2>
                         {reservations.upcoming.length > 0 ? (
-                            reservations.upcoming.map(reservation => (
-                                <div key={reservation.id} className="reservation-item">
-                                    <p>日付：{reservation.date}</p>
-                                    <p>時間：{reservation.time}</p>
-                                    <p>従業員名：{reservation.eid}</p>
-                                    <p>連絡先：{reservation.cid}</p>
-                                    <p>備考欄：{reservation.etc}</p>
-                                </div>
-                            ))
+                            <div className="reservation-items-container">
+                                {reservations.upcoming.map((reservation, index) => (
+                                    <div key={index} className="reservation-item">
+                                        <p>日付：{reservation.date}</p>
+                                        <p>時間：{reservation.time}</p>
+                                        <p>従業員名：{reservation.ename}</p>
+                                        <p>顧客名：{reservation.cname}</p>
+                                        <p>連絡先：{reservation.cid}</p>
+                                        <p>備考欄：{reservation.etc}</p>
+                                    </div>
+                                ))}
+                            </div>
                         ) : (
                             <p>予約はありません。</p>
                         )}
