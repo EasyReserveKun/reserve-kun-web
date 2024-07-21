@@ -1,6 +1,4 @@
-/* BatchStopProcessing.css */
-
-/* BatchStopProcessing.css */
+/* AdminStopAll.css */
 
 .batch-form {
     max-width: 600px;
@@ -52,7 +50,7 @@ select {
     padding: 10px;
     font-size: 1rem;
     color: #fff;
-    background-color:  rgb(193, 4, 4) ;
+    background-color: rgb(193, 4, 4);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -60,7 +58,7 @@ select {
 }
 
 .batchsubmit-button:hover {
-    background-color:  rgb(237, 99, 99);
+    background-color: rgb(237, 99, 99);
 }
 
 .batchsubmit-button:disabled {
@@ -75,6 +73,7 @@ select {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
 .home-button {
     display: inline-block;
     margin-top: 20px;
@@ -85,12 +84,11 @@ select {
     border-radius: 45px;
     transition: background-color 0.3s ease;
     font-weight: bold;
-  
-  }
-  
-  .home-button:hover {
+
+}
+
+.home-button:hover {
     background-color: #ababab;
     text-decoration: none;
     color: #ffffff;
-  }
-  
+}

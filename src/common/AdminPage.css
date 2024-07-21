@@ -1,0 +1,116 @@
+/* AdminPage.css */
+.admin-form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.reserve-stop {
+  font-weight: bold;
+  color: rgb(165, 0, 0);
+}
+
+.admin-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.admin-form input[type="date"],
+.admin-form input[type="text"],
+.admin-form select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  padding: 10px;
+  background-color: #e44141;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  background-color: #ef8b8b;
+}
+
+.admin-form button[type="submit"] {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.time-buttons button.selected {
+  background-color: #4ba8b3;
+}
+
+.gray-button:hover {
+  background-color: #e0e0e0;
+}
+
+.gray-button {
+  margin: 2px 1px;
+  padding: 5px 5px;
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.gray-button:hover {
+  background-color: #e0e0e0;
+}
+
+.red-button {
+  margin: 2px 2px;
+  padding: 5px 5px;
+  background-color: #3e5656;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: inherit;
+  white-space: nowrap;
+}
+
+.red-button:hover {
+  background-color: #ef8b8b;
+  /* ホバー時の色 */
+}
+
+.home-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #072e59;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 45px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+
+}
+
+.home-button:hover {
+  background-color: #ababab;
+  text-decoration: none;
+  color: #ffffff;
+}

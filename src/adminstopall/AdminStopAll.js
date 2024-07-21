@@ -1,13 +1,13 @@
 // StopReservation.js
 
 import React, { useState } from 'react';
-import { getApiUrl } from './GetApiUrl';
-import Warn from './common/Warn';
-import './BatchStopProcessing.css';
-import AdmHeader from './AdmHeader';
+import { getApiUrl } from '../GetApiUrl';
+import Warn from '../common/Warn';
+import './AdminStopAll.css';
+import AdmHeader from '../common/AdminHeader';
 
 
-function BatchStopProcessing() {
+function AdminStopAll() {
     const [employeeId, setEmployeeId] = useState('');
     const [warnText, setWarnText] = useState('');
     const [showWarn, setShowWarn] = useState(false);
@@ -93,4 +93,4 @@ function BatchStopProcessing() {
     }
 }
 
-export default BatchStopProcessing;
+export default AdminStopAll;

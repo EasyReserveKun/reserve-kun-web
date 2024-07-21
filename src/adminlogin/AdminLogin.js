@@ -1,16 +1,16 @@
 // Import Modules
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { getApiUrl } from './GetApiUrl';
+import { getApiUrl } from '../GetApiUrl.js';
 
 
-import './common/Form.css';
+import '../common/Form.css';
 
-import Header from './common/Header.js';
-import Footer from './common/Footer.js';
-import './EmpLogin.css';
+import Header from '../common/Header.js';
+import Footer from '../common/Footer.js';
+import './AdminLogin.css';
 
-function EmpLogin() {
+function AdminLogin() {
     const navigate = useNavigate();
     const [inputPassword, setInputPassword] = useState('');
     const [inputCid, setInputCid] = useState('');
@@ -47,14 +47,14 @@ function EmpLogin() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ cid: inputCid , password: inputPassword })
+            body: JSON.stringify({ cid: inputCid, password: inputPassword })
         }
         const responce = await fetch(getApiUrl() + "/admin/login", requestData);
         const data = await responce.json();
         if (data.status === "Success") {
             await sessionStorage.setItem('AdName', data.results.mail);
             setLoginError("")
-            navigate("/EmployeePortalHome")
+            navigate("/admin")
         } else {
             setLoginError("正しいIDまたは、パスワードを入力してください。")
         }
@@ -79,4 +79,4 @@ function EmpLogin() {
     );
 };
 
-export default EmpLogin;
+export default AdminLogin;

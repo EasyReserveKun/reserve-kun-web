@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getApiUrl } from './GetApiUrl';
-import './common/Form.css';
-import './AdminPage.css';
+import { getApiUrl } from '../GetApiUrl';
+import '../common/Form.css';
+import '../common/AdminPage.css';
 
-import AdmHeader from './AdmHeader';
-import Warn from './common/Warn';
+import AdmHeader from '../common/AdminHeader';
+import Warn from '../common/Warn';
 
-function ReactivationPage() {
+function AdminOpen() {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [employeeId, setEmployeeId] = useState('');
-    const [reservedTimes, setReservedTimes] = useState(['10:00', '11:00', '12:00',  '13:00', '14:00', '15:00',  '16:00', '17:00', '18:00', '19:00']);
+    const [reservedTimes, setReservedTimes] = useState(['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']);
     const [warnText, setWarnText] = useState("");
     const [showWarn, setShowWarn] = useState(false);
 
@@ -183,4 +183,4 @@ function ReactivationPage() {
     }
 }
 
-export default ReactivationPage;
+export default AdminOpen;

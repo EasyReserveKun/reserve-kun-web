@@ -1,6 +1,6 @@
 import React from 'react';
-import './EmployeePortalHome.css';
-import AdmHeader from './AdmHeader';
+import './AdminHome.css';
+import AdmHeader from '../common/AdminHeader';
 
 const EmployeePortalHome = () => {
   if (!(sessionStorage.getItem('AdName') == null)) {
@@ -18,7 +18,7 @@ const EmployeePortalHome = () => {
               <h2>便利なツール</h2>
               <div className="tools-list">
                 <div className="tool-item">
-                  <a href="AdminPage">
+                  <a href="/admin/close">
                     <div className="icon">
                       <i className="bi bi-calendar" style={{ fontSize: '4rem' }}></i>
                     </div>
@@ -29,7 +29,7 @@ const EmployeePortalHome = () => {
                   </a>
                 </div>
                 <div className="tool-item">
-                  <a href="#stop-reservation-now">
+                  <a href="/admin/closeall">
                     <div className="icon">
                       <i className="bi bi-x-circle" style={{ fontSize: '4rem' }}></i>
                     </div>
@@ -40,7 +40,7 @@ const EmployeePortalHome = () => {
                   </a>
                 </div>
                 <div className="tool-item">
-                  <a href="ReservationList">
+                  <a href="/admin/list">
                     <div className="icon">
                       <i className="bi bi-list" style={{ fontSize: '4rem' }}></i>
                     </div>
@@ -51,7 +51,7 @@ const EmployeePortalHome = () => {
                   </a>
                 </div>
                 <div className="tool-item">
-                  <a href="/ReactivationPage">
+                  <a href="/admin/open">
                     <div className="icon">
                       <i className="bi bi-unlock" style={{ fontSize: '4rem' }}></i>
                     </div>

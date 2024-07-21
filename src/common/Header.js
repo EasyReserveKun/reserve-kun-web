@@ -61,11 +61,11 @@ const Header = () => {
                     <li><a href="/nakamurakenta">車・保険・金融</a></li>
                   </ul>
                 </li>
-                <li><a href="ReserveCheck">予約確認/変更/キャンセル</a></li>
+                <li><a href="reservecheck">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
-                <li><a href="/Access">アクセス</a></li>
-                <li><a href="/empLogin">従業員の方はこちら</a></li>
+                <li><a href="/access">アクセス</a></li>
+                <li><a href="/emplogin">従業員の方はこちら</a></li>
                 <li><button onClick={openLogoutModal}>ログアウト</button></li>
               </ul>
             </nav>
@@ -104,7 +104,7 @@ const Header = () => {
                 <li>
                   <a href="#category" onClick={toggleSubMenu}>カテゴリ</a>
                   <ul className={`sub-menu ${subMenuOpen ? 'open' : ''}`}>
-                  <li><a href="/satohanako">リフォーム</a></li>
+                    <li><a href="/satohanako">リフォーム</a></li>
                     <li><a href="/tanakataro">不動産</a></li>
                     <li><a href="/suzukiichiro">介護</a></li>
                     <li><a href="/takahashimisaki">終活・相続</a></li>
@@ -114,8 +114,8 @@ const Header = () => {
                 <li><a href="/login">予約確認/変更/キャンセル</a></li>
                 <li><a href="/Faq">FAQガイドライン <br></br>（よくある質問）</a></li>
                 <li><a href="#form">問い合わせフォーム</a></li>
-                <li><a href="/Access">アクセス</a></li>
-                <li><a href="/empLogin">従業員の方はこちら</a></li>
+                <li><a href="/access">アクセス</a></li>
+                <li><a href="/emplogin">従業員の方はこちら</a></li>
                 <li><a href="/login">ログイン</a></li>
               </ul>
             </nav>

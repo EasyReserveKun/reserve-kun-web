@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import AdmHeader from './AdmHeader';
-import './ReservationList.css';
-import { getApiUrl } from './GetApiUrl';
+import AdmHeader from '../common/AdminHeader';
+import './AdminList.css';
+import { getApiUrl } from '../GetApiUrl';
 
 const ReservationList = () => {
     const [reservations, setReservations] = useState({ upcoming: [] });
@@ -20,17 +20,17 @@ const ReservationList = () => {
 
         try {
             const response = await fetch(getApiUrl() + "/reserve/employeeCheck", requestData);
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const jsonData = await response.json();
             console.log(jsonData);
-            
+
             // 今日の日付を取得
             const today = new Date().toISOString().split('T')[0];
-            
+
             // 予約データをフィルタリング
             const upcomingReservations = jsonData.filter(item => item.date >= today);
 

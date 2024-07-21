@@ -6,21 +6,25 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 // コンポーネントのインポート
-import EmployeePortalHome from './EmployeePortalHome';
-import BatchStopProcessing from './BatchStopProcessing';
-import EmpLogin from "./EmpLogin";
-import ReservationList from './ReservationList';
-import AdmHeader from "./AdmHeader";
-import AdminPage from "./AdminPage";
 import Home from "./home/Home";
-import Nf from "./nf/Nf";
 import LoginForm from './login/LoginForm';
 import SignUp from './signup/SignUp';
 import LogoutSuccess from './logout/LogoutSuccess';
 import SignUpSuccess from './signup/SignUpSuccess';
+
+import AdminHome from './adminhome/AdminHome';
+import AdminStopAll from './adminstopall/AdminStopAll';
+import AdminLogin from "./adminlogin/AdminLogin";
+import ReservationList from './adminlist/AdminList';
+import AdminHeader from "./common/AdminHeader";
+import AdminClose from "./adminclose/AdminClose";
+
+import Nf from "./nf/Nf";
+
+
 import Access from './Access';
 import ReserveCheck from './ReserveCheck';
-import ReactivationPage from './ReactivationPage';
+import ReactivationPage from './adminopen/AdminOpen';
 import Faq from './Faq';
 import HanakoSato from './home/advisor/HanakoSato';
 import TaroTanaka from './home/advisor/TaroTanaka';
@@ -28,40 +32,36 @@ import IchiroSuzuki from './home/advisor/IchiroSuzuki';
 import MisakiTakahashi from './home/advisor/MisakiTakahashi';
 import KentaNakamura from './home/advisor/KentaNakamura';
 
-// ルート設定
-const routes = [
-  { path: "/", element: <Home /> },
-  { path: "/EmployeePortalHome", element: <EmployeePortalHome />},
-  { path: "/BatchStopProcessing", element: <BatchStopProcessing />},
-  { path: "/ReactivationPage" , element: <ReactivationPage />},
-  { path: "/login", element: <LoginForm /> },
-  { path: "/signup", element: <SignUp /> },
-  { path: "/signupsuccess", element: <SignUpSuccess /> },
-  { path: "/logout", element: <LogoutSuccess /> },
-  { path: "/Access", element: <Access /> },
-  { path: "/ReserveCheck", element: <ReserveCheck /> },
-  { path: "/ReactivationPage", element: <ReactivationPage /> },
-  { path: "/faq", element: <Faq /> },
-  { path: "/satohanako", element: <HanakoSato /> },
-  { path: "/tanakataro", element: <TaroTanaka /> },
-  { path: "/suzukiichiro", element: <IchiroSuzuki /> },
-  { path: "/takahashimisaki", element: <MisakiTakahashi /> },
-  { path: "/nakamurakenta", element: <KentaNakamura /> },
-  { path: "/empLogin", element: <EmpLogin /> },
-  { path: "/AdminPage", element: <AdminPage /> },
-  { path: "/AdmHeader", element: <AdmHeader /> },
-  { path: "ReservationList", element: <ReservationList />},
-　{ path: "EmployeePortalHome", element: <EmployeePortalHome />},
-  { path: "*", element: <Nf /> }
-];
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {routes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
+        {/* 基本 */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signupsuccess" element={<SignUpSuccess />} />
+        <Route path="/logout" element={<LogoutSuccess />} />
+        {/* ユーティリティ系 */}
+        <Route path="/access" element={<Access />} />
+        <Route path="/reservecheck" element={<ReserveCheck />} />
+        <Route path="/faq" element={<Faq />} />
+        {/* コンシェルジュ */}
+        <Route path="/satohanako" element={<HanakoSato />} />
+        <Route path="/tanakataro" element={<TaroTanaka />} />
+        <Route path="/suzukiichiro" element={<IchiroSuzuki />} />
+        <Route path="/takahashimisaki" element={<MisakiTakahashi />} />
+        <Route path="/nakamurakenta" element={<KentaNakamura />} />
+        {/* Admin系 */}
+        <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminHome />} />
+        <Route path="/admin/close" element={<AdminClose />} />
+        <Route path="/admin/header" element={<AdminHeader />} />
+        <Route path="/admin/closeall" element={<AdminStopAll />} />
+        <Route path="/admin/open" element={<ReactivationPage />} />
+        <Route path="/admin/list" element={<ReservationList />} />
+        {/* NotFound */}
+        <Route path="*" element={<Nf />} />
       </Routes>
     </BrowserRouter>
   );

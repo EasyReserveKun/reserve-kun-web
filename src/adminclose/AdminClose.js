@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { getApiUrl } from './GetApiUrl';
-import './common/Form.css';
-import './AdminPage.css';
-import AdmHeader from './AdmHeader';
-import Warn from './common/Warn';
+import { getApiUrl } from '../GetApiUrl';
+import '../common/Form.css';
+import '../common/AdminPage.css';
+import AdmHeader from '../common/AdminHeader';
+import Warn from '../common/Warn';
 
-function AdminPage() {
+function AdminClose() {
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [employeeId, setEmployeeId] = useState('');
@@ -183,12 +183,12 @@ function AdminPage() {
     } else {
         return (
             <div className="no-access">
-              <h1>アクセス権限がありません</h1>
-              <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
-              <a href="/" className="home-button">ホームページに戻る</a>
+                <h1>アクセス権限がありません</h1>
+                <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
+                <a href="/" className="home-button">ホームページに戻る</a>
             </div>
         );
     }
 }
 
-export default AdminPage;
+export default AdminClose;

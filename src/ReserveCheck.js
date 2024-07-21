@@ -31,11 +31,11 @@ function ReserveCheck() {
                 const response = await fetch(getApiUrl() + "/reserve/check", requestData);
                 const jsonData = await response.json();
 
-                const today = new Date().toISOString().split('T')[0]; 
+                const today = new Date().toISOString().split('T')[0];
                 const filteredData = jsonData.filter(item => item.date >= today);
                 const previousData = jsonData.filter(item => item.date < today);
 
-                setData(filteredData); 
+                setData(filteredData);
                 setPreData(previousData);
                 setLoading(false);
             } catch (error) {
@@ -76,7 +76,7 @@ function ReserveCheck() {
             },
             body: JSON.stringify({ date, time, eid })
         };
-    
+
         try {
             const response = await fetch(getApiUrl() + "/reserve/cancel", requestData);
             if (response.ok) {
@@ -114,7 +114,7 @@ function ReserveCheck() {
                                 履歴
                             </div>
                         </div>
-    
+
                         {activeTab === 'current' && data.length > 0 ? (
                             <table className="reservation-table">
                                 <thead>
@@ -133,11 +133,11 @@ function ReserveCheck() {
                                             <td>
                                                 {
                                                     item.eid === "1" ? '不動産' :
-                                                    item.eid === "2" ? 'おうちの修繕' :
-                                                    item.eid === "3" ? '介護' :
-                                                    item.eid === "4" ? '終活・相続' :
-                                                    item.eid === "5" ? '車・保健・金融' :
-                                                    ''
+                                                        item.eid === "2" ? 'おうちの修繕' :
+                                                            item.eid === "3" ? '介護' :
+                                                                item.eid === "4" ? '終活・相続' :
+                                                                    item.eid === "5" ? '車・保健・金融' :
+                                                                        ''
                                                 }
                                             </td>
                                             <td>
@@ -172,11 +172,11 @@ function ReserveCheck() {
                                             <td>
                                                 {
                                                     item.eid === "1" ? '不動産' :
-                                                    item.eid === "2" ? 'おうちの修繕' :
-                                                    item.eid === "3" ? '介護' :
-                                                    item.eid === "4" ? '終活・相続' :
-                                                    item.eid === "5" ? '車・保健・金融' :
-                                                    ''
+                                                        item.eid === "2" ? 'おうちの修繕' :
+                                                            item.eid === "3" ? '介護' :
+                                                                item.eid === "4" ? '終活・相続' :
+                                                                    item.eid === "5" ? '車・保健・金融' :
+                                                                        ''
                                                 }
                                             </td>
                                         </tr>
@@ -193,8 +193,8 @@ function ReserveCheck() {
             <Toolbar onClick={returnReserve} />
         </div>
     );
-    
-    
+
+
 }
 
 export default ReserveCheck;
