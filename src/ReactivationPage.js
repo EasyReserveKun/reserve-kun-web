@@ -71,12 +71,12 @@ function ReactivationPage() {
             body: JSON.stringify({ date, eid: employeeId, time })
         };
 
-        const responce = await fetch(getApiUrl() + "/employee/reactivation", requestData);
-        const data = await responce.text();
+        const response = await fetch(getApiUrl() + "/employee/reactivation", requestData);
+        const data = await response.text();
 
-            setWarnText(data);
-            setShowWarn(true);
-            await fetchReservedTimes();
+        setWarnText(data);
+        setShowWarn(true);
+        await fetchReservedTimes();
     };
 
     const renderTimeButtons = () => {
@@ -102,7 +102,21 @@ function ReactivationPage() {
             );
         }
 
-        return buttons;
+        return (
+            <div className="row">
+                {buttons}
+                <div className="col-lg-2 col-md-3 col-4 mt-3">
+                    <button
+                        type="button"
+                        onClick={handleTimeChange}
+                        className="red-button"
+                        value="すべての時間"
+                    >
+                        全時間を一括解除
+                    </button>
+                </div>
+            </div>
+        );
     };
 
     if (!(sessionStorage.getItem('AdName') == null)) {
@@ -156,7 +170,6 @@ function ReactivationPage() {
                     </div>
                     <button type="button" onClick={stop} className="submit-button">予約の停止を解除</button>
                 </form>
-
             </>
         );
     } else {
