@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -28,11 +29,17 @@ body, html {
   text-align: center;
 }
 
+.welcome-section p {
+  word-break: break-all;
+  display: inline-block;
+  width: 50%;
+}
+
 .tools-section,
 .news-section {
   padding: 20px;
   border-radius: 20px;
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .tools-section h2,
@@ -64,13 +71,15 @@ body, html {
   transition: background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
   text-align: center;
-  width: 200px; /* アイテムの幅を調整 */
+  width: 220px;
+  /* アイテムの幅を調整 */
 }
-.news-item{
+
+.news-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 20px;
   background-color: #b9b9b9;
   border-radius: 20px;
@@ -78,13 +87,16 @@ body, html {
   color: #333333;
   transition: background-color 0.3s ease, color 0.3s ease;
   text-align: center;
-  width: 200px; /* アイテムの幅を調整 */
+  width: 220px;
+  /* アイテムの幅を調整 */
 }
 
 .tool-item a,
 .news-item a {
-  text-decoration: none; /* 下線を消す */
-  color: inherit; /* 親要素の色を継承 */
+  text-decoration: none;
+  /* 下線を消す */
+  color: inherit;
+  /* 親要素の色を継承 */
 }
 
 .tool-item:hover {
@@ -101,21 +113,29 @@ body, html {
   font-weight: bold;
 }
 
-.tool-item p,
-.news-item p {
+.tool-item p {
   font-size: 1rem;
   color: #555555;
   text-align: center;
 }
+
+.news-item p {
+  font-size: 1rem;
+  color: #555555;
+  text-align: left;
+}
+
 .tool-item p {
   margin: 0;
   font-size: 1rem;
   color: #555555;
-  transition: color 0.3s ease; /* 色変更のトランジション */
+  transition: color 0.3s ease;
+  /* 色変更のトランジション */
 }
 
 .tool-item:hover p {
-  color: #ffffff; /* ホバー時に<p>タグの色を変更 */
+  color: #ffffff;
+  /* ホバー時に<p>タグの色を変更 */
 }
 
 .no-access {
@@ -157,5 +177,6 @@ body, html {
 
 .tool-item .icon {
   margin-bottom: 8px;
-  font-size: 15px; /* アイコンの大きさを調整 */
+  font-size: 15px;
+  /* アイコンの大きさを調整 */
 }

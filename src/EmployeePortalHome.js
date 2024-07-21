@@ -1,8 +1,6 @@
 import React from 'react';
-import './EmployeePortalHome.css'; // スタイルシートをインポートする
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendarAlt, faBan, faList, faUnlockAlt } from '@fortawesome/free-solid-svg-icons'; // 使用するアイコンをインポートする
-import AdmHeader from './AdmHeader'; // ヘッダーコンポーネントをインポートする
+import './EmployeePortalHome.css';
+import AdmHeader from './AdmHeader';
 
 const EmployeePortalHome = () => {
   if (!(sessionStorage.getItem('AdName') == null)) {
@@ -22,7 +20,7 @@ const EmployeePortalHome = () => {
                 <div className="tool-item">
                   <a href="AdminPage">
                     <div className="icon">
-                      <FontAwesomeIcon icon={faCalendarAlt} size="4x" />
+                      <i className="bi bi-calendar" style={{ fontSize: '4rem' }}></i>
                     </div>
                     <div className="tool-info">
                       <h3>予約停止 <br />(日時選択)</h3>
@@ -33,7 +31,7 @@ const EmployeePortalHome = () => {
                 <div className="tool-item">
                   <a href="#stop-reservation-now">
                     <div className="icon">
-                      <FontAwesomeIcon icon={faBan} size="4x" />
+                      <i className="bi bi-x-circle" style={{ fontSize: '4rem' }}></i>
                     </div>
                     <div className="tool-info">
                       <h3>予約即時停止</h3>
@@ -44,7 +42,7 @@ const EmployeePortalHome = () => {
                 <div className="tool-item">
                   <a href="ReservationList">
                     <div className="icon">
-                      <FontAwesomeIcon icon={faList} size="4x" />
+                      <i className="bi bi-list" style={{ fontSize: '4rem' }}></i>
                     </div>
                     <div className="tool-info">
                       <h3>予約一覧表示</h3>
@@ -55,7 +53,7 @@ const EmployeePortalHome = () => {
                 <div className="tool-item">
                   <a href="/ReactivationPage">
                     <div className="icon">
-                      <FontAwesomeIcon icon={faUnlockAlt} size="4x" />
+                      <i className="bi bi-unlock" style={{ fontSize: '4rem' }}></i>
                     </div>
                     <div className="tool-info">
                       <h3>予約停止解除</h3>
