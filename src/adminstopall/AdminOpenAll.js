@@ -20,19 +20,13 @@ function AdminOpenAll() {
 
         try {
             const response = await fetch(getApiUrl() + "/employee/reactivate", requestData);
-            const data = await response.json();
+            const data = await response.text();
 
-            if (response.ok) {
-                if (data.status === "Success") {
-                    setWarnText("全ての予約停止を解除しました");
-                    setShowWarn(true);
-                } else if (data.status === "NotFound") {
-                    setWarnText("停止されている予約が見つかりませんでした");
-                    setShowWarn(true);
-                }
-            } else {
-                console.error('Fetch Error:', response.statusText);
-                setWarnText("予約停止の解除に失敗しました");
+            if (data === "受付を開始します") {
+                setWarnText("受付を開始します");
+                setShowWarn(true);
+            } else{
+                setWarnText("エラーが発生しました");
                 setShowWarn(true);
             }
         } catch (error) {

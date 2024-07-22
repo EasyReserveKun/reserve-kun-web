@@ -58,10 +58,11 @@ function Search() {
       try {
         const response = await fetch(getApiUrl() + "/reserve/available/flag", requestData);
         const data = await response.text();
-        console.log(data);
-        await setWarnText(data);
-        await setShowWarn(true);
-        return null;
+        if(data==="現在は予約を受け付けておりません"){
+          await setWarnText(data);
+          await setShowWarn(true);
+          return null;
+        }
       } catch (error) {
         console.error('Fetch Error:', error);
         //TODO: エラー処理
@@ -84,11 +85,8 @@ function Search() {
       try {
         const response = await fetch(getApiUrl() + "/reserve/available", requestData);
         const data = await response.text();
-        console.log(data);
-        if (data === "現在は予約を受け付けておりません") {
-          setReservedTimes(data);
-          setShow(true);
-        }
+        setReservedTimes(data);
+        setShow(true);
       } catch (error) {
         console.error('Fetch Error:', error);
         //TODO: エラー処理
