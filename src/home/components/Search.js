@@ -8,6 +8,7 @@ import Modal from './Modal.js'
 
 //Import Component
 import Warn from '../../common/Warn.js'
+import LoadingSpinner from '../../LoadingSpinner';
 
 function Search() {
   const [show, setShow] = useState(false)
@@ -16,6 +17,7 @@ function Search() {
   const [date, setDate] = useState(null)
   const [warnText, setWarnText] = useState("")
   const [showWarn, setShowWarn] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   //現在時刻を設定
   const nowDate = new Date();
@@ -46,8 +48,35 @@ function Search() {
       return null;
     }
 
+    if (category !== '' && date !== '') {
+      const requestData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ eid: category })
+      };
+
+      try {
+        const response = await fetch(getApiUrl() + "/reserve/available/flag", requestData);
+        const data = await response.text();
+        if(data==="現在は予約を受け付けておりません"){
+          await setWarnText(data);
+          await setShowWarn(true);
+          return null;
+        }
+      } catch (error) {
+        console.error('Fetch Error:', error);
+        //TODO: エラー処理
+      }
+    } else {
+      await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
+      setShowWarn(true);
+    }
+
     //本処理
     if (category !== '' && date !== '') {
+      setIsLoading(true);
       const requestData = {
         method: 'POST',
         headers: {
@@ -60,6 +89,7 @@ function Search() {
         const response = await fetch(getApiUrl() + "/reserve/available", requestData);
         const data = await response.text();
         setReservedTimes(data);
+        setIsLoading(false);
         setShow(true);
       } catch (error) {
         console.error('Fetch Error:', error);
@@ -67,39 +97,43 @@ function Search() {
       }
     } else {
       await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
+      setIsLoading(false);
       setShowWarn(true);
     }
   };
 
   if (sessionStorage.getItem('AccountName') !== null) {
     return (
-      <div className='reservation'>
-        <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-        <div className="container custom-container">
-          <h2>予約登録</h2>
-          <div className="row">
+      <>
+        {isLoading && <LoadingSpinner />}
+        <div className='reservation'>
+          <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
+          <div className="container custom-container">
+            <h2>予約登録</h2>
+            <div className="row">
 
-            <div className="col-md-4">
-              <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} />
+              <div className="col-md-4">
+                <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} />
+              </div>
+              <div className="col-md-4">
+                <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange} name="eid">
+                  <option value="1">不動産</option>
+                  <option value="2">おうちの修繕</option>
+                  <option value="3">介護</option>
+                  <option value="4">終活・相続</option>
+                  <option value="5">車・保健・金融</option>
+                </select>
+              </div>
+              <div className="col-md-2">
+                <button onClick={openModal} className="btn btn-primary search-button">検索</button>
+              </div>
             </div>
-            <div className="col-md-4">
-              <select id="categorySelect" className="form-control category-select" onChange={handleCategoryChange} name="eid">
-                <option value="1">不動産</option>
-                <option value="2">おうちの修繕</option>
-                <option value="3">介護</option>
-                <option value="4">終活・相続</option>
-                <option value="5">車・保健・金融</option>
-              </select>
+            <div>
+              <Modal show={show} setShow={setShow} setShowWarn={setShowWarn} setWarnText={setWarnText} category={category} date={date} reservedTimes={reservedTimes} />
             </div>
-            <div className="col-md-2">
-              <button onClick={openModal} className="btn btn-primary search-button">検索</button>
-            </div>
-          </div>
-          <div>
-            <Modal show={show} setShow={setShow} setShowWarn={setShowWarn} setWarnText={setWarnText} category={category} date={date} reservedTimes={reservedTimes} />
           </div>
         </div>
-      </div>
+      </>
     );
   } else {
     return (

@@ -24,7 +24,6 @@ const EmployeePortalHome = () => {
                     </div>
                     <div className="tool-info">
                       <h3>予約停止 <br />(日時選択)</h3>
-                      <p>日時選択で予約を停止。</p>
                     </div>
                   </a>
                 </div>
@@ -35,7 +34,6 @@ const EmployeePortalHome = () => {
                     </div>
                     <div className="tool-info">
                       <h3>予約即時停止</h3>
-                      <p>予約の受付を即時停止。</p>
                     </div>
                   </a>
                 </div>
@@ -46,7 +44,6 @@ const EmployeePortalHome = () => {
                     </div>
                     <div className="tool-info">
                       <h3>予約一覧表示</h3>
-                      <p>予約の一覧を見る。</p>
                     </div>
                   </a>
                 </div>
@@ -57,7 +54,6 @@ const EmployeePortalHome = () => {
                     </div>
                     <div className="tool-info">
                       <h3>予約停止解除</h3>
-                      <p>予約停止を解除する。</p>
                     </div>
                   </a>
                 </div>

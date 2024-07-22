@@ -4,6 +4,7 @@ import '../common/Form.css';
 import '../common/AdminPage.css';
 import AdmHeader from '../common/AdminHeader';
 import Warn from '../common/Warn';
+import LoadingSpinner from '../LoadingSpinner';
 
 function AdminClose() {
     const [date, setDate] = useState('');
@@ -12,6 +13,7 @@ function AdminClose() {
     const [reservedTimes, setReservedTimes] = useState([]);
     const [warnText, setWarnText] = useState("");
     const [showWarn, setShowWarn] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchReservedTimes = useCallback(async () => {
         const requestData = {
@@ -62,6 +64,7 @@ function AdminClose() {
     };
 
     const stop = async () => {
+        setIsLoading(true);
         const requestData = {
             method: 'POST',
             headers: {
@@ -74,18 +77,20 @@ function AdminClose() {
         const data = await response.json();
         console.log(requestData);
 
+        setIsLoading(false);
+
         if (data.status === "Success") {
             setWarnText("停止に成功しました");
-            setShowWarn(true);
             await fetchReservedTimes();
         } else if (data.status === "Duplicated") {
             setWarnText("その時間はすでに予約されました");
-            setShowWarn(true);
             await fetchReservedTimes();
         } else if (data.status === "Doubled") {
             setWarnText("その時間はあなたはすでに予約しています");
-            setShowWarn(true);
+        } else {
+            setWarnText("エラーが発生しました");
         }
+        setShowWarn(true);
     };
 
     const renderTimeButtons = () => {
@@ -113,16 +118,16 @@ function AdminClose() {
 
         // 「全時間を一括停止」ボタンを時間ボタンと同じレイアウトに統一
         return (
-            <div className="row">
+            <div className="row custom-row">
                 {buttons}
-                <div>
+                <div className="col-lg-2 col-md-3 col-4 ">
                     <button
                         type="button"
                         onClick={handleTimeChange}
                         className="red-button"
                         value="すべての時間" // 他の時間ボタンと同じスタイル
                     >
-                        全時間を一括停止
+                        すべて選択
                     </button>
                 </div>
             </div>
@@ -133,6 +138,7 @@ function AdminClose() {
         return (
             <>
                 <AdmHeader />
+                {isLoading && <LoadingSpinner />}
                 <form className="admin-form">
                     <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                     <h2 className="reserve-stop">予約を停止する</h2>
@@ -174,7 +180,9 @@ function AdminClose() {
                                 className="form-control"
                             />
                         </div>
-                        {renderTimeButtons()}
+                        <div className="row">
+                            {renderTimeButtons()}
+                        </div>
                     </div>
                     <button type="button" onClick={stop} className="submit-button">予約を停止する</button>
                 </form>
