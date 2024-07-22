@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
 import LogoutComfirm from './LogoutComfirm'; // 新しく追加
 
 // Import StyleSheets
@@ -10,6 +11,9 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false); // 追加
   const [subMenuOpen, setSubMenuOpen] = useState(false); // サブメニューの状態を追加
+  const [cookie, , removeCookie] = useCookies(['token']);
+
+  const token = cookie.token;
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -25,8 +29,7 @@ const Header = () => {
   };
 
   const handleLogout = async () => {
-    await sessionStorage.removeItem("AccountName");
-    await sessionStorage.removeItem("AccountMail");
+    removeCookie('token', { httpOnly: true, path: '/' });
     navigate("/logout");
   };
 
@@ -38,7 +41,7 @@ const Header = () => {
     setShowLogoutModal(false);
   };
 
-  if (sessionStorage.getItem('AccountName') !== null) {
+  if (token) {
     return (
       <header className="header">
         <div className="menu-toggle" onClick={toggleMenu}>

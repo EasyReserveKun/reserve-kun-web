@@ -1,5 +1,6 @@
 // Import Modules
 import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie'
 import { getApiUrl } from '../../GetApiUrl';
 
 //Import StyleSheets
@@ -18,6 +19,9 @@ function Search() {
   const [warnText, setWarnText] = useState("")
   const [showWarn, setShowWarn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [cookie, ,] = useCookies(['token'])
+
+  const token = cookie.token;
 
   //現在時刻を設定
   const nowDate = new Date();
@@ -60,7 +64,7 @@ function Search() {
       try {
         const response = await fetch(getApiUrl() + "/reserve/available/flag", requestData);
         const data = await response.text();
-        if(data==="現在は予約を受け付けておりません"){
+        if (data === "現在は予約を受け付けておりません") {
           await setWarnText(data);
           await setShowWarn(true);
           return null;
@@ -102,7 +106,7 @@ function Search() {
     }
   };
 
-  if (sessionStorage.getItem('AccountName') !== null) {
+  if (token) {
     return (
       <>
         {isLoading && <LoadingSpinner />}
