@@ -19,51 +19,30 @@
     max-height: 40px;
 }
 
-.admnav {
-    display: flex;
-    align-items: center;
+
+
+.adminheader-dropdown{
+    color: #afaeae;
+    border: none;
+    background-color: transparent; 
+    padding-top: 8px; /* 上の余白を追加 */
 }
 
-.admnav__toggle {
-    display: none; /* Hide toggle button for now */
-}
-
-.admnav__wrapper {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.admnav__item {
-    margin-left: 20px;
-}
-
-.admnav__item:first-child {
-    margin-left: 0;
-}
-
-.admnav__item a {
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 50px;
-    color: #fcf6f6; /* Default text color */
-    font-weight: bold;
-    
-}
-
-.admnav__item a:hover {
-    color: #ffcbcb; 
-    
+.adminheader-dropdown:hover {
+    color: #f0ebeb; /* ホバー時の文字色 */
+    background-color: transparent; 
+    border: none;
 }
 
 .admbutton-link {
-    background-color: #e44141;
+    background-color: #9b3333;
     color: #ffffff;
     font-weight: bold;
+    border-radius: 40px;
 }
 
 .admbutton-link:hover {
-    background-color: #f77b7b;
+    background-color: #e92a2a;
     color: #ffffff; /* Ensure text color stays white on hover */
+    border-radius: 20px;
 }
