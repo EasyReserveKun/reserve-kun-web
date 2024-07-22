@@ -1,18 +1,15 @@
-// StopReservation.js
-
 import React, { useState } from 'react';
 import { getApiUrl } from '../GetApiUrl';
 import Warn from '../common/Warn';
 import './AdminStopAll.css';
 import AdmHeader from '../common/AdminHeader';
 
-
-function AdminStopAll() {
+function AdminOpenAll() {
     const [employeeId, setEmployeeId] = useState('');
     const [warnText, setWarnText] = useState('');
     const [showWarn, setShowWarn] = useState(false);
 
-    const stopAll = async () => {
+    const openAllReservations = async () => {
         const requestData = {
             method: 'POST',
             headers: {
@@ -22,20 +19,19 @@ function AdminStopAll() {
         };
 
         try {
-            const response = await fetch(getApiUrl() + "/employee/stopAll", requestData);
+            const response = await fetch(getApiUrl() + "/employee/reactivate", requestData);
             const data = await response.text();
 
-                if (data === "受付を停止します") {
-                    setWarnText("受付を停止します");
-                    setShowWarn(true);
-                } else{
-                    setWarnText("エラーが発生しました");
-                    setShowWarn(true);
-                }
-    
+            if (data === "受付を開始します") {
+                setWarnText("受付を開始します");
+                setShowWarn(true);
+            } else{
+                setWarnText("エラーが発生しました");
+                setShowWarn(true);
+            }
         } catch (error) {
             console.error('Fetch Error:', error);
-            setWarnText("予約の停止に失敗しました");
+            setWarnText("予約停止の解除に失敗しました");
             setShowWarn(true);
         }
     };
@@ -44,16 +40,16 @@ function AdminStopAll() {
         const selectedEmployeeId = event.target.value;
         setEmployeeId(selectedEmployeeId);
     };
-    if (!(sessionStorage.getItem('AdName') == null)) {
 
+    if (sessionStorage.getItem('AdName') !== null) {
         return (
             <>
                 <AdmHeader />
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <form className="batch-form">
-                    <h2 className="batch-stop">受付の即時停止</h2>
+                    <h2 className="batch-open">全ての予約停止の解除</h2>
                     <p className="notice">
-                        この操作は日時の指定なしに、選択した従業員のすべての予約を一括で停止します。<br></br>
+                        この操作は、選択した従業員のすべての予約停止を解除します。<br />
                         従業員を選択し、注意深く操作してください。
                     </p>
                     <div className="batchform-group">
@@ -64,7 +60,7 @@ function AdminStopAll() {
                             onChange={handleEmployeeChange}
                             required
                         >
-                            <option value="">選択してください</option>
+                            <option value="">従業員を選択してください。</option>
                             <option value="1">田中太郎</option>
                             <option value="2">佐藤花子</option>
                             <option value="3">鈴木一郎</option>
@@ -72,17 +68,22 @@ function AdminStopAll() {
                             <option value="5">中村健太</option>
                         </select>
                     </div>
-                    <button type="button" onClick={stopAll} className="batchsubmit-button">予約を停止</button>
+                    <button type="button" onClick={openAllReservations} className="batchopensubmit-button">
+                        予約停止を解除<br />
+                        <span className="buttonsmall-text">※即座に受付を開始します。</span>
+                    </button>
                 </form>
             </>
         );
     } else {
-        <div className="no-access">
-            <h1>アクセス権限がありません</h1>
-            <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
-            <a href="/" className="home-button">ホームページに戻る</a>
-        </div>
+        return (
+            <div className="no-access">
+                <h1>アクセス権限がありません</h1>
+                <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
+                <a href="/" className="home-button">ホームページに戻る</a>
+            </div>
+        );
     }
 }
 
-export default AdminStopAll;
+export default AdminOpenAll;

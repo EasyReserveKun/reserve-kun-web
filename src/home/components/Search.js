@@ -48,6 +48,32 @@ function Search() {
       return null;
     }
 
+    if (category !== '' && date !== '') {
+      const requestData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ eid: category })
+      };
+
+      try {
+        const response = await fetch(getApiUrl() + "/reserve/available/flag", requestData);
+        const data = await response.text();
+        if(data==="現在は予約を受け付けておりません"){
+          await setWarnText(data);
+          await setShowWarn(true);
+          return null;
+        }
+      } catch (error) {
+        console.error('Fetch Error:', error);
+        //TODO: エラー処理
+      }
+    } else {
+      await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
+      setShowWarn(true);
+    }
+
     //本処理
     if (category !== '' && date !== '') {
       setIsLoading(true);
