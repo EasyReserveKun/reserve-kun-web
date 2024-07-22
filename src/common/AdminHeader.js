@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -8,6 +8,17 @@ import LogoutComfirm from './LogoutComfirm';
 
 const AdminHeader = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const favicon = document.querySelector("link[rel='icon']");
+    if (location.pathname.startsWith('/admin')) {
+      favicon.href = `${process.env.PUBLIC_URL}/image/stafficon.ico`;
+    } else {
+      favicon.href = `${process.env.PUBLIC_URL}/icon.ico`;
+    }
+  }, [location]);
 
   const openLogoutModal = () => {
     setShowLogoutModal(true);
@@ -22,8 +33,6 @@ const AdminHeader = () => {
     await sessionStorage.removeItem("AccountMail");
     navigate("/logout");
   };
-
-  let navigate = useNavigate();
 
   return (
     <Navbar bg="dark" variant="dark" expand="md">
