@@ -62,6 +62,19 @@
     width: calc(16.666% - 10px); /* 6列表示に設定 */
     box-sizing: border-box;
     min-width: 150px; /* ボックスが小さくなりすぎないように設定 */
+    word-wrap: break-word; /* 長い単語を折り返す */
+    white-space: pre-wrap; /* 長いテキストを折り返す */
+}
+
+/* 項目のスタイル調整 */
+.reservation-item p span.label {
+    color: #666; /* 項目の文字色を薄く */
+    font-weight: bold; /* 項目の文字を太く */
+}
+
+.reservation-item p span.value {
+    color: #020202; /* 情報の文字色 */
+    font-weight: normal; /* 情報の文字を通常の太さに */
 }
 
 .reservation-item p {
