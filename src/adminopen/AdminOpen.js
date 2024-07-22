@@ -5,6 +5,7 @@ import '../common/AdminPage.css';
 
 import AdmHeader from '../common/AdminHeader';
 import Warn from '../common/Warn';
+import LoadingSpinner from '../LoadingSpinner';
 
 function AdminOpen() {
     const [date, setDate] = useState('');
@@ -13,6 +14,7 @@ function AdminOpen() {
     const [reservedTimes, setReservedTimes] = useState(['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']);
     const [warnText, setWarnText] = useState("");
     const [showWarn, setShowWarn] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchReservedTimes = useCallback(async () => {
         const requestData = {
@@ -63,6 +65,7 @@ function AdminOpen() {
     };
 
     const stop = async () => {
+        setIsLoading(true);
         const requestData = {
             method: 'POST',
             headers: {
@@ -74,6 +77,8 @@ function AdminOpen() {
         const response = await fetch(getApiUrl() + "/employee/reactivation", requestData);
         const data = await response.text();
 
+
+        setIsLoading(false);
         setWarnText(data);
         setShowWarn(true);
         await fetchReservedTimes();
@@ -103,16 +108,16 @@ function AdminOpen() {
         }
 
         return (
-            <div className="row">
+            <div className="row  custom-row">
                 {buttons}
-                <div className="col-lg-2 col-md-3 col-4 mt-3">
+                <div className="col-lg-2 col-md-3 col-4">
                     <button
                         type="button"
                         onClick={handleTimeChange}
                         className="red-button"
                         value="すべての時間"
                     >
-                        全時間を一括解除
+                        すべて選択
                     </button>
                 </div>
             </div>
@@ -123,6 +128,7 @@ function AdminOpen() {
         return (
             <>
                 <AdmHeader />
+                {isLoading && <LoadingSpinner />}
                 <form className="admin-form">
                     <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                     <h2 className="reserve-stop">予約の停止を解除する</h2>
@@ -168,7 +174,7 @@ function AdminOpen() {
                             {renderTimeButtons()}
                         </div>
                     </div>
-                    <button type="button" onClick={stop} className="submit-button">予約の停止を解除</button>
+                    <button type="button" onClick={stop} className="submit-button">予約停止の解除</button>
                 </form>
             </>
         );
