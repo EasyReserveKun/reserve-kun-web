@@ -12,7 +12,7 @@ function AdminStopAll() {
     const [warnText, setWarnText] = useState('');
     const [showWarn, setShowWarn] = useState(false);
 
-    const stopReservation = async () => {
+    const stopAll = async () => {
         const requestData = {
             method: 'POST',
             headers: {
@@ -22,25 +22,17 @@ function AdminStopAll() {
         };
 
         try {
-            const response = await fetch(getApiUrl() + "/employee/stop", requestData);
-            const data = await response.json();
+            const response = await fetch(getApiUrl() + "/employee/stopAll", requestData);
+            const data = await response.text();
 
-            if (response.ok) {
-                if (data.status === "Success") {
-                    setWarnText("予約を停止しました");
+                if (data === "受付を停止します") {
+                    setWarnText("受付を停止します");
                     setShowWarn(true);
-                } else if (data.status === "Duplicated") {
-                    setWarnText("その時間はすでに予約されました");
-                    setShowWarn(true);
-                } else if (data.status === "Doubled") {
-                    setWarnText("その時間はあなたはすでに予約しています");
+                } else{
+                    setWarnText("エラーが発生しました");
                     setShowWarn(true);
                 }
-            } else {
-                console.error('Fetch Error:', response.statusText);
-                setWarnText("予約の停止に失敗しました");
-                setShowWarn(true);
-            }
+    
         } catch (error) {
             console.error('Fetch Error:', error);
             setWarnText("予約の停止に失敗しました");
@@ -72,7 +64,7 @@ function AdminStopAll() {
                             onChange={handleEmployeeChange}
                             required
                         >
-                            <option value="all">全員</option>
+                            <option value="">選択してください</option>
                             <option value="1">田中太郎</option>
                             <option value="2">佐藤花子</option>
                             <option value="3">鈴木一郎</option>
@@ -80,7 +72,7 @@ function AdminStopAll() {
                             <option value="5">中村健太</option>
                         </select>
                     </div>
-                    <button type="button" onClick={stopReservation} className="batchsubmit-button">予約を停止</button>
+                    <button type="button" onClick={stopAll} className="batchsubmit-button">予約を停止</button>
                 </form>
             </>
         );
