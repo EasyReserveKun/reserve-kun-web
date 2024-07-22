@@ -108,6 +108,7 @@ select {
 .buttonsmall-text{
     font-size: 15px; /* 小さめのフォントサイズ */
     color: #dbdbdb; /* 色を薄めに設定する（任意） */
+    font-weight: normal;
 }
 
 .home-button {
@@ -127,4 +128,18 @@ select {
     background-color: #ababab;
     text-decoration: none;
     color: #ffffff;
+}
+
+.openall-container {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.openall-tag a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.openall-tag a:hover {
+    text-decoration: underline;
 }
