@@ -14,6 +14,7 @@ import SignUpSuccess from './signup/SignUpSuccess';
 
 import AdminHome from './adminhome/AdminHome';
 import AdminStopAll from './adminstopall/AdminStopAll';
+import AdminOpenAll from './adminstopall/AdminOpenAll';
 import AdminLogin from "./adminlogin/AdminLogin";
 import ReservationList from './adminlist/AdminList';
 import AdminHeader from "./common/AdminHeader";
@@ -31,6 +32,7 @@ import TaroTanaka from './home/advisor/TaroTanaka';
 import IchiroSuzuki from './home/advisor/IchiroSuzuki';
 import MisakiTakahashi from './home/advisor/MisakiTakahashi';
 import KentaNakamura from './home/advisor/KentaNakamura';
+
 
 function App() {
   return (
@@ -58,6 +60,7 @@ function App() {
         <Route path="/admin/close" element={<AdminClose />} />
         <Route path="/admin/header" element={<AdminHeader />} />
         <Route path="/admin/closeall" element={<AdminStopAll />} />
+        <Route path="/admin/openall" element={<AdminOpenAll />} />
         <Route path="/admin/open" element={<ReactivationPage />} />
         <Route path="/admin/list" element={<ReservationList />} />
         {/* NotFound */}
