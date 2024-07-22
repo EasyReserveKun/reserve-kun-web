@@ -81,6 +81,10 @@ function AdminStopAll() {
                         </select>
                     </div>
                     <button type="button" onClick={stopReservation} className="batchsubmit-button">予約を停止</button>
+                    
+                    <div className="openall-container">
+                        <a href="/admin/openall" className='openall-tag'>※予約停止の解除はこちら</a>
+                    </div>
                 </form>
             </>
         );
