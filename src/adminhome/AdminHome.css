@@ -113,29 +113,10 @@ html {
   font-weight: bold;
 }
 
-.tool-item p {
-  font-size: 1rem;
-  color: #555555;
-  text-align: center;
-}
-
 .news-item p {
   font-size: 1rem;
   color: #555555;
   text-align: left;
-}
-
-.tool-item p {
-  margin: 0;
-  font-size: 1rem;
-  color: #555555;
-  transition: color 0.3s ease;
-  /* 色変更のトランジション */
-}
-
-.tool-item:hover p {
-  color: #ffffff;
-  /* ホバー時に<p>タグの色を変更 */
 }
 
 .no-access {
