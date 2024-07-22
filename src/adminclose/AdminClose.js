@@ -115,7 +115,7 @@ function AdminClose() {
         return (
             <div className="row">
                 {buttons}
-                <div className="col-lg-2 col-md-3 col-4 mt-3">
+                <div>
                     <button
                         type="button"
                         onClick={handleTimeChange}
