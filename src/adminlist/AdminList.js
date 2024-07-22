@@ -94,12 +94,12 @@ const ReservationList = () => {
                             <div className="reservation-items-container">
                                 {reservations.upcoming.map((reservation, index) => (
                                     <div key={index} className="reservation-item">
-                                        <p>日付：{reservation.date}</p>
-                                        <p>時間：{reservation.time}</p>
-                                        <p>従業員名：{reservation.ename}</p>
-                                        <p>顧客名：{reservation.cname}</p>
-                                        <p>連絡先：{reservation.cid}</p>
-                                        <p>備考欄：{reservation.etc}</p>
+                                        <p><span className="label">日付：</span><span className="value">{reservation.date}</span></p>
+                                        <p><span className="label">時間：</span><span className="value">{reservation.time}</span></p>
+                                        <p><span className="label">従業員名：</span><span className="value">{reservation.ename}</span></p>
+                                        <p><span className="label">顧客名：</span><span className="value">{reservation.cname}</span></p>
+                                        <p><span className="label">連絡先：</span><span className="value">{reservation.cid}</span></p>
+                                        <p><span className="label">備考欄：</span><span className="value">{reservation.etc}</span></p>
                                     </div>
                                 ))}
                             </div>
