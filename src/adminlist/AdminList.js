@@ -28,11 +28,8 @@ const ReservationList = () => {
             const jsonData = await response.json();
             console.log(jsonData);
 
-            // 今日の日付を取得
-            const today = new Date().toISOString().split('T')[0];
-
             // 予約データをフィルタリング
-            const upcomingReservations = jsonData.filter(item => item.date >= today);
+            const upcomingReservations = jsonData.filter(item => item.date);
 
             if (selectedDate) {
                 const filteredByDate = upcomingReservations.filter(reservation => reservation.date === selectedDate);
@@ -90,7 +87,7 @@ const ReservationList = () => {
 
                     {loading && <p className="loading">Loading...</p>}
 
-                    {/* 今日以降の予約 */}
+                    
                     <div className="reservation-section">
                         <h2>予約</h2>
                         {reservations.upcoming.length > 0 ? (
