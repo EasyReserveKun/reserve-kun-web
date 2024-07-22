@@ -8,6 +8,7 @@ import './Modal.css'
 
 //Import Component
 import Warn from '../../common/Warn.js'
+import LoadingSpinner from '../../LoadingSpinner';
 
 function Search(props) {
   const [time, setTime] = useState("");
@@ -15,8 +16,10 @@ function Search(props) {
   const reservedTimes = props.reservedTimes;
   const [warnText, setWarnText] = useState("")
   const [showWarn, setShowWarn] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const sendReserve = async (event) => {
+    setIsLoading(true);
     event.preventDefault();
     const requestData = {
       method: 'POST',
@@ -27,6 +30,8 @@ function Search(props) {
     }
     const responce = await fetch(getApiUrl() + "/reserve/insert", requestData);
     const data = await responce.json();
+
+    setIsLoading(false);
 
     if (data.status === "Success") {
       props.setWarnText("予約に成功しました")
@@ -54,7 +59,7 @@ function Search(props) {
     const buttons = [];
 
     for (let hour = 10; hour <= 19; hour++) {
-      
+
       const time = hour + ':00';
       const isReserved = reservedTimes.includes(time);
 
@@ -84,76 +89,73 @@ function Search(props) {
 
   if (props.show) {
     return (
-      <div id="overlay">
-        <div id="content">
-          <form className='modal-container'>
-            <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-            <div className='row'>
-              <div className='col text-right'>
-                <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>
+      <>
+        {isLoading && <LoadingSpinner />}
+        <div id="overlay">
+          <div id="content">
+            <form className='modal-container'>
+              <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
+              <div className='row'>
+                <div className='col text-right'>
+                  <button className="bi bi-x-circle" onClick={() => props.setShow(false)}></button>
+                </div>
               </div>
-            </div>
 
-            <div className='row'>
-              <h5>予約内容</h5>
-            </div>
+              <div className='row'>
+                <div className='modal-title'>
+                  <h3>予約内容</h3>
+                </div>
+              </div>
 
-            <div className='row'>
-              <div className='col-2 modal-label'>
-                <label>日付</label>
+              <div className='row'>
+                <div className='col-2 modal-label'>
+                  <label>日付</label>
+                </div>
+                <div className='col-8  modal-input'>
+                  <input type="text" name="date" value={props.date} readOnly /> <br></br>
+                </div>
               </div>
-              <div className='col-8  modal-input'>
-                <input type="text" name="date" value={props.date} readOnly /> <br></br>
-              </div>
-            </div>
 
-            <div className='row'>
-              <div className='col-2 modal-label'>
-                <label>目的</label>
+              <div className='row'>
+                <div className='col-2 modal-label'>
+                  <label>目的</label>
+                </div>
+                <div className='col-8  modal-input'>
+                  <select value={props.category} name="eid" className="form-control" readOnly>
+                    <option value="0"></option>
+                    <option value="1">不動産</option>
+                    <option value="2">おうちの修繕</option>
+                    <option value="3">介護</option>
+                    <option value="4">終活・相続</option>
+                    <option value="5">車・保健・金融</option>
+                  </select>
+                </div>
               </div>
-              <div className='col-8  modal-input'>
-                <select value={props.category} name="eid" className="form-control" readOnly>
-                  <option value="0"></option>
-                  <option value="1">不動産</option>
-                  <option value="2">おうちの修繕</option>
-                  <option value="3">介護</option>
-                  <option value="4">終活・相続</option>
-                  <option value="5">車・保健・金融</option>
-                </select>
+              <div className='row'>
+                <div className='col-2 modal-label'>
+                  <label>時間帯</label>
+                </div>
+                <div className='col-8  modal-input'>
+                  <input type="text" name="time" value={time} placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
+                </div>
               </div>
-            </div>
-            <div className='row'>
-              <div className='col-2 modal-label'>
-                <label>Eメール</label>
+              <div className="row gx-2">
+                {renderTimeButtons()}
               </div>
-              <div className='col-8  modal-input'>
-                <input type="email" name="cid" value={sessionStorage.getItem('AccountMail')} required readOnly /><br></br>
+              <div className='row'>
+                <div className='col-md-3 col-12 modal-label'>
+                  <label htmlFor="etc">備考(100文字以内)</label><br></br>
+                </div>
+                <div className='col-8  modal-input'>
+                  <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange} maxLength={100}></input>
+                  <p>文字数: {etc.length}/100</p>
+                </div>
               </div>
-            </div>
-            <div className='row'>
-              <div className='col-2 modal-label'>
-                <label>時間帯</label>
-              </div>
-              <div className='col-8  modal-input'>
-                <input type="text" name="time" value={time} placeholder='ボタンで時間を指定してください' readOnly></input><br></br>
-              </div>
-            </div>
-            <div className="row gx-2">
-              {renderTimeButtons()}
-            </div>
-            <div className='row'>
-              <div className='col-md-3 col-12 modal-label'>
-                <label htmlFor="etc">備考(100文字以内)</label><br></br>
-              </div>
-              <div className='col-8  modal-input'>
-                <input type="text" name="etc" id="etc" value={etc} onChange={handleEtcChange} maxLength={100}></input>
-                <p>文字数: {etc.length}/100</p>
-              </div>
-            </div>
-            <button type="button" className='btn btn-primary' onClick={sendReserve} disabled={isReserveDisable}>予約する</button>
-          </form>
+              <button type="button" className='btn btn-primary' onClick={sendReserve} disabled={isReserveDisable}>予約する</button>
+            </form>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
