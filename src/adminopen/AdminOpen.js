@@ -65,6 +65,11 @@ function AdminOpen() {
     };
 
     const stop = async () => {
+        if(date===""||employeeId===""||time===""){
+            setWarnText("入力情報を確認してください");
+            setShowWarn(true);
+            return null;
+        }
         setIsLoading(true);
         const requestData = {
             method: 'POST',
@@ -131,7 +136,7 @@ function AdminOpen() {
                 {isLoading && <LoadingSpinner />}
                 <form className="admin-form">
                     <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-                    <h2 className="reserve-stop">予約の停止を解除する</h2>
+                    <h2 className="batch-open-title">予約の停止を解除する</h2>
                     <div className="form-group">
                         <label htmlFor="date">日付:</label>
                         <input
@@ -174,7 +179,7 @@ function AdminOpen() {
                             {renderTimeButtons()}
                         </div>
                     </div>
-                    <button type="button" onClick={stop} className="submit-button">予約停止の解除</button>
+                    <button type="button" onClick={stop} className="opensubmit-button">予約停止の解除</button>
                 </form>
             </>
         );

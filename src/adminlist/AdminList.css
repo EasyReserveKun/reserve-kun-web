@@ -23,9 +23,15 @@
     align-items: center;
 }
 
-.employee-filter label, .date-filter label {
+.date-filter label {
     font-weight: bold;
-    margin-right: 5px;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.employee-filter label {
+    font-weight: bold;
+    margin-left: 10px;
     white-space: nowrap;
 }
 

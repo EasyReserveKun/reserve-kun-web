@@ -17,6 +17,28 @@ function Search(props) {
   const [showWarn, setShowWarn] = useState(false)
 
   const sendReserve = async (event) => {
+
+    const debugData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ eid: props.category })
+    };
+
+    try {
+      const response = await fetch(getApiUrl() + "/reserve/available/flag", debugData);
+      const data = await response.text();
+      if(data==="現在は予約を受け付けておりません"){
+        await setWarnText(data);
+        await setShowWarn(true);
+        return null;
+      }
+    } catch (error) {
+      console.error('Fetch Error:', error);
+      //TODO: エラー処理
+    }
+
     event.preventDefault();
     const requestData = {
       method: 'POST',
