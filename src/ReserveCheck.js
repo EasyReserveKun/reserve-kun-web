@@ -21,6 +21,13 @@ function ReserveCheck() {
 
 
     useEffect(() => {
+        if (cookie.token == null) {
+            navigate("/");
+        }
+    }, [navigate, cookie.token])
+
+    useEffect(() => {
+
         const fetchData = async () => {
             const requestData = {
                 method: 'POST',
