@@ -25,14 +25,10 @@ function AdminStopAll() {
             const response = await fetch(getApiUrl() + "/employee/stopAll", requestData);
             const data = await response.text();
 
-                if (data === "受付を停止します") {
-                    setWarnText("受付を停止します");
-                    setShowWarn(true);
-                } else{
-                    setWarnText("エラーが発生しました");
-                    setShowWarn(true);
-                }
-    
+            setWarnText(data);
+            setShowWarn(true);
+
+
         } catch (error) {
             console.error('Fetch Error:', error);
             setWarnText("予約の停止に失敗しました");
