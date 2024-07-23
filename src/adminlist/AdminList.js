@@ -60,6 +60,15 @@ const ReservationList = () => {
                 <div className="reservation-list">
                     <div className="filters-container">
                         <div className="filter-group employee-filter">
+                            <div className="filter-group date-filter">
+                                <label htmlFor="date-filter">日付選択：</label>
+                                <input
+                                    type="date"
+                                    id="date-filter"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                />
+                            </div>
                             <label htmlFor="employee-filter">従業員選択：</label>
                             <select
                                 id="employee-filter"
@@ -74,20 +83,11 @@ const ReservationList = () => {
                                 <option value="5">中村健太</option>
                             </select>
                         </div>
-                        <div className="filter-group date-filter">
-                            <label htmlFor="date-filter">日付選択：</label>
-                            <input
-                                type="date"
-                                id="date-filter"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                            />
-                        </div>
                     </div>
 
                     {loading && <p className="loading">Loading...</p>}
 
-                    
+
                     <div className="reservation-section">
                         <h2>予約</h2>
                         {reservations.upcoming.length > 0 ? (
