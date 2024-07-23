@@ -25,7 +25,7 @@ function AdminOpenAll() {
             if (data === "受付を開始します") {
                 setWarnText("受付を開始します");
                 setShowWarn(true);
-            } else{
+            } else {
                 setWarnText("エラーが発生しました");
                 setShowWarn(true);
             }
@@ -46,33 +46,35 @@ function AdminOpenAll() {
             <>
                 <AdmHeader />
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-                <form className="batch-form">
-                    <h2 className="batch-open">全ての予約停止の解除</h2>
-                    <p className="notice">
-                        この操作は、選択した従業員のすべての予約停止を解除します。<br />
-                        従業員を選択し、注意深く操作してください。
-                    </p>
-                    <div className="batchform-group">
-                        <label htmlFor="employeeId">従業員:</label>
-                        <select
-                            id="employeeId"
-                            value={employeeId}
-                            onChange={handleEmployeeChange}
-                            required
-                        >
-                            <option value="">従業員を選択してください。</option>
-                            <option value="1">田中太郎</option>
-                            <option value="2">佐藤花子</option>
-                            <option value="3">鈴木一郎</option>
-                            <option value="4">高橋美咲</option>
-                            <option value="5">中村健太</option>
-                        </select>
-                    </div>
-                    <button type="button" onClick={openAllReservations} className="batchopensubmit-button">
-                        予約停止を解除<br />
-                        <span className="buttonsmall-text">※即座に受付を開始します。</span>
-                    </button>
-                </form>
+                <div className="batch-form-container">
+                    <form className="batch-form">
+                        <h2 className="batch-open">全ての予約停止の解除</h2>
+                        <p className="notice">
+                            この操作は、選択した従業員のすべての予約停止を解除します。<br />
+                            従業員を選択し、注意深く操作してください。
+                        </p>
+                        <div className="batchform-group">
+                            <label htmlFor="employeeId">従業員:</label>
+                            <select
+                                id="employeeId"
+                                value={employeeId}
+                                onChange={handleEmployeeChange}
+                                required
+                            >
+                                <option value="">従業員を選択してください。</option>
+                                <option value="1">田中太郎</option>
+                                <option value="2">佐藤花子</option>
+                                <option value="3">鈴木一郎</option>
+                                <option value="4">高橋美咲</option>
+                                <option value="5">中村健太</option>
+                            </select>
+                        </div>
+                        <button type="button" onClick={openAllReservations} className="batchopensubmit-button">
+                            予約停止を解除<br />
+                            <span className="buttonsmall-text">※即座に受付を開始します。</span>
+                        </button>
+                    </form>
+                </div>
             </>
         );
     } else {
