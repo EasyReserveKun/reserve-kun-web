@@ -19,9 +19,7 @@ function Search() {
   const [warnText, setWarnText] = useState("")
   const [showWarn, setShowWarn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [cookie, ,] = useCookies(['token'])
-
-  const token = cookie.token;
+  const [cookie, ,] = useCookies()
 
   //現在時刻を設定
   const nowDate = new Date();
@@ -106,7 +104,7 @@ function Search() {
     }
   };
 
-  if (token) {
+  if (cookie.token) {
     return (
       <>
         {isLoading && <LoadingSpinner />}

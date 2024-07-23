@@ -14,12 +14,11 @@ import Footer from '../common/Footer';
 
 function LogoutSuccess() {
   const navigate = useNavigate('');
-  const [cookie, , removeCookie] = useCookies(['token']);
-  const token = cookie.token;
+  const [, , removeCookie] = useCookies();
 
   useEffect(() => {
     removeCookie('token', { path: '/' });
-  }, []);
+  }, [removeCookie]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -18,9 +18,7 @@ function Search(props) {
   const [warnText, setWarnText] = useState("")
   const [showWarn, setShowWarn] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [cookie, ,] = useCookies(['token']);
-
-  const token = cookie.token;
+  const [cookie, ,] = useCookies();
 
   const sendReserve = async (event) => {
     setIsLoading(true);
@@ -30,7 +28,7 @@ function Search(props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ date: props.date, eid: props.category, token: token, time: time, etc: etc })
+      body: JSON.stringify({ date: props.date, time: time, eid: props.category, token: cookie.token, etc: etc })
     }
     const responce = await fetch(getApiUrl() + "/reserve/insert", requestData);
     const data = await responce.json();

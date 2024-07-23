@@ -11,9 +11,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false); // 追加
   const [subMenuOpen, setSubMenuOpen] = useState(false); // サブメニューの状態を追加
-  const [cookie, , removeCookie] = useCookies(['token']);
-
-  const token = cookie.token;
+  const [cookie, , removeCookie] = useCookies();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -41,7 +39,7 @@ const Header = () => {
     setShowLogoutModal(false);
   };
 
-  if (token) {
+  if (cookie.token) {
     return (
       <header className="header">
         <div className="menu-toggle" onClick={toggleMenu}>

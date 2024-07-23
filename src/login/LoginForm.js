@@ -1,5 +1,5 @@
 // Import Modules
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { getApiUrl } from '../GetApiUrl';
@@ -17,12 +17,16 @@ const LoginForm = () => {
   const [inputCid, setInputCid] = useState('');
   const [inputPassword, setInputPassword] = useState('')
   const [loginError, setLoginError] = useState('')
-  const [cookie, setCookie,] = useCookies(['token']);
-
-  const token = cookie.token;
+  const [cookie, setCookie,] = useCookies();
 
   const handleChangeCid = (event) => { setInputCid(event.target.value); }
   const handleChangePassword = (event) => { setInputPassword(event.target.value) }
+
+  useEffect(() => {
+    if (cookie.token != null) {
+      navigate("/");
+    }
+  }, [navigate, cookie.token])
 
   const loginAuth = async (event) => {
     event.preventDefault();
@@ -46,7 +50,6 @@ const LoginForm = () => {
       return null;
     }
 
-    console.log(token)
     let requestData = {
       method: 'POST',
       headers: {
@@ -54,15 +57,11 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    console.log("1")
     const responce = await fetch(getApiUrl() + "/customer/login", requestData);
     const data = await responce.json();
-    console.log("2")
     if (data.status === "Success") {
       console.log(data.status)
-      console.log(data.token)
-      setCookie('token', data.token, { httpOnly: true, path: '/', });
-      console.log(token)
+      setCookie('token', data.token, { path: '/' });
       setLoginError("")
       navigate("/")
     } else {

@@ -6,10 +6,9 @@ import { useCookies } from 'react-cookie'
 import './Footer.css';
 
 const Footer = () => {
-    const [cookie, ,] = useCookies(['token']);
-    const token = cookie.token;
+    const [cookie, ,] = useCookies();
 
-    if (token) {
+    if (cookie.token) {
         return (
             <footer>
                 <ul className='footer-menu'>
