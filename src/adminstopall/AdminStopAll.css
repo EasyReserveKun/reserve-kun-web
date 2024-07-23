@@ -8,10 +8,11 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    position: relative;
 }
 
 .batch-stop {
@@ -142,4 +143,29 @@ select {
 
 .openall-tag a:hover {
     text-decoration: underline;
+}
+
+
+.batch-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .batch-form-container {
+        height: auto;
+    }
+
+    .batch-form {
+        width: 90%;
+        max-width: 90%;
+        margin: 10px auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
