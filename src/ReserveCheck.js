@@ -17,17 +17,15 @@ function ReserveCheck() {
     const [activeTab, setActiveTab] = useState('current'); // 初期値として「本日以降の予約」を表示
     const [showDeleteModal, setShowDeleteModal] = useState(false); // 確認モーダルの表示状態を管理
     const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報を保持
-    const [cookie, ,] = useCookies();
-
+    const [cookie, , removeCookie] = useCookies();
 
     useEffect(() => {
+        // ログイン状態でなければホームへ
         if (cookie.token == null) {
-            navigate("/");
+            navigate("/login");
         }
-    }, [navigate, cookie.token])
 
-    useEffect(() => {
-
+        // ログイン認証
         const fetchData = async () => {
             const requestData = {
                 method: 'POST',
@@ -36,7 +34,14 @@ function ReserveCheck() {
                 },
                 body: JSON.stringify({ token: cookie.token })
             };
+            const response = await fetch(getApiUrl() + "/reserve/check", requestData);
+            const data = await response.json();
+            if (data.status === "Denied") {
+                removeCookie('token', { path: '/' });
+                navigate("/");
+            }
 
+            // 予約の確認
             try {
                 const response = await fetch(getApiUrl() + "/reserve/check", requestData);
                 const jsonData = await response.json();
@@ -56,7 +61,7 @@ function ReserveCheck() {
 
         fetchData();
 
-    }, [cookie.token]);
+    }, [cookie.token, navigate, removeCookie]);
 
     const returnReserve = () => {
         navigate('/');
