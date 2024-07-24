@@ -37,7 +37,7 @@ const Footer = () => {
                     <li><a href="/login">ログイン</a>　</li>
                 </ul>
                 <p className="copyright">
-                    &copy; 2024 YourWebsite.com | Designed by AIBS
+                    &copy; 2024 EasyReserveKun | Designed by AIBS
                 </p>
             </footer>
         );
