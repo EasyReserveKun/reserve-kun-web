@@ -1,5 +1,5 @@
 // Import Modules
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { getApiUrl } from '../GetApiUrl.js';
 
@@ -19,6 +19,11 @@ function AdminLogin() {
     const handleChangeCid = (event) => { setInputCid(event.target.value); }
     const handleChangePassword = (event) => { setInputPassword(event.target.value) }
 
+    useEffect(() => {
+        if (sessionStorage.getItem('AdName') !== null) {
+            navigate("/admin")
+        }
+    }, [navigate])
 
     const loginAuth = async (event) => {
         event.preventDefault();
