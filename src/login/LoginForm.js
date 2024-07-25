@@ -1,5 +1,5 @@
 // Import Modules
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { getApiUrl } from '../GetApiUrl';
 
@@ -19,6 +19,12 @@ const LoginForm = () => {
 
   const handleChangeCid = (event) => { setInputCid(event.target.value); }
   const handleChangePassword = (event) => { setInputPassword(event.target.value) }
+
+  useEffect(() => {
+    if (sessionStorage.getItem('AccountName') !== null) {
+      navigate("/")
+    }
+  }, [navigate])
 
   const loginAuth = async (event) => {
     event.preventDefault();

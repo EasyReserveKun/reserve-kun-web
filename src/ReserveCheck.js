@@ -18,6 +18,11 @@ function ReserveCheck() {
     const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報を保持
 
     useEffect(() => {
+
+        if (sessionStorage.getItem('AccountName') == null) {
+            navigate("/")
+        }
+
         const fetchData = async () => {
             const requestData = {
                 method: 'POST',
@@ -46,7 +51,7 @@ function ReserveCheck() {
 
         fetchData();
 
-    }, []);
+    }, [navigate]);
 
     const returnReserve = () => {
         navigate('/');
