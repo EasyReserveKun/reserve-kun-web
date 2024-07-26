@@ -1,15 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Dropdown from 'react-bootstrap/Dropdown';
 import '../common/AdminHeader.css';
 import LogoutComfirm from './LogoutComfirm';
+import { getApiUrl } from '../GetApiUrl';
 
 const AdminHeader = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [cookie, , removeCookie] = useCookies();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const authAdmin = async () => {
+      const requestData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: cookie.admin })
+      };
+      const response = await fetch(getApiUrl() + "/auth/admin", requestData);
+      const data = await response.json();
+      if (data.status === "Denied") {
+        removeCookie('admin', { path: '/' });
+        navigate("/adminlogin");
+      }
+    }
+    authAdmin()
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     const favicon = document.querySelector("link[rel='icon']");
@@ -29,8 +52,7 @@ const AdminHeader = () => {
   };
 
   const handleLogout = async () => {
-    await sessionStorage.removeItem("AccountName");
-    await sessionStorage.removeItem("AccountMail");
+    removeCookie('admin', { path: '/' });
     navigate("/logout");
   };
 

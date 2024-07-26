@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import AdmHeader from '../common/AdminHeader';
 import './AdminList.css';
 import { getApiUrl } from '../GetApiUrl';
@@ -18,6 +19,7 @@ const ReservationList = () => {
     };
 
     const [selectedDate, setSelectedDate] = useState(getTodayDate());
+    const [cookie, ,] = useCookies();
 
     const fetchData = async (employeeFilter, selectedDate) => {
         const requestData = {
@@ -58,7 +60,7 @@ const ReservationList = () => {
         setSelectedDate(event.target.value);
     };
 
-    if (sessionStorage.getItem('AdName')) {
+    if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />
