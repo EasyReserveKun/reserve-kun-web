@@ -10,6 +10,7 @@ import { getApiUrl } from '../GetApiUrl';
 
 const AdminHeader = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [adminDataOpen, setAdminDataOpen] = useState(false);
   const [cookie, , removeCookie] = useCookies();
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,6 +44,10 @@ const AdminHeader = () => {
     }
   }, [location]);
 
+  const adminData = () => {
+    setAdminDataOpen(!adminDataOpen)
+  }
+
   const openLogoutModal = () => {
     setShowLogoutModal(true);
   };
@@ -55,6 +60,8 @@ const AdminHeader = () => {
     removeCookie('admin', { path: '/' });
     navigate("/logout");
   };
+
+  const accountName = sessionStorage.getItem('AccountName');
 
   return (
     <Navbar bg="dark" variant="dark" expand="md">
@@ -80,9 +87,21 @@ const AdminHeader = () => {
           </Dropdown>
 
           <Nav.Link href="/admin/list">予約一覧表示</Nav.Link>
-          <Nav.Link className="admbutton-link" onClick={openLogoutModal}>Logout</Nav.Link>
+          <Nav.Link className="bi bi-person-circle admin-icon" onClick={adminData}></Nav.Link>
         </Nav>
       </Navbar.Collapse>
+
+      {adminDataOpen && (
+        <div className='menu-admin'>
+          <p>
+            <div className='user-text'>
+              ようこそ👋
+            </div><br />
+            {accountName}さん</p>
+          <button className='admin-logout' onClick={openLogoutModal}>ログアウト</button>
+        </div>
+      )}
+
       {/* ログアウト確認モーダル */}
       {showLogoutModal && (
         <div className="logout-modal-container">

@@ -5,16 +5,22 @@ import LogoutComfirm from './LogoutComfirm'; // 新しく追加
 
 // Import StyleSheets
 import './Header.css';
+import DeleteAccount from './DeleteAccount';
 
 const Header = () => {
   let navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false); // 追加
   const [subMenuOpen, setSubMenuOpen] = useState(false); // サブメニューの状態を追加
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
   const [cookie, , removeCookie] = useCookies();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    if (!menuOpen) {
+      setUserMenuOpen(false);
+    }
   };
 
   const toggleSubMenu = (e) => {
@@ -31,6 +37,18 @@ const Header = () => {
     navigate("/logout");
   };
 
+
+
+
+  const accountName = sessionStorage.getItem('AccountName');
+
+  const userMenu = () => {
+    setUserMenuOpen(!userMenuOpen);
+    if (!userMenuOpen) {
+      setMenuOpen(false);
+    }
+  }
+
   const openLogoutModal = () => {
     setShowLogoutModal(true);
   };
@@ -38,6 +56,14 @@ const Header = () => {
   const closeLogoutModal = () => {
     setShowLogoutModal(false);
   };
+
+  const openDeleteModal = () => {
+    setDeleteModal(true);
+  }
+
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
+  }
 
   if (cookie.token) {
     return (
@@ -76,13 +102,34 @@ const Header = () => {
           <a href='/'><img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" /></a>
         </div>
 
-        <button className="bi bi-person-circle user-icon" onClick={openLogoutModal}></button>
+        <button className="bi bi-person-circle user-icon" onClick={userMenu}></button>
+
+        {userMenuOpen && (
+          <div className="menu-user">
+            <p>
+              <div className='user-text'>
+                ようこそ👋
+              </div><br />
+              {accountName}さん</p>
+            <button className='user-logout' onClick={openLogoutModal}>ログアウト</button>
+            <button className='delete-account' onClick={openDeleteModal}>退会する</button>
+          </div>
+        )}
 
         {/* ログアウト確認モーダル */}
         {showLogoutModal && (
           <div className="logout-modal-container">
             <LogoutComfirm
               onCancel={closeLogoutModal}
+              onConfirm={handleLogout}
+            />
+          </div>
+        )}
+
+        {deleteModal && (
+          <div className="delete-modal-container">
+            <DeleteAccount
+              onCancel={closeDeleteModal}
               onConfirm={handleLogout}
             />
           </div>
