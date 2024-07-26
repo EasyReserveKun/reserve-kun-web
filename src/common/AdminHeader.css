@@ -21,16 +21,18 @@
 
 
 
-.adminheader-dropdown{
+.adminheader-dropdown {
     color: #afaeae;
     border: none;
-    background-color: transparent; 
-    padding-top: 8px; /* 上の余白を追加 */
+    background-color: transparent;
+    padding-top: 8px;
+    /* 上の余白を追加 */
 }
 
 .adminheader-dropdown:hover {
-    color: #f0ebeb; /* ホバー時の文字色 */
-    background-color: transparent; 
+    color: #f0ebeb;
+    /* ホバー時の文字色 */
+    background-color: transparent;
     border: none;
 }
 
@@ -43,6 +45,69 @@
 
 .admbutton-link:hover {
     background-color: #e92a2a;
-    color: #ffffff; /* Ensure text color stays white on hover */
+    color: #ffffff;
+    /* Ensure text color stays white on hover */
     border-radius: 20px;
+}
+
+.admin-icon {
+    display: flex;
+    font-size: 32px;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+}
+
+.admin-icon:focus {
+    outline: 2px solid #343A40;
+}
+
+.menu-admin {
+    position: absolute;
+    top: 70px;
+    right: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 210px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+@media screen and (max-width: 550px) {
+    .menu-user {
+        position: absolute;
+        top: 70px;
+        right: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        width: 50%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+}
+
+.menu-admin p {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+}
+
+.user-text {
+    display: inline-flex;
+    text-align: center;
+}
+
+.admin-logout {
+    all: unset;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px 20px;
+    width: 80px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
 }
