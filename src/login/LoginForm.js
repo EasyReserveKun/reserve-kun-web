@@ -63,8 +63,12 @@ const LoginForm = () => {
       setCookie('token', data.token, { path: '/' });
       setLoginError("")
       navigate("/")
-    } else {
+    } else if (data.status === "Denied") {
+      setLoginError("権限がありません")
+    } else if (data.status === "NotFound") {
       setLoginError("IDまたはパスワードが間違っています")
+    } else {
+      setLoginError("エラーが発生しました")
     }
   }
 

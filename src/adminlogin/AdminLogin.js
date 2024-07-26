@@ -66,7 +66,7 @@ function AdminLogin() {
         } else if (data.status === "Denied") {
             setLoginError("権限がありません。")
         } else if (data.status === "NotExist") {
-            setLoginError("正しいIDまたは、パスワードを入力してください。")
+            setLoginError("IDまたはパスワードが間違っています")
         } else {
             setLoginError("エラーが発生しました。")
         }
