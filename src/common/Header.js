@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie'
 import LogoutComfirm from './LogoutComfirm'; // 新しく追加
+import Warn from './Warn';
+import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
 import './Header.css';
@@ -14,6 +16,8 @@ const Header = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false); // サブメニューの状態を追加
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
+  const [warnText, setWarnText] = useState("");
+  const [showWarn, setShowWarn] = useState(false);
   const [cookie, , removeCookie] = useCookies();
 
   const toggleMenu = () => {
@@ -37,6 +41,33 @@ const Header = () => {
     navigate("/logout");
   };
 
+  const handleDelete = async () => {
+    let requestData = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token: cookie.token })
+    }
+
+    try {
+      console.log(cookie.token);
+      const responce = await fetch(getApiUrl() + "/customer/leave", requestData);
+      const data = await responce.json();
+
+      if (data.status === "Success") {
+        removeCookie('token', { httpOnly: true, path: '/' });
+        await setWarnText("退会が完了しました。\n またのご利用お待ちしております。");
+        await setShowWarn(true);
+      } else {
+        await setWarnText("エラーが発生し、退会の処理が行われませんでした。 \n もう一度最初からやり直してください。")
+        await setShowWarn(true);
+      }
+    } catch (error) {
+      console.error('Fetch Error:', error);
+      //TODO: エラー処理
+    }
+  }
 
 
 
@@ -130,10 +161,11 @@ const Header = () => {
           <div className="delete-modal-container">
             <DeleteAccount
               onCancel={closeDeleteModal}
-              onConfirm={handleLogout}
+              onConfirm={handleDelete}
             />
           </div>
         )}
+        <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
       </header>
     );
   } else {
