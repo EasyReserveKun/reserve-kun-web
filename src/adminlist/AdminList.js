@@ -64,6 +64,10 @@ const ReservationList = () => {
         return (
             <>
                 <AdmHeader />
+                <div className='homeLink'>
+                    <a href="/admin">ホーム&gt;</a>
+                    <a href="/admin/list">予約一覧</a>
+                </div>
                 <div className="reservation-list">
                     <div className="filters-container">
                         <div className="filter-group employee-filter">

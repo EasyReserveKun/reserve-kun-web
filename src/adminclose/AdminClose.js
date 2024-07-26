@@ -65,7 +65,7 @@ function AdminClose() {
     };
 
     const stop = async () => {
-        if(date===""||employeeId===""||time===""){
+        if (date === "" || employeeId === "" || time === "") {
             setWarnText("入力情報を確認してください");
             setShowWarn(true);
             return null;
@@ -143,6 +143,10 @@ function AdminClose() {
         return (
             <>
                 <AdmHeader />
+                <div className='homeLink'>
+                    <a href="/admin">ホーム&gt;</a>
+                    <a href="/admin/close">受付停止</a>
+                </div>
                 {isLoading && <LoadingSpinner />}
                 <form className="admin-form">
                     <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />

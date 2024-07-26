@@ -104,6 +104,9 @@ function Home() {
   return (
     <div>
       <Header />
+      <div className='homeLink'>
+        <a href="/">ホーム&gt;</a>
+      </div>
       <Chat />
       <div ref={searchRef}>
         <Search />

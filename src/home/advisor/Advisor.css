@@ -1,67 +1,86 @@
 /* Advisor.css */
 
 .profile {
-    /* font-family: Arial, sans-serif; */
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .profile h1 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .profile .title {
-    font-size: 20px;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .profile .section {
-    margin-bottom: 20px;
-  }
-  
-  .profile .section h2 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .profile .section p {
-    font-size: 16px;
-    color: #666;
-    line-height: 1.6;
-  }
-  
-  .profile .achievements {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  
-  .profile .services {
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  
-  .profile .testimonials {
-    margin-bottom: 20px;
-  }
-  
-  .profile .testimonials .customer {
-    font-weight: bold;
-  }
-  
-  .profile .testimonials blockquote {
-    font-style: italic;
-    color: #666;
-  }
+  /* font-family: Arial, sans-serif; */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  .profile img {
-    max-width: 40%; /* 画像の幅をコンテナの幅に合わせる */
-    height: auto; /* 画像の高さを自動調整 */
-    border-radius: 100px; /* 画像の角を丸める */
-    margin-bottom: 20px; /* 画像の下にスペースを追加 */
+.profile h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.profile .title {
+  font-size: 20px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.profile .section {
+  margin-bottom: 20px;
+}
+
+.profile .section h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.profile .section p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.profile .achievements {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+
+.profile .services {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.profile .testimonials {
+  margin-bottom: 20px;
+}
+
+.profile .testimonials .customer {
+  font-weight: bold;
+}
+
+.profile .testimonials blockquote {
+  font-style: italic;
+  color: #666;
+}
+
+.profile img {
+  max-width: 40%;
+  /* 画像の幅をコンテナの幅に合わせる */
+  height: auto;
+  /* 画像の高さを自動調整 */
+  border-radius: 100px;
+  /* 画像の角を丸める */
+  margin-bottom: 20px;
+  /* 画像の下にスペースを追加 */
+}
+
+.homeLink {
+  text-align: left; /* テキストを左に寄せる */
+  margin: 20px; /* 必要に応じてマージンを追加 */
+}
+
+.homeLink a {
+  display: inline-block; /* リンクをインラインブロックにしてサイズを調整 */
+  text-decoration: none; /* リンクの下線を削除 */
+  color: #000; /* リンクのテキストカラーを設定 */
+}
+
+.homeLink a:hover {
+  color: blue; /* マウスオーバー時のリンクの色を青に変更 */
 }
