@@ -51,6 +51,10 @@ function IchiroSuzuki() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/suzukiIchiro">鈴木一郎</a>
+            </div>
             <AdvisorProfile profile={profile} />
             <Footer />
             <Toolbar onClick={returnReserve} />

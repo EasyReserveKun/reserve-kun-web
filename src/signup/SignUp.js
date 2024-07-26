@@ -146,6 +146,10 @@ const SignUp = () => {
   return (
     <>
       <Header />
+      <div className='homeLink'>
+        <a href="/">ホーム&gt;</a>
+        <a href="/signup">新規登録</a>
+      </div>
       {isLoading && <LoadingSpinner />}
       <div className="form-container">
         <h2 className="form-title">新規登録</h2>

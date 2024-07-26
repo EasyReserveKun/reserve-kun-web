@@ -7,6 +7,9 @@ const EmployeePortalHome = () => {
     return (
       <>
         <AdmHeader />
+        <div className='homeLink'>
+          <a href="/admin">ホーム&gt;</a>
+        </div>
         <div className="employee-portal-home">
           <main className="admmain-content">
             <section className="welcome-section">

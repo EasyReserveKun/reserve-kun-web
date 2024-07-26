@@ -62,6 +62,10 @@ function AdminLogin() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/adminLogin">管理者ログイン</a>
+            </div>
             <div className="form-container">
                 <h2 className="admform-title">従業員専用ログイン</h2>
 

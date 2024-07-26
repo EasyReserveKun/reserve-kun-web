@@ -44,6 +44,10 @@ function AdminStopAll() {
         return (
             <>
                 <AdmHeader />
+                <div className='homeLink'>
+                    <a href="/admin">ホーム&gt;</a>
+                    <a href="/admin/closeall">受付の即時停止</a>
+                </div>
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <div className="batch-form-container">
                     <form className="batch-form">

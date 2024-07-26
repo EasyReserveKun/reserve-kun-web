@@ -51,6 +51,10 @@ function TaroTanaka() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/TanakaTaro">田中太郎</a>
+            </div>
             <AdvisorProfile profile={profile} />
             <Footer />
             <Toolbar onClick={returnReserve} />

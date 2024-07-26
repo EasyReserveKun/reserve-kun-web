@@ -81,6 +81,10 @@ const LoginForm = () => {
   return (
     <>
       <Header />
+      <div className='homeLink'>
+        <a href="/">ホーム&gt;</a>
+        <a href="/login">ログイン画面</a>
+      </div>
       <div className="form-container">
         <h2 className="form-title">ログイン</h2>
         <form className="form-style">

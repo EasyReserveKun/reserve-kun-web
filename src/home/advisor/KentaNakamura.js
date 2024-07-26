@@ -51,6 +51,10 @@ function KentaNakamura() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/NakamuraKenta">中村健太</a>
+            </div>
             <AdvisorProfile profile={profile} />
             <Footer />
             <Toolbar onClick={returnReserve} />

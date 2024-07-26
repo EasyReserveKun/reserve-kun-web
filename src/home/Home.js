@@ -75,6 +75,9 @@ function Home() {
   return (
     <div>
       <Header />
+      <div className='homeLink'>
+        <a href="/">ホーム&gt;</a>
+      </div>
       <Chat />
       <div ref={searchRef}>
         <Search />
@@ -86,7 +89,7 @@ function Home() {
       <ContentItem data={objMisaki} />
       <ContentItem data={objKenta} />
       <Footer />
-      <Toolbar onClick={scrollToSearch}/>
+      <Toolbar onClick={scrollToSearch} />
     </div>
   );
 }

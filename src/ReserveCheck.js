@@ -100,6 +100,10 @@ function ReserveCheck() {
     return (
         <div className="reserve-check-container">
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/reserveCheck">予約確認/変更/キャンセル</a>
+            </div>
             <main className="main-content">
                 {loading ? (
                     <p>データを読み込んでいます...</p>

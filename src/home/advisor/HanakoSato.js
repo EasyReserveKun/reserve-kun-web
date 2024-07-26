@@ -51,6 +51,10 @@ function HanakoSato() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/satoHanako">佐藤花子</a>
+            </div>
             <AdvisorProfile profile={profile} />
             <Footer />
             <Toolbar onClick={returnReserve} />

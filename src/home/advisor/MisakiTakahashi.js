@@ -51,6 +51,10 @@ function MisakiTakahashi() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/takahashiMisaki">高橋美咲</a>
+            </div>
             <AdvisorProfile profile={profile} />
             <Footer />
             <Toolbar onClick={returnReserve} />

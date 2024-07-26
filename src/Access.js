@@ -26,6 +26,10 @@ function Access() {
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/access">アクセス</a>
+            </div>
             <div className="address-container">
                 <h3>交通アクセス</h3>
                 <div className="address-info">
