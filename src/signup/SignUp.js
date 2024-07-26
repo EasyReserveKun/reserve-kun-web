@@ -26,6 +26,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [cookie, ,] = useCookies();
 
+
   const handleChangeName = (event) => { setInputName(event.target.value); }
   const handleChangeEmail = (event) => { setInputEmail(event.target.value); }
   const handleChangeEmailCheck = (event) => { setInputEmailCheck(event.target.value); }

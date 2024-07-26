@@ -65,6 +65,11 @@ function AdminClose() {
     };
 
     const stop = async () => {
+        if(date===""||employeeId===""||time===""){
+            setWarnText("入力情報を確認してください");
+            setShowWarn(true);
+            return null;
+        }
         setIsLoading(true);
         const requestData = {
             method: 'POST',

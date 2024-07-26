@@ -8,10 +8,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
 }
 
 .batch-stop {
@@ -108,6 +105,7 @@ select {
 .buttonsmall-text{
     font-size: 15px; /* 小さめのフォントサイズ */
     color: #dbdbdb; /* 色を薄めに設定する（任意） */
+    font-weight: normal;
 }
 
 .home-button {
@@ -128,3 +126,40 @@ select {
     text-decoration: none;
     color: #ffffff;
 }
+
+.openall-container {
+    text-align: center;
+    margin-top: 1em;
+}
+
+.openall-tag a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.openall-tag a:hover {
+    text-decoration: underline;
+}
+
+
+.batch-form-container {
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* ヘッダーの高さを引いた高さに調整 */
+    margin-top: 20px; /* ヘッダーの高さ分の余白を追加 */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .batch-form-container {
+        margin-top: 20px; /* スマホ画面でもヘッダーの高さ分の余白を確保 */
+        min-height: calc(100vh - 60px); /* ヘッダーの高さを引いた高さに調整 */
+    }
+
+    .batch-form {
+        width: 90%;
+        max-width: 90%;
+    }
+
+    }

@@ -63,6 +63,7 @@ function ReserveCheck() {
 
     }, [cookie.token, navigate, removeCookie]);
 
+
     const returnReserve = () => {
         navigate('/');
         setTimeout(() => {

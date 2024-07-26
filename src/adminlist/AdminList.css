@@ -1,5 +1,7 @@
 /* ReservationList.css */
 
+/* 既存のスタイルはそのまま */
+
 .reservation-list {
     max-width: 1200px;
     margin: 0 auto;
@@ -23,9 +25,15 @@
     align-items: center;
 }
 
-.employee-filter label, .date-filter label {
+.date-filter label {
     font-weight: bold;
-    margin-right: 5px;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+.employee-filter label {
+    font-weight: bold;
+    margin-left: 10px;
     white-space: nowrap;
 }
 
@@ -91,6 +99,27 @@
 
 /* レスポンシブ調整 */
 @media (max-width: 600px) {
+    .filters-container {
+        flex-direction: column; /* モバイルビューでは縦に並べる */
+        gap: 10px; /* スペースを調整 */
+    }
+
+    .employee-filter, .date-filter {
+        flex-direction: column; /* ラベルと入力要素を縦に並べる */
+        gap: 5px; /* ラベルと入力要素の間にスペースを調整 */
+    }
+
+    .employee-filter select, .date-filter input {
+        width: 100%; /* フィルター要素の幅を100%にする */
+        padding: 8px;
+        font-size: 14px; /* フォントサイズを調整 */
+    }
+
+    .employee-filter label, .date-filter label {
+        margin-right: 0; /* モバイルビューではマージンを削除 */
+        margin-bottom: 0; /* ラベルと入力要素の間のスペース調整 */
+    }
+
     .reservation-list {
         padding: 10px;
     }
