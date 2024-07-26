@@ -31,7 +31,11 @@ const AdminHeader = () => {
         navigate("/adminlogin");
       }
     }
-    authAdmin()
+    if (cookie.admin == null) {
+      navigate("/")
+    } else {
+      authAdmin()
+    }
     // eslint-disable-next-line
   }, []);
 
