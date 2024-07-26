@@ -1,6 +1,8 @@
 // Import Modules
-import React, { useState, useEffect } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl.js';
 
 
@@ -15,15 +17,17 @@ function AdminLogin() {
     const [inputPassword, setInputPassword] = useState('');
     const [inputCid, setInputCid] = useState('');
     const [loginError, setLoginError] = useState('')
+    const [cookie, setCookie,] = useCookies();
 
     const handleChangeCid = (event) => { setInputCid(event.target.value); }
     const handleChangePassword = (event) => { setInputPassword(event.target.value) }
 
     useEffect(() => {
-        if (sessionStorage.getItem('AdName') !== null) {
-            navigate("/admin")
+        if (cookie.admin != null) {
+            navigate("/admin");
         }
-    }, [navigate])
+    }, [cookie, navigate])
+
 
     const loginAuth = async (event) => {
         event.preventDefault();
@@ -57,16 +61,24 @@ function AdminLogin() {
         const responce = await fetch(getApiUrl() + "/admin/login", requestData);
         const data = await responce.json();
         if (data.status === "Success") {
-            await sessionStorage.setItem('AdName', data.results.mail);
+            setCookie('admin', data.token, { path: '/' });
             setLoginError("")
             navigate("/admin")
+        } else if (data.status === "Denied") {
+            setLoginError("権限がありません。")
+        } else if (data.status === "NotExist") {
+            setLoginError("IDまたはパスワードが間違っています")
         } else {
-            setLoginError("正しいIDまたは、パスワードを入力してください。")
+            setLoginError("エラーが発生しました。")
         }
     }
     return (
         <>
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/adminLogin">管理者ログイン</a>
+            </div>
             <div className="form-container">
                 <h2 className="admform-title">従業員専用ログイン</h2>
 

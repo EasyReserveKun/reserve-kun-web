@@ -27,7 +27,10 @@ function Faq() {
     return (
         <div>
             <Header />
-
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/faq">よくある質問</a>
+            </div>
             <div className='faq-container'>
                 <h3>よくある質問</h3>
 

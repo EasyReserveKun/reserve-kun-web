@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
 import '../common/Form.css';
 import '../common/AdminPage.css';
@@ -8,6 +9,7 @@ import Warn from '../common/Warn';
 import LoadingSpinner from '../LoadingSpinner';
 
 function AdminOpen() {
+
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
     const [employeeId, setEmployeeId] = useState('');
@@ -15,6 +17,7 @@ function AdminOpen() {
     const [warnText, setWarnText] = useState("");
     const [showWarn, setShowWarn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [cookie, ,] = useCookies()
 
     const fetchReservedTimes = useCallback(async () => {
         const requestData = {
@@ -30,7 +33,6 @@ function AdminOpen() {
             if (response.ok) {
                 const data = await response.json();
                 setReservedTimes(data);
-                console.log('Reserved times:', data); // デバッグ用
             } else {
                 console.error('Fetch Error:', response.statusText);
                 setReservedTimes([]); // Fetchが失敗した場合はreservedTimesをクリア
@@ -129,10 +131,14 @@ function AdminOpen() {
         );
     };
 
-    if (!(sessionStorage.getItem('AdName') == null)) {
+    if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />
+                <div className='homeLink'>
+                    <a href="/admin">ホーム&gt;</a>
+                    <a href="/admin/open">停止の解除</a>
+                </div>
                 {isLoading && <LoadingSpinner />}
                 <form className="admin-form">
                     <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />

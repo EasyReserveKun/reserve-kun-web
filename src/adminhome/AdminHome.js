@@ -1,12 +1,19 @@
 import React from 'react';
+import { useCookies } from 'react-cookie';
 import './AdminHome.css';
 import AdmHeader from '../common/AdminHeader';
 
 const EmployeePortalHome = () => {
-  if (!(sessionStorage.getItem('AdName') == null)) {
+  const [cookie, ,] = useCookies();
+
+
+  if (cookie.admin != null) {
     return (
       <>
         <AdmHeader />
+        <div className='homeLink'>
+          <a href="/admin">ホーム&gt;</a>
+        </div>
         <div className="employee-portal-home">
           <main className="admmain-content">
             <section className="welcome-section">

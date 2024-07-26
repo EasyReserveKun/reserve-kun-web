@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
 import Header from './common/Header.js';
 import Footer from './common/Footer.js';
 import Toolbar from './common/Toolbar.js';
@@ -16,22 +17,31 @@ function ReserveCheck() {
     const [activeTab, setActiveTab] = useState('current'); // 初期値として「本日以降の予約」を表示
     const [showDeleteModal, setShowDeleteModal] = useState(false); // 確認モーダルの表示状態を管理
     const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報を保持
+    const [cookie, , removeCookie] = useCookies();
 
     useEffect(() => {
-
-        if (sessionStorage.getItem('AccountName') == null) {
-            navigate("/")
+        // ログイン状態でなければホームへ
+        if (cookie.token == null) {
+            navigate("/login");
         }
 
+        // ログイン認証
         const fetchData = async () => {
             const requestData = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ cid: sessionStorage.getItem('AccountMail') })
+                body: JSON.stringify({ token: cookie.token })
             };
+            const response = await fetch(getApiUrl() + "/auth/customer", requestData);
+            const data = await response.json();
+            if (data.status === "Denied") {
+                removeCookie('token', { path: '/' });
+                navigate("/");
+            }
 
+            // 予約の確認
             try {
                 const response = await fetch(getApiUrl() + "/reserve/check", requestData);
                 const jsonData = await response.json();
@@ -51,7 +61,8 @@ function ReserveCheck() {
 
         fetchData();
 
-    }, [navigate]);
+    }, [cookie.token, navigate, removeCookie]);
+
 
     const returnReserve = () => {
         navigate('/');
@@ -105,6 +116,10 @@ function ReserveCheck() {
     return (
         <div className="reserve-check-container">
             <Header />
+            <div className='homeLink'>
+                <a href="/">ホーム&gt;</a>
+                <a href="/reserveCheck">予約確認/変更/キャンセル</a>
+            </div>
             <main className="main-content">
                 {loading ? (
                     <p>データを読み込んでいます...</p>

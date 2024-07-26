@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import AdmHeader from '../common/AdminHeader';
 import './AdminList.css';
 import { getApiUrl } from '../GetApiUrl';
@@ -7,7 +8,18 @@ const ReservationList = () => {
     const [reservations, setReservations] = useState({ upcoming: [] });
     const [loading, setLoading] = useState(true);
     const [employeeFilter, setEmployeeFilter] = useState('all');
-    const [selectedDate, setSelectedDate] = useState('');
+
+    // 今日の日付を初期値として設定
+    const getTodayDate = () => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const date = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${date}`;
+    };
+
+    const [selectedDate, setSelectedDate] = useState(getTodayDate());
+    const [cookie, ,] = useCookies();
 
     const fetchData = async (employeeFilter, selectedDate) => {
         const requestData = {
@@ -20,15 +32,11 @@ const ReservationList = () => {
 
         try {
             const response = await fetch(getApiUrl() + "/reserve/employeeCheck", requestData);
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const jsonData = await response.json();
-            console.log(jsonData);
-
-            // 予約データをフィルタリング
             const upcomingReservations = jsonData.filter(item => item.date);
 
             if (selectedDate) {
@@ -49,26 +57,28 @@ const ReservationList = () => {
     }, [employeeFilter, selectedDate]);
 
     const handleDateChange = (event) => {
-        const selected = event.target.value;
-        setSelectedDate(selected);
+        setSelectedDate(event.target.value);
     };
 
-    if (sessionStorage.getItem('AdName')) {
+    if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />
+                <div className='homeLink'>
+                    <a href="/admin">ホーム&gt;</a>
+                    <a href="/admin/list">予約一覧</a>
+                </div>
                 <div className="reservation-list">
                     <div className="filters-container">
                         <div className="filter-group employee-filter">
                             <div className="filter-group date-filter">
                                 <label htmlFor="date-filter">日付選択：</label>
-                                <input
-                                    type="date"
-                                    id="date-filter"
-                                    value={selectedDate}
-                                    onChange={handleDateChange}
-                                />
-                            </div>
+                            <input
+                                type="date"
+                                id="date-filter"
+                                value={selectedDate}
+                                onChange={handleDateChange}
+                            />
                             <label htmlFor="employee-filter">従業員選択：</label>
                             <select
                                 id="employee-filter"
@@ -84,29 +94,30 @@ const ReservationList = () => {
                             </select>
                         </div>
                     </div>
-
-                    {loading && <p className="loading">Loading...</p>}
-
-
-                    <div className="reservation-section">
-                        <h2>予約</h2>
-                        {reservations.upcoming.length > 0 ? (
-                            <div className="reservation-items-container">
-                                {reservations.upcoming.map((reservation, index) => (
-                                    <div key={index} className="reservation-item">
-                                        <p><span className="label">日付：</span><span className="value">{reservation.date}</span></p>
-                                        <p><span className="label">時間：</span><span className="value">{reservation.time}</span></p>
-                                        <p><span className="label">従業員名：</span><span className="value">{reservation.ename}</span></p>
-                                        <p><span className="label">顧客名：</span><span className="value">{reservation.cname}</span></p>
-                                        <p><span className="label">連絡先：</span><span className="value">{reservation.cid}</span></p>
-                                        <p><span className="label">備考欄：</span><span className="value">{reservation.etc}</span></p>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <p>予約はありません。</p>
-                        )}
-                    </div>
+                </div>
+                    {loading ? (
+                        <p className="loading">Loading...</p>
+                    ) : (
+                        <div className="reservation-section">
+                            <h2>予約</h2>
+                            {reservations.upcoming.length > 0 ? (
+                                <div className="reservation-items-container">
+                                    {reservations.upcoming.map((reservation, index) => (
+                                        <div key={index} className="reservation-item">
+                                            <p><span className="label">日付：</span><span className="value">{reservation.date}</span></p>
+                                            <p><span className="label">時間：</span><span className="value">{reservation.time}</span></p>
+                                            <p><span className="label">従業員名：</span><span className="value">{reservation.ename}</span></p>
+                                            <p><span className="label">顧客名：</span><span className="value">{reservation.cname}</span></p>
+                                            <p><span className="label">連絡先：</span><span className="value">{reservation.cid}</span></p>
+                                            <p><span className="label">備考欄：</span><span className="value">{reservation.etc}</span></p>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p>予約はありません。</p>
+                            )}
+                        </div>
+                    )}
                 </div>
             </>
         );

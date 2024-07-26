@@ -1,6 +1,7 @@
 // Import Modules
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
 import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
@@ -23,6 +24,8 @@ const SignUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [codeError, setCodeError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [cookie, ,] = useCookies();
+
 
   const handleChangeName = (event) => { setInputName(event.target.value); }
   const handleChangeEmail = (event) => { setInputEmail(event.target.value); }
@@ -31,10 +34,10 @@ const SignUp = () => {
   const handleChangePasswordCheck = (event) => { setInputPasswordCheck(event.target.value); }
 
   useEffect(() => {
-    if (sessionStorage.getItem('AccountName') !== null) {
-      navigate("/")
+    if (cookie.token != null) {
+      navigate("/");
     }
-  }, [navigate])
+  }, [navigate, cookie.token])
 
   const signupAuth = async (event) => {
     event.preventDefault();
@@ -150,6 +153,10 @@ const SignUp = () => {
   return (
     <>
       <Header />
+      <div className='homeLink'>
+        <a href="/">ホーム&gt;</a>
+        <a href="/signup">新規登録</a>
+      </div>
       {isLoading && <LoadingSpinner />}
       <div className="form-container">
         <h2 className="form-title">新規登録</h2>

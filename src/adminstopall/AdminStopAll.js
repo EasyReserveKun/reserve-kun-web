@@ -1,6 +1,5 @@
-// StopReservation.js
-
 import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
 import Warn from '../common/Warn';
 import './AdminStopAll.css';
@@ -11,6 +10,7 @@ function AdminStopAll() {
     const [employeeId, setEmployeeId] = useState('');
     const [warnText, setWarnText] = useState('');
     const [showWarn, setShowWarn] = useState(false);
+    const [cookie, ,] = useCookies();
 
     const stopAll = async () => {
         const requestData = {
@@ -39,11 +39,15 @@ function AdminStopAll() {
         const selectedEmployeeId = event.target.value;
         setEmployeeId(selectedEmployeeId);
     };
-    if (sessionStorage.getItem('AdName') !== null) {
 
+    if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />
+                <div className='homeLink'>
+                    <a href="/admin">ホーム&gt;</a>
+                    <a href="/admin/closeall">受付の即時停止</a>
+                </div>
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <div className="batch-form-container">
                     <form className="batch-form">

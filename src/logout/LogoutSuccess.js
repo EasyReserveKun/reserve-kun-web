@@ -1,6 +1,7 @@
 // Import Modules
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
 
 // Import StyleSheets
 import '../App.css';
@@ -13,11 +14,11 @@ import Footer from '../common/Footer';
 
 function LogoutSuccess() {
   const navigate = useNavigate('');
+  const [, , removeCookie] = useCookies();
 
   useEffect(() => {
-    sessionStorage.removeItem("AccountName");
-    sessionStorage.removeItem("AccountMail");
-  }, []);
+    removeCookie('token', { path: '/' });
+  }, [removeCookie]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

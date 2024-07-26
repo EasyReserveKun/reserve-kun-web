@@ -1,5 +1,6 @@
 // Import Modules
 import React, { useState } from 'react';
+import { useCookies } from 'react-cookie'
 import { getApiUrl } from '../../GetApiUrl';
 
 // Import StyleSheets
@@ -15,6 +16,7 @@ function Search(props) {
   const reservedTimes = props.reservedTimes;
   const [warnText, setWarnText] = useState("")
   const [showWarn, setShowWarn] = useState(false)
+  const [cookie, ,] = useCookies();
 
   const sendReserve = async (event) => {
 
@@ -45,7 +47,7 @@ function Search(props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ date: props.date, eid: props.category, cid: sessionStorage.getItem('AccountMail'), time: time, etc: etc })
+      body: JSON.stringify({ date: props.date, time: time, eid: props.category, token: cookie.token, etc: etc })
     }
     const responce = await fetch(getApiUrl() + "/reserve/insert", requestData);
     const data = await responce.json();
@@ -55,12 +57,15 @@ function Search(props) {
       props.setShowWarn(true);
       props.setShow(false);
     } else if (data.status === "Duplicated") {
-      await setWarnText("その時間はすでに予約されました");
+      setWarnText("その時間はすでに予約されました");
       setShowWarn(true);
     } else if (data.status === "Doubled") {
-      await setWarnText("その時間はあなたはすでに予約しています");
+      setWarnText("その時間はあなたはすでに予約しています");
       setShowWarn(true);
-
+    } else if (data.status === "Denied") {
+      props.setShow(false);
+      props.setWarnText("アカウントが確認できませんでした。一度ログアウトしてお試しください。");
+      props.setShowWarn(true);
     }
   }
 
