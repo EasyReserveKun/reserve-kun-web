@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
 import '../common/Form.css';
 import '../common/AdminPage.css';
@@ -14,6 +15,7 @@ function AdminClose() {
     const [warnText, setWarnText] = useState("");
     const [showWarn, setShowWarn] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [cookie, ,] = useCookies();
 
     const fetchReservedTimes = useCallback(async () => {
         const requestData = {
@@ -29,7 +31,6 @@ function AdminClose() {
             if (response.ok) {
                 const data = await response.json();
                 setReservedTimes(data);
-                console.log('Reserved times:', data); // デバッグ用
             } else {
                 console.error('Fetch Error:', response.statusText);
                 setReservedTimes([]); // Fetchが失敗した場合はreservedTimesをクリア
@@ -80,7 +81,6 @@ function AdminClose() {
 
         const response = await fetch(getApiUrl() + "/employee/stop", requestData);
         const data = await response.json();
-        console.log(requestData);
 
         setIsLoading(false);
 
@@ -139,7 +139,7 @@ function AdminClose() {
         );
     };
 
-    if (!(sessionStorage.getItem('AdName') == null)) {
+    if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />

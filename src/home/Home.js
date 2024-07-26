@@ -1,5 +1,7 @@
 // Import Modules
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useCookies } from 'react-cookie'
+import { getApiUrl } from '../GetApiUrl.js';
 
 // Import StyleSheets
 import '../App.css';
@@ -7,8 +9,7 @@ import '../App.css';
 // Import Components
 import Header from '../common/Header.js';
 import Toolbar from '../common/Toolbar.js'
-import Footer from '../common/Footer.js'; // eslint-disable-next-line
-import DebugSession from '../common/DebugSession.js';
+import Footer from '../common/Footer.js';
 import Search from './components/Search.js'
 import ContentItem from './components/ContentItem';
 import ServiceDescription from './components/ServiceDescription';
@@ -16,6 +17,34 @@ import Chat from './components/Chat';
 
 function Home() {
   const searchRef = useRef(null);
+  const [cookie, , removeCookie] = useCookies();
+
+  useEffect(() => {
+    if (cookie.token) {
+      // eslint-disable-next-line
+      const authToken = async () => {
+        const requestData = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token: cookie.token })
+        };
+        try {
+          const response = await fetch(getApiUrl() + "/auth/customer", requestData);
+          const data = await response.text();
+          if (data.status === "Denied") {
+            removeCookie('token', { path: '/' });
+          }
+
+        } catch (error) {
+          ;
+        }
+      }
+    }
+  }, [cookie.token, removeCookie])
+
+
 
   const scrollToSearch = () => {
     if (searchRef.current) {

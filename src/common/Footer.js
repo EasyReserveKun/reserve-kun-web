@@ -1,11 +1,14 @@
 // Import Modules
 import React from 'react';
+import { useCookies } from 'react-cookie'
 
 // Import StyleSheets
 import './Footer.css';
 
 const Footer = () => {
-    if (sessionStorage.getItem('AccountName') !== null) {
+    const [cookie, ,] = useCookies();
+
+    if (cookie.token) {
         return (
             <footer>
                 <ul className='footer-menu'>
@@ -18,7 +21,7 @@ const Footer = () => {
                     <li><a href="/logout">ログアウト</a></li>
                 </ul>
                 <p className="copyright">
-                    &copy; 2024 YourWebsite.com | Designed by AIBS
+                    &copy; 2024 EasyReserveKun | Designed by AIBS
                 </p>
             </footer>
         );
@@ -37,7 +40,7 @@ const Footer = () => {
                     <li><a href="/login">ログイン</a>　</li>
                 </ul>
                 <p className="copyright">
-                    &copy; 2024 YourWebsite.com | Designed by AIBS
+                    &copy; 2024 EasyReserveKun | Designed by AIBS
                 </p>
             </footer>
         );
