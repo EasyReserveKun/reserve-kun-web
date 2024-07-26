@@ -1,11 +1,13 @@
 //Import Modules
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
 
 // Import StyleSheets
 import './Toolbar.css';
 
-const Toolbar = ( {onClick} ) => {
+const Toolbar = ({ onClick }) => {
+  const [cookie, ,] = useCookies();
   let navigate = useNavigate();
 
   // スクロール位置を監視するための state
@@ -44,16 +46,16 @@ const Toolbar = ( {onClick} ) => {
 
 
   return (
-      <div className="toolbar-container">
-        {sessionStorage.getItem('AccountName') !== null ? (
-            <button className='reserve-button' onClick={onClick}>今すぐ予約する！</button>
-        ) : (
-          <button className='reserve-button' onClick={goToLogin}>今すぐ予約する！</button>
-        )}
+    <div className="toolbar-container">
+      {cookie.token ? (
+        <button className='reserve-button' onClick={onClick}>今すぐ予約する！</button>
+      ) : (
+        <button className='reserve-button' onClick={goToLogin}>今すぐ予約する！</button>
+      )}
       {showScrollButton && (
         <button className="scroll-to-top-button" onClick={scrollToTop} title="ページの一番上に戻る">Top</button>
       )}
-      </div>
+    </div>
   );
 };
 

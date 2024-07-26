@@ -1,6 +1,7 @@
 // Import Modules
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
@@ -16,15 +17,17 @@ const LoginForm = () => {
   const [inputCid, setInputCid] = useState('');
   const [inputPassword, setInputPassword] = useState('')
   const [loginError, setLoginError] = useState('')
+  const [cookie, setCookie,] = useCookies();
 
   const handleChangeCid = (event) => { setInputCid(event.target.value); }
   const handleChangePassword = (event) => { setInputPassword(event.target.value) }
 
   useEffect(() => {
-    if (sessionStorage.getItem('AccountName') !== null) {
-      navigate("/")
+    if (cookie.token != null) {
+      navigate("/");
     }
-  }, [navigate])
+  }, [navigate, cookie.token])
+
 
   const loginAuth = async (event) => {
     event.preventDefault();
@@ -48,7 +51,6 @@ const LoginForm = () => {
       return null;
     }
 
-
     let requestData = {
       method: 'POST',
       headers: {
@@ -58,14 +60,16 @@ const LoginForm = () => {
     }
     const responce = await fetch(getApiUrl() + "/customer/login", requestData);
     const data = await responce.json();
-
     if (data.status === "Success") {
-      await sessionStorage.setItem('AccountName', data.results.name);
-      await sessionStorage.setItem('AccountMail', data.results.mail);
+      setCookie('token', data.token, { path: '/' });
       setLoginError("")
       navigate("/")
-    } else {
+    } else if (data.status === "Denied") {
+      setLoginError("権限がありません")
+    } else if (data.status === "NotFound") {
       setLoginError("IDまたはパスワードが間違っています")
+    } else {
+      setLoginError("エラーが発生しました")
     }
   }
 
