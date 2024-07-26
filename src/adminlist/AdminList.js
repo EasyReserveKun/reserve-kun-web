@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import AdmHeader from '../common/AdminHeader';
 import './AdminList.css';
 import { getApiUrl } from '../GetApiUrl';
@@ -8,6 +9,7 @@ const ReservationList = () => {
     const [loading, setLoading] = useState(true);
     const [employeeFilter, setEmployeeFilter] = useState('all');
     const [selectedDate, setSelectedDate] = useState('');
+    const [cookie, ,] = useCookies();
 
     const fetchData = async (employeeFilter, selectedDate) => {
         const requestData = {
@@ -26,7 +28,6 @@ const ReservationList = () => {
             }
 
             const jsonData = await response.json();
-            console.log(jsonData);
 
             // 予約データをフィルタリング
             const upcomingReservations = jsonData.filter(item => item.date);
@@ -53,7 +54,7 @@ const ReservationList = () => {
         setSelectedDate(selected);
     };
 
-    if (sessionStorage.getItem('AdName')) {
+    if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />
@@ -87,7 +88,7 @@ const ReservationList = () => {
 
                     {loading && <p className="loading">Loading...</p>}
 
-                    
+
                     <div className="reservation-section">
                         <h2>予約</h2>
                         {reservations.upcoming.length > 0 ? (

@@ -60,7 +60,6 @@ const LoginForm = () => {
     const responce = await fetch(getApiUrl() + "/customer/login", requestData);
     const data = await responce.json();
     if (data.status === "Success") {
-      console.log(data.status)
       setCookie('token', data.token, { path: '/' });
       setLoginError("")
       navigate("/")

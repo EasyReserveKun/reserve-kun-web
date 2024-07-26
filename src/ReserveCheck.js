@@ -34,7 +34,7 @@ function ReserveCheck() {
                 },
                 body: JSON.stringify({ token: cookie.token })
             };
-            const response = await fetch(getApiUrl() + "/reserve/check", requestData);
+            const response = await fetch(getApiUrl() + "/auth/customer", requestData);
             const data = await response.json();
             if (data.status === "Denied") {
                 removeCookie('token', { path: '/' });

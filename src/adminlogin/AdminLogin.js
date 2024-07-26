@@ -1,6 +1,7 @@
 // Import Modules
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl.js';
 
 
@@ -15,9 +16,16 @@ function AdminLogin() {
     const [inputPassword, setInputPassword] = useState('');
     const [inputCid, setInputCid] = useState('');
     const [loginError, setLoginError] = useState('')
+    const [cookie, setCookie,] = useCookies();
 
     const handleChangeCid = (event) => { setInputCid(event.target.value); }
     const handleChangePassword = (event) => { setInputPassword(event.target.value) }
+
+    useEffect(() => {
+        if (cookie.admin != null) {
+            navigate("/admin");
+        }
+    }, [cookie, navigate])
 
 
     const loginAuth = async (event) => {
@@ -52,11 +60,15 @@ function AdminLogin() {
         const responce = await fetch(getApiUrl() + "/admin/login", requestData);
         const data = await responce.json();
         if (data.status === "Success") {
-            await sessionStorage.setItem('AdName', data.results.mail);
+            setCookie('admin', data.token, { path: '/' });
             setLoginError("")
             navigate("/admin")
-        } else {
+        } else if (data.status === "Denied") {
+            setLoginError("権限がありません。")
+        } else if (data.status === "NotExist") {
             setLoginError("正しいIDまたは、パスワードを入力してください。")
+        } else {
+            setLoginError("エラーが発生しました。")
         }
     }
     return (

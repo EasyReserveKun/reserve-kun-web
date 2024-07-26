@@ -32,7 +32,6 @@ function Search(props) {
     }
     const responce = await fetch(getApiUrl() + "/reserve/insert", requestData);
     const data = await responce.json();
-    console.log(data.status)
     setIsLoading(false);
 
     if (data.status === "Success") {
