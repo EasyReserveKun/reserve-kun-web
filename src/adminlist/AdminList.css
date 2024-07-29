@@ -133,3 +133,14 @@
         padding: 8px;
     }
 }
+
+
+
+.delete-button.disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.delete-button:disabled {
+    opacity: 0.6;
+}
