@@ -81,7 +81,7 @@ function AdminClose() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ date, eid: employeeId, time, cid: sessionStorage.getItem('AdName') })
+            body: JSON.stringify({ date, eid: employeeId, time, token:cookie.admin })
         };
 
         const response = await fetch(getApiUrl() + "/employee/stop", requestData);
