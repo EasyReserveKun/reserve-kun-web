@@ -115,7 +115,7 @@ const AdminHeader = () => {
           <span></span>
         </div>
         {adminMenuOpen && (
-          <nav className="menu">
+          <nav className="admin-navigation">
             <ul>
               <li><a href="/admin">ホーム画面</a></li>
               <li>
