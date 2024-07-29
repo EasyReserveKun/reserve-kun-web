@@ -20,27 +20,27 @@ function Home() {
   const [cookie, , removeCookie] = useCookies();
 
   useEffect(() => {
-    if (cookie.token) {
-      // eslint-disable-next-line
-      const authToken = async () => {
-        const requestData = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ token: cookie.token })
-        };
-        try {
-          const response = await fetch(getApiUrl() + "/auth/customer", requestData);
-          const data = await response.text();
-          if (data.status === "Denied") {
-            removeCookie('token', { path: '/' });
-          }
-
-        } catch (error) {
-          ;
+    const authToken = async () => {
+      const requestData = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: cookie.token })
+      };
+      try {
+        const response = await fetch(getApiUrl() + "/auth/customer", requestData);
+        const data = await response.json();
+        if (data.status === "Denied") {
+          removeCookie('token', { path: '/' });
         }
+
+      } catch (error) {
+        ;
       }
+    }
+    if (cookie.token) {
+      authToken();
     }
   }, [cookie.token, removeCookie])
 
