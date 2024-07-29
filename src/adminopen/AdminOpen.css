@@ -1,0 +1,43 @@
+/* データテーブルコンテナのスタイル */
+.data-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1000px; /* テーブルの最大幅を設定 */
+}
+
+/* テーブル全体のスタイル */
+.data-table {
+    width: 100%;
+    border-collapse: collapse; /* セルの境界線を重ねて表示 */
+    margin: 20px 0; /* 上下のマージン */
+}
+
+/* テーブルヘッダーのスタイル */
+.data-table thead {
+    background-color: #f4f4f4; /* ヘッダーの背景色 */
+}
+
+.data-table th {
+    padding: 10px; /* ヘッダーのセルのパディング */
+    text-align: left; /* テキストを左揃え */
+    border-bottom: 2px solid #ddd; /* 下の境界線 */
+}
+
+/* テーブルボディのスタイル */
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* 偶数行の背景色 */
+}
+
+.data-table td {
+    padding: 10px; /* セルのパディング */
+    border-bottom: 1px solid #ddd; /* 下の境界線 */
+}
+
+/* テーブルのセルの境界線を細くし、ホバー時に色を変更 */
+.data-table td, .data-table th {
+    border: 1px solid #ddd;
+}
+
+.data-table tr:hover {
+    background-color: #f1f1f1; /* ホバー時の行の背景色 */
+}
