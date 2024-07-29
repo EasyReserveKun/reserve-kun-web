@@ -44,7 +44,6 @@ const Header = () => {
           console.error('Fetch Error:', error);
         }
       };
-
       fetchUserName();
     }
   }, [cookie.token]);
@@ -85,10 +84,10 @@ const Header = () => {
 
       if (data.status === "Success") {
         removeCookie('token', { httpOnly: true, path: '/' });
-        await setWarnText("退会が完了しました。\n またのご利用お待ちしております。");
+        await setWarnText("退会が完了しました。またのご利用お待ちしております。");
         await setShowWarn(true);
       } else {
-        await setWarnText("エラーが発生し、退会の処理が行われませんでした。 \n もう一度最初からやり直してください。")
+        await setWarnText("エラーが発生し、退会の処理が行われませんでした。もう一度最初からやり直してください。")
         await setShowWarn(true);
       }
     } catch (error) {
