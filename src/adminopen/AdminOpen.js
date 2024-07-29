@@ -1,192 +1,139 @@
+// AdminOpen.js
 import React, { useState, useEffect, useCallback } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
 import '../common/Form.css';
-import '../common/AdminPage.css';
+import './AdminOpen.css';
+import StartComfirm from '../common/StartConfirm'; // 修正：StartConfirmのインポート
 
 import AdmHeader from '../common/AdminHeader';
-import Warn from '../common/Warn';
-import LoadingSpinner from '../LoadingSpinner';
 
 function AdminOpen() {
+    const [cookie] = useCookies();
+    const [data, setData] = useState([]); // データを保存するための状態
+    const [loading, setLoading] = useState(true); // データ取得中のローディング状態
+    const [error, setError] = useState(null); // エラーを保存するための状態
+    const [showConfirm, setShowConfirm] = useState(false); // モーダル表示の状態
+    const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報
 
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [employeeId, setEmployeeId] = useState('');
-    const [reservedTimes, setReservedTimes] = useState(['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00']);
-    const [warnText, setWarnText] = useState("");
-    const [showWarn, setShowWarn] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [cookie, ,] = useCookies()
+    // キャンセル操作を行う関数
+    const cancelReservation = async (date, time, eid) => {
+        const requestData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ date, time, eid }) // 必要な情報をリクエストボディに含める
+        };
 
+        try {
+            const response = await fetch(getApiUrl() + "/reserve/cancel", requestData);
+            if (response.ok) {
+                const data = await response.text();
+                console.log(data);
+                // キャンセル成功後にデータを再取得してテーブルを更新
+                fetchReservedTimes();
+                setShowConfirm(false); // モーダルを閉じる
+            } else {
+                throw new Error(response.statusText);
+            }
+        } catch (error) {
+            console.error('Cancel Error:', error);
+            setError(error); // エラーを状態に保存
+        }
+    };
+
+    // データ取得関数
     const fetchReservedTimes = useCallback(async () => {
         const requestData = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ date, eid: employeeId })
+            body: JSON.stringify({ })
         };
 
         try {
             const response = await fetch(getApiUrl() + "/reserve/unavailable", requestData);
             if (response.ok) {
-                const data = await response.json();
-                setReservedTimes(data);
+                const result = await response.json();
+                console.log(result);
+                // CSV文字列をパースして2次元配列に変換
+                const parsedData = result.map(item => item.split(','));
+                setData(parsedData); // データを状態に保存
+                setLoading(false); // ローディング状態を解除
             } else {
-                console.error('Fetch Error:', response.statusText);
-                setReservedTimes([]); // Fetchが失敗した場合はreservedTimesをクリア
+                throw new Error(response.statusText);
             }
         } catch (error) {
-            console.error('Fetch Error:', error);
-            setReservedTimes([]); // Fetchがエラーを投げた場合はreservedTimesをクリア
+            setError(error); // エラーを状態に保存
+            setLoading(false); // ローディング状態を解除
         }
-    }, [date, employeeId]);
+    }, []);
 
     useEffect(() => {
-        const fetchData = async () => {
-            if (date && employeeId) {
-                await fetchReservedTimes();
-            }
-        };
-        fetchData();
-    }, [date, employeeId, fetchReservedTimes]);
+        fetchReservedTimes(); // コンポーネントがマウントされたときにデータを取得
+    }, [fetchReservedTimes]);
 
-    const handleDateChange = (event) => {
-        const selectedDate = event.target.value;
-        setDate(selectedDate);
+    const handleCancelClick = (date, time, eid) => {
+        setSelectedReservation({ date, time, eid });
+        setShowConfirm(true); // モーダルを表示
     };
 
-    const handleEmployeeChange = (event) => {
-        const selectedEmployeeId = event.target.value;
-        setEmployeeId(selectedEmployeeId);
-    };
-
-    const handleTimeChange = (event) => {
-        setTime(event.target.value);
-    };
-
-    const stop = async () => {
-        if(date===""||employeeId===""||time===""){
-            setWarnText("入力情報を確認してください");
-            setShowWarn(true);
-            return null;
+    const handleConfirm = () => {
+        if (selectedReservation) {
+            cancelReservation(selectedReservation.date, selectedReservation.time, selectedReservation.eid);
         }
-        setIsLoading(true);
-        const requestData = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ date, eid: employeeId, time })
-        };
-
-        const response = await fetch(getApiUrl() + "/employee/reactivation", requestData);
-        const data = await response.text();
-
-
-        setIsLoading(false);
-        setWarnText(data);
-        setShowWarn(true);
-        await fetchReservedTimes();
     };
 
-    const renderTimeButtons = () => {
-        const buttons = [];
-
-        for (let hour = 10; hour <= 19; hour++) {
-            const timeSlot = `${hour}:00`;
-            const isReserved = reservedTimes.includes(timeSlot);
-            const buttonClass = isReserved ? 'red-button' : 'gray-button';
-
-            buttons.push(
-                <div key={hour} className="col-lg-2 col-md-3 col-4">
-                    <button
-                        type="button"
-                        onClick={handleTimeChange}
-                        className={buttonClass}
-                        value={timeSlot}
-                        disabled={!(isReserved)}
-                    >
-                        {timeSlot}～
-                    </button>
-                </div>
-            );
-        }
-
-        return (
-            <div className="row  custom-row">
-                {buttons}
-                <div className="col-lg-2 col-md-3 col-4">
-                    <button
-                        type="button"
-                        onClick={handleTimeChange}
-                        className="red-button"
-                        value="すべての時間"
-                    >
-                        すべて選択
-                    </button>
-                </div>
-            </div>
-        );
+    const handleCancel = () => {
+        setShowConfirm(false); // モーダルを閉じる
     };
 
     if (cookie.admin != null) {
         return (
             <>
                 <AdmHeader />
-                <div className='homeLink'>
-                    <a href="/admin">ホーム&gt;</a>
-                    <a href="/admin/open">停止の解除</a>
+                <div className="data-container">
+                    <h2>予約停止の管理</h2>
+                    {loading && <p>Loading...</p>}
+                    {error && <p>Error: {error.message}</p>}
+                    {data.length > 0 && (
+                        <table className="data-table">
+                            <thead>
+                                <tr>
+                                    <th>日付</th>
+                                    <th>時間</th>
+                                    <th>従業員</th>
+                                    <th>受付開始</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.map((row, index) => (
+                                    <tr key={index}>
+                                        <td>{row[0]}</td>
+                                        <td>{row[1]}</td>
+                                        <td>{row[7]}</td> {/* ここは従業員のデータに合わせてください */}
+                                        <td>
+                                            <button 
+                                                className="cancel-button" 
+                                                onClick={() => handleCancelClick(row[0], row[1], row[2])} // 日付、時間、従業員名を渡す
+                                            >
+                                                開始
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
-                {isLoading && <LoadingSpinner />}
-                <form className="admin-form">
-                    <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-                    <h2 className="batch-open-title">予約の停止を解除する</h2>
-                    <div className="form-group">
-                        <label htmlFor="date">日付:</label>
-                        <input
-                            type="date"
-                            id="date"
-                            value={date}
-                            onChange={handleDateChange}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="employeeId">従業員:</label>
-                        <select
-                            id="employeeId"
-                            value={employeeId}
-                            onChange={handleEmployeeChange}
-                            required
-                        >
-                            <option value="">選択してください</option>
-                            <option value="1">田中太郎</option>
-                            <option value="2">佐藤花子</option>
-                            <option value="3">鈴木一郎</option>
-                            <option value="4">高橋美咲</option>
-                            <option value="5">中村健太</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="time">時間:</label>
-                        <div className="col-13">
-                            <input
-                                type="text"
-                                id="time"
-                                name="time"
-                                value={time}
-                                placeholder="ボタンで時間を指定してください"
-                                className="form-control"
-                            />
-                        </div>
-                        <div className="row">
-                            {renderTimeButtons()}
-                        </div>
-                    </div>
-                    <button type="button" onClick={stop} className="opensubmit-button">予約停止の解除</button>
-                </form>
+                {showConfirm && (
+                    <StartComfirm
+                        onCancel={handleCancel}
+                        onConfirm={handleConfirm}
+                    />
+                )}
             </>
         );
     } else {
