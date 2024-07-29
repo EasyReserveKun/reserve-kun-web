@@ -134,13 +134,7 @@
     }
 }
 
-.delete-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+
 
 .delete-button.disabled {
     background-color: gray;
