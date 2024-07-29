@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie'
 import LogoutComfirm from './LogoutComfirm'; // 新しく追加
 import Warn from './Warn';
+import DeleteWarn from './DeleteWarn';
 import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
@@ -18,6 +19,8 @@ const Header = () => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [warnText, setWarnText] = useState("");
   const [showWarn, setShowWarn] = useState(false);
+  const [deleteWarnText, setDeleteWarnText] = useState("");
+  const [showDeleteWarn, setShowDeleteWarn] = useState(false);
   const [userName, setUserName] = useState("");
   const [cookie, , removeCookie] = useCookies();
 
@@ -82,13 +85,14 @@ const Header = () => {
       const responce = await fetch(getApiUrl() + "/customer/leave", requestData);
       const data = await responce.json();
 
+      setDeleteModal(false);
+
       if (data.status === "Success") {
-        removeCookie('token', { httpOnly: true, path: '/' });
-        await setWarnText("退会が完了しました。またのご利用お待ちしております。");
-        await setShowWarn(true);
+        setDeleteWarnText("退会が完了しました。またのご利用お待ちしております。");
+        setShowDeleteWarn(true);
       } else {
-        await setWarnText("エラーが発生し、退会の処理が行われませんでした。もう一度最初からやり直してください。")
-        await setShowWarn(true);
+        setWarnText("エラーが発生し、退会の処理が行われませんでした。もう一度最初からやり直してください。")
+        setShowWarn(true);
       }
     } catch (error) {
       console.error('Fetch Error:', error);
@@ -117,6 +121,10 @@ const Header = () => {
 
   const closeDeleteModal = () => {
     setDeleteModal(false);
+  }
+
+  const DeleteSuccess = () => {
+    removeCookie('token', { path: '/' });
   }
 
   if (cookie.token) {
@@ -189,6 +197,7 @@ const Header = () => {
           </div>
         )}
         <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
+        <DeleteWarn text={deleteWarnText} showWarn={showDeleteWarn} setShowWarn={setShowDeleteWarn} onDelete={DeleteSuccess} />
       </header>
     );
   } else {
