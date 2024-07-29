@@ -1,6 +1,7 @@
-// AdvisorProfile.js
-
+// Import Modules
 import React from 'react';
+
+//Import StyleSheets
 import './Advisor.css';
 
 function AdvisorProfile({ profile }) {
@@ -38,8 +39,8 @@ function AdvisorProfile({ profile }) {
                 <div className="testimonials">
                     {profile.testimonials.map((testimonial, index) => (
                         <blockquote key={index}>
-                            <p>{testimonial.comment}<br /> 
-                            - <strong>{testimonial.customer}</strong></p>
+                            <p>{testimonial.comment}<br />
+                                - <strong>{testimonial.customer}</strong></p>
                         </blockquote>
                     ))}
                 </div>

@@ -1,6 +1,11 @@
+// Import Modules
 import React from 'react';
 import { useCookies } from 'react-cookie';
+
+//Import StyleSheets
 import './AdminHome.css';
+
+//Import Component
 import AdmHeader from '../common/AdminHeader';
 
 const EmployeePortalHome = () => {

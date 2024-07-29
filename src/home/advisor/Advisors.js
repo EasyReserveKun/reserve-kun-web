@@ -1,4 +1,4 @@
-// home/advisor/advisors.js
+//Import Component
 import HanakoSato from './HanakoSato';
 import TaroTanaka from './TaroTanaka';
 import IchiroSuzuki from './IchiroSuzuki';
