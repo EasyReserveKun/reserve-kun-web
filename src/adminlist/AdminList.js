@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import AdmHeader from '../common/AdminHeader';
+import DeleteComfirm from '../common/DeleteComfirm'; // 修正したインポートパス
 import './AdminList.css';
 import { getApiUrl } from '../GetApiUrl';
 
 const ReservationList = () => {
-    const [reservations, setReservations] = useState({ upcoming: [] });
-    const [loading, setLoading] = useState(true);
-    const [employeeFilter, setEmployeeFilter] = useState('all');
-
-    // 今日の日付を初期値として設定
+    // 今日の日付を初期値として設定する関数
     const getTodayDate = () => {
         const today = new Date();
         const year = today.getFullYear();
@@ -18,8 +15,20 @@ const ReservationList = () => {
         return `${year}-${month}-${date}`;
     };
 
+    // 今日の日付が過去かどうかをチェックする関数
+    const isPastDate = (date) => {
+        const today = new Date();
+        const inputDate = new Date(date);
+        return inputDate < today;
+    };
+
+    const [reservations, setReservations] = useState({ upcoming: [] });
+    const [loading, setLoading] = useState(true);
+    const [employeeFilter, setEmployeeFilter] = useState('all');
     const [selectedDate, setSelectedDate] = useState(getTodayDate());
     const [cookie, ,] = useCookies();
+    const [showDeleteModal, setShowDeleteModal] = useState(false); // モーダルの表示状態
+    const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報
 
     const fetchData = async (employeeFilter, selectedDate) => {
         const requestData = {
@@ -60,6 +69,38 @@ const ReservationList = () => {
         setSelectedDate(event.target.value);
     };
 
+    const openDeleteModal = (reservation) => {
+        setSelectedReservation(reservation);
+        setShowDeleteModal(true);
+    };
+
+    const closeDeleteModal = () => {
+        setShowDeleteModal(false);
+    };
+
+    const cancelReservation = async () => {
+        const { date, time, eid } = selectedReservation;
+        const requestData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ date, time, eid })
+        };
+
+        try {
+            const response = await fetch(getApiUrl() + "/reserve/cancel", requestData);
+            if (response.ok) {
+                fetchData(employeeFilter, selectedDate);
+                closeDeleteModal();
+            } else {
+                console.error('キャンセルに失敗しました');
+            }
+        } catch (error) {
+            console.error('Fetch Error:', error);
+        }
+    };
+
     if (cookie.admin != null) {
         return (
             <>
@@ -73,28 +114,28 @@ const ReservationList = () => {
                         <div className="filter-group employee-filter">
                             <div className="filter-group date-filter">
                                 <label htmlFor="date-filter">日付選択：</label>
-                            <input
-                                type="date"
-                                id="date-filter"
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                            />
-                            <label htmlFor="employee-filter">従業員選択：</label>
-                            <select
-                                id="employee-filter"
-                                onChange={e => setEmployeeFilter(e.target.value)}
-                                value={employeeFilter}
-                            >
-                                <option value="all">全員</option>
-                                <option value="1">田中太郎</option>
-                                <option value="2">佐藤花子</option>
-                                <option value="3">鈴木一郎</option>
-                                <option value="4">高橋美咲</option>
-                                <option value="5">中村健太</option>
-                            </select>
+                                <input
+                                    type="date"
+                                    id="date-filter"
+                                    value={selectedDate}
+                                    onChange={handleDateChange}
+                                />
+                                <label htmlFor="employee-filter">従業員選択：</label>
+                                <select
+                                    id="employee-filter"
+                                    onChange={e => setEmployeeFilter(e.target.value)}
+                                    value={employeeFilter}
+                                >
+                                    <option value="all">全員</option>
+                                    <option value="1">田中太郎</option>
+                                    <option value="2">佐藤花子</option>
+                                    <option value="3">鈴木一郎</option>
+                                    <option value="4">高橋美咲</option>
+                                    <option value="5">中村健太</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
                     {loading ? (
                         <p className="loading">Loading...</p>
                     ) : (
@@ -110,6 +151,19 @@ const ReservationList = () => {
                                             <p><span className="label">顧客名：</span><span className="value">{reservation.cname}</span></p>
                                             <p><span className="label">連絡先：</span><span className="value">{reservation.cid}</span></p>
                                             <p><span className="label">備考欄：</span><span className="value">{reservation.etc}</span></p>
+                                            <button
+                                                className={`delete-button ${isPastDate(reservation.date) ? 'disabled' : ''}`}
+                                                onClick={() => !isPastDate(reservation.date) && openDeleteModal(reservation)}
+                                                disabled={isPastDate(reservation.date)}
+                                            >
+                                                キャンセル
+                                            </button>
+                                            {showDeleteModal && (
+                                                <DeleteComfirm
+                                                    onCancel={closeDeleteModal}
+                                                    onConfirm={cancelReservation}
+                                                />
+                                            )}
                                         </div>
                                     ))}
                                 </div>
