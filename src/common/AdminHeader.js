@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Dropdown from 'react-bootstrap/Dropdown';
 import '../common/AdminHeader.css';
 import LogoutComfirm from './LogoutComfirm';
 import { getApiUrl } from '../GetApiUrl';
@@ -11,6 +8,9 @@ import { getApiUrl } from '../GetApiUrl';
 const AdminHeader = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [adminDataOpen, setAdminDataOpen] = useState(false);
+  const [adminMenuOpen, setAdminMenuOpen] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  const [accountName, setAccountName] = useState("");
   const [cookie, , removeCookie] = useCookies();
   const navigate = useNavigate();
   const location = useLocation();
@@ -48,8 +48,49 @@ const AdminHeader = () => {
     }
   }, [location]);
 
+  useEffect(() => {
+    if (cookie.admin) {
+      const fetchAccountName = async () => {
+        const requestData = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token: cookie.admin })
+        };
+
+        try {
+          const response = await fetch(getApiUrl() + "/customer/getname", requestData);
+          const data = await response.json();
+          if (data.status === "Success") {
+            setAccountName(data.name);
+          }
+        } catch (error) {
+          console.error('Fetch Error:', error);
+        }
+      }
+      fetchAccountName();
+    };
+  }, [cookie.admin]);
+
+
+  const adminMenu = () => {
+    setAdminMenuOpen(!adminMenuOpen);
+    if (!adminMenuOpen) {
+      setAdminDataOpen(false);
+    }
+  };
+
+  const adminSubMenu = (e) => {
+    e.stopPropagation();
+    setSubMenuOpen(!subMenuOpen);
+  };
+
   const adminData = () => {
     setAdminDataOpen(!adminDataOpen)
+    if (!adminDataOpen) {
+      setAdminMenuOpen(false);
+    }
   }
 
   const openLogoutModal = () => {
@@ -65,43 +106,46 @@ const AdminHeader = () => {
     navigate("/logout");
   };
 
-  const accountName = sessionStorage.getItem('AccountName');
-
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
-      <div className="admlogo">
-        <img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" />
+    <header className='admin-header'>
+      <div className="menu-admin" onClick={adminMenu}>
+        <div className={`hamburger ${adminMenuOpen ? 'open' : ''}`}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        {adminMenuOpen && (
+          <nav className="menu">
+            <ul>
+              <li><a href="/admin">ホーム画面</a></li>
+              <li>
+                <div role="button" onClick={adminSubMenu} className="menu-item">予約管理</div>
+                <ul className={`sub-menu ${subMenuOpen ? 'open' : ''}`}>
+                  <li><a href="/admin/close">予約停止 (日時選択)</a></li>
+                  <li><a href="/admin/open">予約停止の解除 (日時選択)</a></li>
+                  <li><a href="/admin/closeall">予約即時停止</a></li>
+                  <li><a href="/admin/openall">予約即時停止の解除</a></li>
+                </ul>
+              </li>
+              <li><a href="/admin/list">予約一覧表示</a></li>
+            </ul>
+          </nav>
+        )}
       </div>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Link href="/admin">Home</Nav.Link>
+      <div className="admim-logo">
+        <a href='/admin'><img src={`${process.env.PUBLIC_URL}/image/ace-logo.png`} alt="Logo" /></a>
+      </div>
 
-          <Dropdown>
-            <Dropdown.Toggle variant="dark" id="dropdown-basic" className='adminheader-dropdown'>
-              予約管理
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item href="/admin/close">予約停止 (日時選択)</Dropdown.Item>
-              <Dropdown.Item href="/admin/open">予約停止の解除 (日時選択)</Dropdown.Item>
-              <Dropdown.Item href="/admin/closeall">予約即時停止</Dropdown.Item>
-              <Dropdown.Item href="/admin/openall">予約即時停止の解除</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-
-          <Nav.Link href="/admin/list">予約一覧表示</Nav.Link>
-          <Nav.Link className="bi bi-person-circle admin-icon" onClick={adminData}></Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
+      <button className="bi bi-person-circle admin-icon" onClick={adminData}></button>
 
       {adminDataOpen && (
-        <div className='menu-admin'>
+        <div className='menu-admin-data'>
           <p>
-            <div className='user-text'>
+            <div className='admin-text'>
               ようこそ👋
             </div><br />
-            {accountName}さん</p>
+            {accountName}さん
+          </p>
           <button className='admin-logout' onClick={openLogoutModal}>ログアウト</button>
         </div>
       )}
@@ -115,7 +159,7 @@ const AdminHeader = () => {
           />
         </div>
       )}
-    </Navbar>
+    </header>
   );
 };
 

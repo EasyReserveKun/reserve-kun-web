@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie'
 import LogoutComfirm from './LogoutComfirm'; // 新しく追加
 import Warn from './Warn';
-import DeleteWarn from './DeleteWarn';
 import { getApiUrl } from '../GetApiUrl';
 
 // Import StyleSheets
@@ -19,9 +18,36 @@ const Header = () => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [warnText, setWarnText] = useState("");
   const [showWarn, setShowWarn] = useState(false);
-  const [deleteWarnText, setDeleteWarnText] = useState("");
-  const [showDeleteWarn, setShowDeleteWarn] = useState(false);
+  const [userName, setUserName] = useState("");
   const [cookie, , removeCookie] = useCookies();
+
+
+  useEffect(() => {
+    if (cookie.token) {
+      const fetchUserName = async () => {
+        let requestData = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ token: cookie.token }),
+        };
+
+        try {
+          const response = await fetch(getApiUrl() + "/customer/getname", requestData);
+          const data = await response.json();
+
+          if (data.status === "Success") {
+            setUserName(data.name);
+          }
+        } catch (error) {
+          console.error('Fetch Error:', error);
+        }
+      };
+
+      fetchUserName();
+    }
+  }, [cookie.token]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -54,27 +80,22 @@ const Header = () => {
     }
 
     try {
-      console.log(cookie.token);
       const responce = await fetch(getApiUrl() + "/customer/leave", requestData);
       const data = await responce.json();
 
-      setDeleteModal(false);
       if (data.status === "Success") {
-        setDeleteWarnText("退会が完了しました。またのご利用お待ちしております。");
-        setShowDeleteWarn(true);
-      }else {
-        setWarnText("エラーが発生し、退会の処理が行われませんでした。もう一度最初からやり直してください。")
-        setShowWarn(true);
+        removeCookie('token', { httpOnly: true, path: '/' });
+        await setWarnText("退会が完了しました。\n またのご利用お待ちしております。");
+        await setShowWarn(true);
+      } else {
+        await setWarnText("エラーが発生し、退会の処理が行われませんでした。 \n もう一度最初からやり直してください。")
+        await setShowWarn(true);
       }
     } catch (error) {
       console.error('Fetch Error:', error);
       //TODO: エラー処理
     }
   }
-
-
-
-  const accountName = sessionStorage.getItem('AccountName');
 
   const userMenu = () => {
     setUserMenuOpen(!userMenuOpen);
@@ -97,10 +118,6 @@ const Header = () => {
 
   const closeDeleteModal = () => {
     setDeleteModal(false);
-  }
-
-  const DeleteSuccess = () =>{
-    removeCookie('token', { path: '/' });
   }
 
   if (cookie.token) {
@@ -148,7 +165,7 @@ const Header = () => {
               <div className='user-text'>
                 ようこそ👋
               </div><br />
-              {accountName}さん</p>
+              {userName}さん</p>
             <button className='user-logout' onClick={openLogoutModal}>ログアウト</button>
             <button className='delete-account' onClick={openDeleteModal}>退会する</button>
           </div>
@@ -173,7 +190,6 @@ const Header = () => {
           </div>
         )}
         <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
-        <DeleteWarn text={deleteWarnText} showWarn={showDeleteWarn} setShowWarn={setShowDeleteWarn} onDelete={DeleteSuccess}/>
       </header>
     );
   } else {
