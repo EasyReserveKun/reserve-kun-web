@@ -1,7 +1,9 @@
+// Import Modules
 import React, { useState, useEffect, useRef } from 'react';
-
-import './Chat.css';
 import { getApiUrl } from '../../GetApiUrl';
+
+//Import StyleSheets
+import './Chat.css';
 
 const Chat = () => {
     const [currentText, setCurrentText] = useState("");

@@ -1,11 +1,14 @@
-// AdminOpen.js
+// Import Modules
 import React, { useState, useEffect, useCallback } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
+
+//Import StyleSheets
 import '../common/Form.css';
 import './AdminOpen.css';
 import StartComfirm from '../common/StartConfirm'; // 修正：StartConfirmのインポート
 
+//Import Component
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpen() {

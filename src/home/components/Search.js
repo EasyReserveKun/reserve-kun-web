@@ -5,9 +5,9 @@ import { getApiUrl } from '../../GetApiUrl';
 
 //Import StyleSheets
 import './Search.css';
-import Modal from './Modal.js'
 
 //Import Component
+import Modal from './Modal.js'
 import Warn from '../../common/Warn.js'
 import LoadingSpinner from '../../LoadingSpinner';
 

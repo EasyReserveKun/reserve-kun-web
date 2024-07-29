@@ -1,9 +1,14 @@
+// Import Modules
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import '../common/AdminHeader.css';
-import LogoutComfirm from './LogoutComfirm';
 import { getApiUrl } from '../GetApiUrl';
+
+//Import StyleSheets
+import '../common/AdminHeader.css';
+
+//Import Component
+import LogoutComfirm from './LogoutComfirm';
 
 const AdminHeader = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -121,8 +126,8 @@ const AdminHeader = () => {
               <li>
                 <div role="button" onClick={adminSubMenu} className="menu-item">予約管理</div>
                 <ul className={`sub-menu ${subMenuOpen ? 'open' : ''}`}>
-                  <li><a href="/admin/close">予約停止 (日時選択)</a></li>
-                  <li><a href="/admin/open">予約停止の解除 (日時選択)</a></li>
+                  <li><a href="/admin/close">予約停止<br />(日時選択)</a></li>
+                  <li><a href="/admin/open">予約停止の解除<br />(日時選択)</a></li>
                   <li><a href="/admin/closeall">予約即時停止</a></li>
                   <li><a href="/admin/openall">予約即時停止の解除</a></li>
                 </ul>

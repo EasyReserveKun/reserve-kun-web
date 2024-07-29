@@ -1,16 +1,16 @@
 // Import Modules
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl.js';
 
-
+//Import StyleSheets
 import '../common/Form.css';
+import './AdminLogin.css';
 
+//Import Component
 import Header from '../common/Header.js';
 import Footer from '../common/Footer.js';
-import './AdminLogin.css';
 
 function AdminLogin() {
     const navigate = useNavigate();

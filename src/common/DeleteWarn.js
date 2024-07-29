@@ -1,5 +1,8 @@
-import './Warn.css';
+// Import Modules
 import React from 'react';
+
+//Import StyleSheets
+import './Warn.css';
 
 const DeleteWarn = (props) => {
     const { text, showWarn, onDelete } = props;

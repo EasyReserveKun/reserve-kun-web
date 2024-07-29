@@ -1,8 +1,13 @@
+// Import Modules
 import React, { useState, useEffect, useCallback } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
+
+//Import StyleSheets
 import '../common/Form.css';
 import '../common/AdminPage.css';
+
+//Import Component
 import AdmHeader from '../common/AdminHeader';
 import Warn from '../common/Warn';
 import LoadingSpinner from '../LoadingSpinner';

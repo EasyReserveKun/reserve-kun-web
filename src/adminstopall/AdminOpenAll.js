@@ -1,8 +1,13 @@
+// Import Modules
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
-import Warn from '../common/Warn';
+
+//Import StyleSheets
 import './AdminStopAll.css';
+
+//Import Component
+import Warn from '../common/Warn';
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpenAll() {
@@ -24,8 +29,8 @@ function AdminOpenAll() {
             const response = await fetch(getApiUrl() + "/employee/reactivate", requestData);
             const data = await response.text();
 
-                setWarnText(data);
-                setShowWarn(true);
+            setWarnText(data);
+            setShowWarn(true);
 
         } catch (error) {
             console.error('Fetch Error:', error);
