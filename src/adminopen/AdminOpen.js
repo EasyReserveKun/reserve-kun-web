@@ -9,6 +9,7 @@ import StartComfirm from '../common/StartConfirm';
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpen() {
+
     
     const [cookie] = useCookies();
     const [data, setData] = useState([]);
