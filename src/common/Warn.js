@@ -1,8 +1,10 @@
-//Import StyleSheets
-import './Warn.css';
-
+//Import Modules
 import React from 'react';
 
+// Import StyleSheets
+import './Warn.css';
+
+//各確認の表示
 const Warn = (props) => {
     if (props.showWarn) {
         return (

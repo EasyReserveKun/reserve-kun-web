@@ -4,9 +4,9 @@ import React from 'react';
 //Import StyleSheets
 import './Warn.css';
 
+//退会処理後の表示
 const DeleteWarn = (props) => {
     const { text, showWarn, onDelete } = props;
-
     if (showWarn) {
         return (
             <div id="overlay">
@@ -17,7 +17,6 @@ const DeleteWarn = (props) => {
             </div>
         );
     }
-
     return null;
 }
 

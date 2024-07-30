@@ -1,8 +1,10 @@
+// Import Modules
+import React from 'react';
+
 //Import StyleSheets
 import './DeleteAccount.css';
 
-import React from 'react';
-
+//退会確認の表示
 const DeleteAccount = ({ onCancel, onConfirm }) => {
     return (
         <div id="overlay">

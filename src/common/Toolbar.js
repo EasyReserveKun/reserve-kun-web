@@ -10,13 +10,12 @@ const Toolbar = ({ onClick }) => {
   const [cookie, ,] = useCookies();
   let navigate = useNavigate();
 
-  // スクロール位置を監視するための state
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   useEffect(() => {
-    // スクロール位置の監視
+    //Topボタンの表示
     const handleScroll = () => {
-      if (window.pageYOffset > 100) { // 例として100pxスクロールしたらボタンを表示`
+      if (window.pageYOffset > 100) {
         setShowScrollButton(true);
       } else {
         setShowScrollButton(false);
@@ -30,7 +29,7 @@ const Toolbar = ({ onClick }) => {
     };
   }, []);
 
-  // トップに戻る関数
+  // トップに戻る処理
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -38,13 +37,11 @@ const Toolbar = ({ onClick }) => {
     });
   };
 
-
   function goToLogin() {
     navigate("/login");
   }
 
-
-
+  //画面下の表示
   return (
     <div className="toolbar-container">
       {cookie.token ? (

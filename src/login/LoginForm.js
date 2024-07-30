@@ -28,7 +28,7 @@ const LoginForm = () => {
     }
   }, [navigate, cookie.token])
 
-
+  //ログインの処理
   const loginAuth = async (event) => {
     event.preventDefault();
     setLoginError("");
@@ -79,6 +79,7 @@ const LoginForm = () => {
     return null;
   }
 
+  //ログイン画面の表示
   return (
     <>
       <Header />

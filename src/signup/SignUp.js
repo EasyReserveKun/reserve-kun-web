@@ -39,6 +39,7 @@ const SignUp = () => {
     }
   }, [navigate, cookie.token])
 
+  //新規登録の処理
   const signupAuth = async (event) => {
     event.preventDefault();
     await setSignupError("");
@@ -65,7 +66,6 @@ const SignUp = () => {
     const data = await response.json();
 
     setIsLoading(false);
-
 
     if (data.status === "Success") {
       setSignupError("");
@@ -102,7 +102,6 @@ const SignUp = () => {
     }
   }
 
-  // 認証コード用モーダル閉じる
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setCodeError('');
@@ -150,6 +149,7 @@ const SignUp = () => {
     return null;
   }
 
+  //新規登録の表示
   return (
     <>
       <Header />

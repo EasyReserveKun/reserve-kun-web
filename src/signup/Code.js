@@ -15,6 +15,7 @@ const Code = ({ onCode, error, onCancel }) => {
         onCode(code);
     }
 
+    //認証コードのモーダル表示
     return (
         <div id="overlay-delete">
             <div className="authentication-modal">

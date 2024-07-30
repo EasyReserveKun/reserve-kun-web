@@ -4,7 +4,7 @@ import React from 'react';
 // Import StyleSheets
 import './ServiceDescription.css'
 
-
+//ホーム画面の案内表示
 const ServiceDescription = () => {
   return (
     <div className="service-description-container">
