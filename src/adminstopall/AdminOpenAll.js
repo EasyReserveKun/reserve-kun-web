@@ -1,23 +1,54 @@
-// Import Modules
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
-
-//Import StyleSheets
-import './AdminStopAll.css';
-
-//Import Component
 import Warn from '../common/Warn';
+import './AdminOpenAll.css';
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpenAll() {
-    const [employeeId, setEmployeeId] = useState('');
+    const [employees, setEmployees] = useState([]);
     const [warnText, setWarnText] = useState('');
     const [showWarn, setShowWarn] = useState(false);
-    const [cookie, ,] = useCookies();
+    const [isLoading, setIsLoading] = useState(false);
+    const [cookie] = useCookies();
 
-    //即時停止解除の処理
-    const openAllReservations = async () => {
+    const flagCheck = async () => {
+        const requestData = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({})
+        };
+
+        try {
+            setIsLoading(true);
+            const response = await fetch(getApiUrl() + "/employee/flagCheck", requestData);
+            const data = await response.json(); // JSONとしてレスポンスを解析
+
+            console.log(data);
+            // データを従業員リストとして処理
+            const updatedEmployees = [
+                { id: '1', name: '田中太郎', isActive: data[0] === '1' },
+                { id: '2', name: '佐藤花子', isActive: data[1] === '1' },
+                { id: '3', name: '鈴木一郎', isActive: data[2] === '1' },
+                { id: '4', name: '高橋美咲', isActive: data[3] === '1' },
+                { id: '5', name: '中村健太', isActive: data[4] === '1' },
+            ];
+
+            setEmployees(updatedEmployees);
+        } catch (error) {
+            console.error('Fetch Error:', error);
+        } finally {
+            setIsLoading(false); // ローディングが終わったらステートを更新
+        }
+    };
+
+    useEffect(() => {
+        flagCheck();
+    }, []);
+
+    const openReservation = async (employeeId) => {
         const requestData = {
             method: 'POST',
             headers: {
@@ -32,7 +63,7 @@ function AdminOpenAll() {
 
             setWarnText(data);
             setShowWarn(true);
-
+            await flagCheck();
         } catch (error) {
             console.error('Fetch Error:', error);
             setWarnText("予約停止の解除に失敗しました");
@@ -40,13 +71,7 @@ function AdminOpenAll() {
         }
     };
 
-    const handleEmployeeChange = (event) => {
-        const selectedEmployeeId = event.target.value;
-        setEmployeeId(selectedEmployeeId);
-    };
-
     if (cookie.admin != null) {
-        //即時停止解除の表示
         return (
             <>
                 <AdmHeader />
@@ -56,33 +81,40 @@ function AdminOpenAll() {
                 </div>
                 <Warn text={warnText} showWarn={showWarn} setShowWarn={setShowWarn} />
                 <div className="batch-form-container">
-                    <form className="batch-form">
-                        <h2 className="batch-open">全ての予約停止の解除</h2>
-                        <p className="notice">
-                            この操作は、選択した従業員のすべての予約停止を解除します。<br />
-                            従業員を選択し、注意深く操作してください。
-                        </p>
-                        <div className="batchform-group">
-                            <label htmlFor="employeeId">従業員:</label>
-                            <select
-                                id="employeeId"
-                                value={employeeId}
-                                onChange={handleEmployeeChange}
-                                required
-                            >
-                                <option value="">従業員を選択してください。</option>
-                                <option value="1">田中太郎</option>
-                                <option value="2">佐藤花子</option>
-                                <option value="3">鈴木一郎</option>
-                                <option value="4">高橋美咲</option>
-                                <option value="5">中村健太</option>
-                            </select>
-                        </div>
-                        <button type="button" onClick={openAllReservations} className="batchopensubmit-button">
-                            予約停止を解除<br />
-                            <span className="buttonsmall-text">※即座に受付を開始します。</span>
-                        </button>
-                    </form>
+                    <h2 className="batch-open">全ての予約停止の解除</h2>
+                    <p className="notice">
+                        この操作は、選択した従業員のすべての予約停止を解除します。<br />
+                        従業員を選択し、注意深く操作してください。
+                    </p>
+                    {isLoading ? (
+                        <p>Loading...</p> // ローディング中はスピナーを表示
+                    ) : (
+                        <table className="employee-table">
+                            <thead>
+                                <tr>
+                                    <th>従業員名</th>
+                                    <th>受付開始</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {employees.map((employee) => (
+                                    <tr key={employee.id}>
+                                        <td>{employee.name}</td>
+                                        <td>
+                                            <button 
+                                                type="button" 
+                                                onClick={() => openReservation(employee.id)}
+                                                className={`release-button ${employee.isActive ? 'disabled' : ''}`}
+                                                disabled={employee.isActive} // 解除済みの場合に無効化
+                                            >
+                                                受付開始
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
                 </div>
             </>
         );
