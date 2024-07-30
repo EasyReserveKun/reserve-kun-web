@@ -18,8 +18,9 @@ function Search(props) {
   const [showWarn, setShowWarn] = useState(false)
   const [cookie, ,] = useCookies();
 
-  const sendReserve = async (event) => {
 
+  //予約登録の処理
+  const sendReserve = async (event) => {
     const debugData = {
       method: 'POST',
       headers: {
@@ -31,14 +32,13 @@ function Search(props) {
     try {
       const response = await fetch(getApiUrl() + "/reserve/available/flag", debugData);
       const data = await response.text();
-      if(data==="現在は予約を受け付けておりません"){
+      if (data === "現在は予約を受け付けておりません") {
         await setWarnText(data);
         await setShowWarn(true);
         return null;
       }
     } catch (error) {
       console.error('Fetch Error:', error);
-      //TODO: エラー処理
     }
 
     event.preventDefault();
@@ -77,6 +77,7 @@ function Search(props) {
   const handleTimeChange = (event) => { setTime(event.target.value); }
   const handleEtcChange = (event) => { setEtc(event.target.value); }
 
+  //予約時刻のボタン生成
   const renderTimeButtons = () => {
     const buttons = [];
 
@@ -102,13 +103,9 @@ function Search(props) {
         </div>
       );
     }
-
-
-
     return buttons;
   }
-
-
+  //予約登録フォームの表示
   if (props.show) {
     return (
       <div id="overlay">

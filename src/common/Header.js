@@ -16,8 +16,8 @@ import DeleteAccount from './DeleteAccount';
 const Header = () => {
   let navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false); // 追加
-  const [subMenuOpen, setSubMenuOpen] = useState(false); // サブメニューの状態を追加
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [warnText, setWarnText] = useState("");
@@ -62,9 +62,16 @@ const Header = () => {
   };
 
   const toggleSubMenu = (e) => {
-    e.stopPropagation(); // イベントのバブリングを防止
+    e.stopPropagation();
     setSubMenuOpen(!subMenuOpen);
   };
+
+  const userMenu = () => {
+    setUserMenuOpen(!userMenuOpen);
+    if (!userMenuOpen) {
+      setMenuOpen(false);
+    }
+  }
 
   const goToLogin = () => {
     navigate("/login");
@@ -75,6 +82,27 @@ const Header = () => {
     navigate("/logout");
   };
 
+  const openLogoutModal = () => {
+    setShowLogoutModal(true);
+  };
+
+  const closeLogoutModal = () => {
+    setShowLogoutModal(false);
+  };
+
+  const openDeleteModal = () => {
+    setDeleteModal(true);
+  }
+
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
+  }
+
+  const DeleteSuccess = () => {
+    removeCookie('token', { path: '/' });
+  }
+
+  //退会の処理
   const handleDelete = async () => {
     let requestData = {
       method: 'POST',
@@ -99,38 +127,11 @@ const Header = () => {
       }
     } catch (error) {
       console.error('Fetch Error:', error);
-      //TODO: エラー処理
     }
-  }
-
-  const userMenu = () => {
-    setUserMenuOpen(!userMenuOpen);
-    if (!userMenuOpen) {
-      setMenuOpen(false);
-    }
-  }
-
-  const openLogoutModal = () => {
-    setShowLogoutModal(true);
-  };
-
-  const closeLogoutModal = () => {
-    setShowLogoutModal(false);
-  };
-
-  const openDeleteModal = () => {
-    setDeleteModal(true);
-  }
-
-  const closeDeleteModal = () => {
-    setDeleteModal(false);
-  }
-
-  const DeleteSuccess = () => {
-    removeCookie('token', { path: '/' });
   }
 
   if (cookie.token) {
+    //ログイン中の表示
     return (
       <header className="header">
         <div className="menu-toggle" onClick={toggleMenu}>
@@ -190,7 +191,7 @@ const Header = () => {
             />
           </div>
         )}
-
+        {/* 退会確認モーダル */}
         {deleteModal && (
           <div className="delete-modal-container">
             <DeleteAccount
@@ -204,6 +205,7 @@ const Header = () => {
       </header>
     );
   } else {
+    //未ログイン中の表示
     return (
       <header className="header">
         <div className="menu-toggle" onClick={toggleMenu}>
