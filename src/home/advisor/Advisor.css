@@ -1,7 +1,4 @@
-/* Advisor.css */
-
 .profile {
-  /* font-family: Arial, sans-serif; */
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -61,26 +58,22 @@
 
 .profile img {
   max-width: 40%;
-  /* 画像の幅をコンテナの幅に合わせる */
   height: auto;
-  /* 画像の高さを自動調整 */
   border-radius: 100px;
-  /* 画像の角を丸める */
   margin-bottom: 20px;
-  /* 画像の下にスペースを追加 */
 }
 
 .homeLink {
-  text-align: left; /* テキストを左に寄せる */
-  margin: 20px; /* 必要に応じてマージンを追加 */
+  text-align: left;
+  margin: 20px;
 }
 
 .homeLink a {
-  display: inline-block; /* リンクをインラインブロックにしてサイズを調整 */
-  text-decoration: none; /* リンクの下線を削除 */
-  color: #000; /* リンクのテキストカラーを設定 */
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
 }
 
 .homeLink a:hover {
-  color: blue; /* マウスオーバー時のリンクの色を青に変更 */
+  color: blue;
 }

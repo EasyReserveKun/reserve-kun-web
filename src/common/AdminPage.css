@@ -1,4 +1,3 @@
-/* AdminPage.css */
 .admin-form {
   max-width: 600px;
   margin: 20px auto;
@@ -47,8 +46,7 @@
   font-weight: bold;
 }
 
-.opensubmit-button:hover{
- 
+.opensubmit-button:hover {
   background-color: rgb(99, 209, 237);
 }
 
@@ -113,7 +111,6 @@
 
 .red-button:hover {
   background-color: #ef8b8b;
-  /* ホバー時の色 */
 }
 
 .home-button {
