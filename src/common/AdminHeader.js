@@ -111,6 +111,7 @@ const AdminHeader = () => {
     navigate("/logout");
   };
 
+  //管理者画面の表示
   return (
     <header className='admin-header'>
       <div className="menu-admin" onClick={adminMenu}>

@@ -13,6 +13,7 @@ const EmployeePortalHome = () => {
 
 
   if (cookie.admin != null) {
+    //管理者ホームページの表示
     return (
       <>
         <AdmHeader />
@@ -87,7 +88,6 @@ const EmployeePortalHome = () => {
                   <h3>給与明細の更新</h3>
                   <p>2024年7月の給与明細が更新されました。詳細は給与明細セクションで確認してください。</p>
                 </div>
-                {/* 他のニュースアイテム */}
               </div>
             </section>
           </main>

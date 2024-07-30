@@ -16,6 +16,7 @@ function AdminOpenAll() {
     const [showWarn, setShowWarn] = useState(false);
     const [cookie, ,] = useCookies();
 
+    //即時停止解除の処理
     const openAllReservations = async () => {
         const requestData = {
             method: 'POST',
@@ -45,6 +46,7 @@ function AdminOpenAll() {
     };
 
     if (cookie.admin != null) {
+        //即時停止解除の表示
         return (
             <>
                 <AdmHeader />

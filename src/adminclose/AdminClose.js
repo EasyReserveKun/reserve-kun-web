@@ -38,11 +38,11 @@ function AdminClose() {
                 setReservedTimes(data);
             } else {
                 console.error('Fetch Error:', response.statusText);
-                setReservedTimes([]); // Fetchが失敗した場合はreservedTimesをクリア
+                setReservedTimes([]);
             }
         } catch (error) {
             console.error('Fetch Error:', error);
-            setReservedTimes([]); // Fetchがエラーを投げた場合はreservedTimesをクリア
+            setReservedTimes([]);
         }
     }, [date, employeeId]);
 
@@ -69,6 +69,7 @@ function AdminClose() {
         setTime(event.target.value);
     };
 
+    //予約受付停止の処理
     const stop = async () => {
         if (date === "" || employeeId === "" || time === "") {
             setWarnText("入力情報を確認してください");
@@ -81,7 +82,7 @@ function AdminClose() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ date, eid: employeeId, time, token:cookie.admin })
+            body: JSON.stringify({ date, eid: employeeId, time, token: cookie.admin })
         };
 
         const response = await fetch(getApiUrl() + "/employee/stop", requestData);
@@ -103,6 +104,7 @@ function AdminClose() {
         setShowWarn(true);
     };
 
+    //停止時刻のボタン生成
     const renderTimeButtons = () => {
         const buttons = [];
 
@@ -125,8 +127,6 @@ function AdminClose() {
                 </div>
             );
         }
-
-        // 「全時間を一括停止」ボタンを時間ボタンと同じレイアウトに統一
         return (
             <div className="row custom-row">
                 {buttons}
@@ -135,7 +135,7 @@ function AdminClose() {
                         type="button"
                         onClick={handleTimeChange}
                         className="red-button"
-                        value="すべての時間" // 他の時間ボタンと同じスタイル
+                        value="すべての時間"
                     >
                         すべて選択
                     </button>
@@ -145,6 +145,7 @@ function AdminClose() {
     };
 
     if (cookie.admin != null) {
+        //予約受付停止の表示
         return (
             <>
                 <AdmHeader />

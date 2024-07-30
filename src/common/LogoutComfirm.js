@@ -4,6 +4,7 @@ import React from 'react';
 //Import StyleSheets
 import './LogoutComfirm.css';
 
+//ログアウトの確認
 const LogoutComfirm = ({ onCancel, onConfirm }) => {
     return (
         <div id="overlay">

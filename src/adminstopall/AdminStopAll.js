@@ -17,6 +17,7 @@ function AdminStopAll() {
     const [showWarn, setShowWarn] = useState(false);
     const [cookie, ,] = useCookies();
 
+    //予約即時停止の処理
     const stopAll = async () => {
         const requestData = {
             method: 'POST',
@@ -46,6 +47,7 @@ function AdminStopAll() {
     };
 
     if (cookie.admin != null) {
+        //予約受付即時停止の表示
         return (
             <>
                 <AdmHeader />

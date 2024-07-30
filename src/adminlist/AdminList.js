@@ -8,7 +8,7 @@ import './AdminList.css';
 
 //Import Component
 import AdmHeader from '../common/AdminHeader';
-import DeleteComfirm from '../common/DeleteComfirm'; // 修正したインポートパス
+import DeleteComfirm from '../common/DeleteComfirm';
 
 const ReservationList = () => {
     // 今日の日付を初期値として設定する関数
@@ -32,8 +32,8 @@ const ReservationList = () => {
     const [employeeFilter, setEmployeeFilter] = useState('all');
     const [selectedDate, setSelectedDate] = useState(getTodayDate());
     const [cookie, ,] = useCookies();
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // モーダルの表示状態
-    const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedReservation, setSelectedReservation] = useState(null);
 
     const fetchData = async (employeeFilter, selectedDate) => {
         const requestData = {
@@ -83,6 +83,7 @@ const ReservationList = () => {
         setShowDeleteModal(false);
     };
 
+    //予約キャンセルの処理
     const cancelReservation = async () => {
         const { date, time, eid } = selectedReservation;
         const requestData = {
@@ -106,6 +107,7 @@ const ReservationList = () => {
         }
     };
 
+    //予約状況の一覧表示
     if (cookie.admin != null) {
         return (
             <>
