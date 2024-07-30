@@ -39,8 +39,7 @@ function Search() {
   const handleDateChange = (event) => { setDate(event.target.value) };
   const handleCategoryChange = (event) => { setCategory(event.target.value); };
   const openModal = async () => {
-    //入力した時間のバリデーション
-    //TODO: 後で時間を調整する
+
     const inputDate = new Date(date);
     inputDate.setHours(nowDate.getHours());
     inputDate.setMinutes(nowDate.getMinutes());
@@ -50,6 +49,7 @@ function Search() {
       return null;
     }
 
+    //予約受付状況の検索
     if (category !== '' && date !== '') {
       const requestData = {
         method: 'POST',
@@ -69,14 +69,13 @@ function Search() {
         }
       } catch (error) {
         console.error('Fetch Error:', error);
-        //TODO: エラー処理
       }
     } else {
       await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
       setShowWarn(true);
     }
 
-    //本処理
+    //予約検索の処理
     if (category !== '' && date !== '') {
       setIsLoading(true);
       const requestData = {
@@ -95,7 +94,6 @@ function Search() {
         setShow(true);
       } catch (error) {
         console.error('Fetch Error:', error);
-        //TODO: エラー処理
       }
     } else {
       await setWarnText("予約は翌日以降かつ2か月以内のみ行えます");
@@ -105,6 +103,7 @@ function Search() {
   };
 
   if (cookie.token) {
+    //ログイン中の画面
     return (
       <>
         {isLoading && <LoadingSpinner />}
@@ -113,7 +112,6 @@ function Search() {
           <div className="container custom-container">
             <h2>予約登録</h2>
             <div className="row">
-
               <div className="col-md-4">
                 <input type="date" id="dateInput" className="form-control date-input" placeholder="日付を選択" value={date} onChange={handleDateChange} />
               </div>
@@ -138,6 +136,7 @@ function Search() {
       </>
     );
   } else {
+    //未ログイン時の画面
     return (
       <>
         <br></br>
