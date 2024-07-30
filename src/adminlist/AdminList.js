@@ -1,9 +1,14 @@
+// Import Modules
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import { getApiUrl } from '../GetApiUrl';
+
+//Import StyleSheets
+import './AdminList.css';
+
+//Import Component
 import AdmHeader from '../common/AdminHeader';
 import DeleteComfirm from '../common/DeleteComfirm'; // 修正したインポートパス
-import './AdminList.css';
-import { getApiUrl } from '../GetApiUrl';
 
 const ReservationList = () => {
     // 今日の日付を初期値として設定する関数

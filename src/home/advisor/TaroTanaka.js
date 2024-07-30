@@ -1,9 +1,11 @@
-// TaroTanaka.js
-
+// Import Modules
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//Import StyleSheets
 import './Advisor.css';
+
+//Import Component
 import Footer from '../../common/Footer';
 import Header from '../../common/Header';
 import Toolbar from '../../common/Toolbar';
