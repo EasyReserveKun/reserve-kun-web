@@ -1,22 +1,26 @@
+// Import Modules
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie'
+import { getApiUrl } from './GetApiUrl.js';
+
+//Import StyleSheets
+import './ReserveCheck.css';
+
+//Import Component
 import Header from './common/Header.js';
 import Footer from './common/Footer.js';
 import Toolbar from './common/Toolbar.js';
-import DeleteComfirm from './common/DeleteComfirm.js'; // 正しいファイル名でインポート
-import './ReserveCheck.css'; // CSSファイルをインポート
-
-import { getApiUrl } from './GetApiUrl.js';
+import DeleteComfirm from './common/DeleteComfirm.js';
 
 function ReserveCheck() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [preData, setPreData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [activeTab, setActiveTab] = useState('current'); // 初期値として「本日以降の予約」を表示
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // 確認モーダルの表示状態を管理
-    const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報を保持
+    const [activeTab, setActiveTab] = useState('current');
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedReservation, setSelectedReservation] = useState(null);
     const [cookie, , removeCookie] = useCookies();
 
     useEffect(() => {
@@ -58,11 +62,8 @@ function ReserveCheck() {
                 setLoading(false);
             }
         };
-
         fetchData();
-
     }, [cookie.token, navigate, removeCookie]);
-
 
     const returnReserve = () => {
         navigate('/');
@@ -83,6 +84,11 @@ function ReserveCheck() {
         setShowDeleteModal(true);
     };
 
+    const closeDeleteModal = () => {
+        setShowDeleteModal(false);
+    };
+
+    //予約キャンセルの処理
     const cancelReservation = async () => {
         const { date, time, eid } = selectedReservation;
         const requestData = {
@@ -96,11 +102,9 @@ function ReserveCheck() {
         try {
             const response = await fetch(getApiUrl() + "/reserve/cancel", requestData);
             if (response.ok) {
-                // 成功した場合の処理
-                // 例えば、データを更新してリフレッシュするなど
                 const updatedData = data.filter(item => !(item.date === date && item.time === time && item.eid === eid));
                 setData(updatedData);
-                setShowDeleteModal(false); // モーダルを閉じる
+                setShowDeleteModal(false);
             } else {
                 console.error('キャンセルに失敗しました');
             }
@@ -109,10 +113,7 @@ function ReserveCheck() {
         }
     };
 
-    const closeDeleteModal = () => {
-        setShowDeleteModal(false);
-    };
-
+    //予約確認の表示
     return (
         <div className="reserve-check-container">
             <Header />
@@ -213,8 +214,6 @@ function ReserveCheck() {
             <Toolbar onClick={returnReserve} />
         </div>
     );
-
-
 }
 
 export default ReserveCheck;

@@ -5,6 +5,7 @@ import { getApiUrl } from '../../GetApiUrl';
 //Import StyleSheets
 import './Chat.css';
 
+//チャット欄の表示処理
 const Chat = () => {
     const [currentText, setCurrentText] = useState("");
     const [allMessages, setAllMessages] = useState([
@@ -13,13 +14,14 @@ const Chat = () => {
             type: "message",
             message: "こんにちは！わからないことがあれば気軽に質問してください！！\\n" +
                 "なるべく具体的に教えていただけると嬉しいです！"
-        }]);
+        }]);//デフォルトメッセージ
     const [isLoading, setIsLoading] = useState(false);
     const [isChatOpen, setIsChatOpen] = useState(false);
     const chatContainerRef = useRef(null);
 
     const handleTextChange = (event) => { setCurrentText(event.target.value) };
 
+    //メッセージ生成
     const chatSend = async (event) => {
         event.preventDefault();
 
@@ -141,6 +143,7 @@ const Chat = () => {
         setIsChatOpen(!isChatOpen);
     }
 
+    //AIチャット欄の表示
     return (
         <>
             <button className='chat-open-button' onClick={toggleChat}>

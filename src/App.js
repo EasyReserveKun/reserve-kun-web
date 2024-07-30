@@ -1,12 +1,11 @@
-// モジュールのインポート
+// Import Modules
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
-// スタイルシートのインポート
+//Import StyleSheets
 import './App.css';
 
-// コンポーネントのインポート
+//Import Component
 import Home from "./home/Home";
 import LoginForm from './login/LoginForm';
 import SignUp from './signup/SignUp';
@@ -23,7 +22,6 @@ import AdminClose from "./adminclose/AdminClose";
 
 import Nf from "./nf/Nf";
 
-
 import Access from './Access';
 import ReserveCheck from './ReserveCheck';
 import ReactivationPage from './adminopen/AdminOpen';
@@ -33,7 +31,6 @@ import TaroTanaka from './home/advisor/TaroTanaka';
 import IchiroSuzuki from './home/advisor/IchiroSuzuki';
 import MisakiTakahashi from './home/advisor/MisakiTakahashi';
 import KentaNakamura from './home/advisor/KentaNakamura';
-
 
 function App() {
   return (

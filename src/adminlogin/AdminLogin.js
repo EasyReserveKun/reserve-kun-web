@@ -28,7 +28,7 @@ function AdminLogin() {
         }
     }, [cookie, navigate])
 
-
+    //ログインの処理
     const loginAuth = async (event) => {
         event.preventDefault();
         setLoginError("");
@@ -73,6 +73,7 @@ function AdminLogin() {
         }
     }
     return (
+        //管理者ログイン画面
         <>
             <Header />
             <div className='homeLink'>

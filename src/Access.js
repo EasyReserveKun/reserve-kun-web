@@ -1,18 +1,17 @@
-// Access.js
-
+// Import Modules
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './Access.css'; // CSSファイルをインポート
+//Import StyleSheets
+import './Access.css';
 
+//Import Component
 import Header from './common/Header.js';
 import Footer from './common/Footer.js';
 import Toolbar from './common/Toolbar.js';
 
 function Access() {
-
     const navigate = useNavigate();
-
     const returnReserve = () => {
         navigate('/');  // トップページへ遷移
         setTimeout(() => {
@@ -20,9 +19,10 @@ function Access() {
                 top: 85,  // スクロール位置をトップに設定
                 behavior: 'smooth',
             });
-        }); // 100ミリ秒の遅延を追加
+        });
     };
 
+    //アクセスの表示
     return (
         <>
             <Header />

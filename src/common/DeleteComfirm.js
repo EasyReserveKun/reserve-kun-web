@@ -3,6 +3,7 @@ import './DeleteComfirm.css';
 
 import React from 'react';
 
+//予約キャンセル確認の文
 const DeleteComfirm = ({ onCancel, onConfirm }) => {
     return (
         <div id="overlay-delete">
