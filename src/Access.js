@@ -20,8 +20,7 @@ function Access() {
                 behavior: 'smooth',
             });
         });
-    };
-
+    }
     //アクセスの表示
     return (
         <>
