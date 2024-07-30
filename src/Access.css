@@ -1,42 +1,41 @@
-/* Access.css */
-
 .address-container {
-    max-width: 800px; /* レイアウトを改善するために最大幅を増やしました */
+    max-width: 800px;
     margin: auto;
     padding: 20px;
 }
 
 .address-info {
     margin-bottom: 20px;
-    background-color: #f0f0f0; /* 住所情報の背景色を明るくしました */
+    background-color: #f0f0f0;
     padding: 15px;
     border-radius: 5px;
 }
 
 .address-info p {
-    margin: 8px 0; /* 段落の間隔を少し増やしました */
+    margin: 8px 0;
 }
 
 .map-container {
     text-align: center;
-    margin-top: 20px; /* 地図と住所情報の間に余白を追加しました */
+    margin-top: 20px;
 }
 
 .map-container table {
-    border-radius: 8px; /* 角を丸める */
-    overflow: hidden; /* 角丸が適用されるように */
+    border-radius: 8px;
+    overflow: hidden;
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px; /* テーブル上部の余白を追加しました */
+    margin-top: 10px;
 }
 
-.map-container th, .map-container td {
+.map-container th,
+.map-container td {
     padding: 8px;
     border: 1px solid #fff;
 }
 
 .map-container th {
-    background-color: #4192df; /* ヘッダー行の背景色を設定しました */
+    background-color: #4192df;
     text-align: center;
 }
 
@@ -54,7 +53,6 @@
     margin: 1.5em 0;
     text-align: center;
     margin: 20px auto;
-   
     max-width: 800px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }

@@ -45,7 +45,7 @@ const ReservationList = () => {
         };
 
         try {
-            const response = await fetch(getApiUrl() + "/reserve/employeeCheck", requestData);
+            const response = await fetch(getApiUrl() + "/reserve/employeecheck", requestData);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
