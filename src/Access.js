@@ -13,15 +13,14 @@ import Toolbar from './common/Toolbar.js';
 function Access() {
     const navigate = useNavigate();
     const returnReserve = () => {
-        navigate('/');  // トップページへ遷移
+        navigate('/');
         setTimeout(() => {
             window.scrollTo({
-                top: 85,  // スクロール位置をトップに設定
+                top: 85,
                 behavior: 'smooth',
             });
         });
-    };
-
+    }
     //アクセスの表示
     return (
         <>
