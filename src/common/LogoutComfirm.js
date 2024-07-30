@@ -1,7 +1,8 @@
-import './LogoutComfirm.css';
-// LogoutComfirm.js
-
+// Import Modules
 import React from 'react';
+
+//Import StyleSheets
+import './LogoutComfirm.css';
 
 const LogoutComfirm = ({ onCancel, onConfirm }) => {
     return (
@@ -10,7 +11,7 @@ const LogoutComfirm = ({ onCancel, onConfirm }) => {
                 <div className="logout-confirm-modal">
                     <p>ログアウトしますか？</p>
                     <button onClick={onCancel} className="cancel-button">キャンセル</button>
-                    <button onClick={onConfirm}className="logout-button">ログアウト</button>
+                    <button onClick={onConfirm} className="logout-button">ログアウト</button>
                 </div>
             </div>
         </div>

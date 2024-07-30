@@ -1,8 +1,13 @@
+// Import Modules
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
-import Warn from '../common/Warn';
+
+//Import StyleSheets
 import './AdminStopAll.css';
+
+//Import Component
+import Warn from '../common/Warn';
 import AdmHeader from '../common/AdminHeader';
 
 

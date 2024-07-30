@@ -1,5 +1,7 @@
-// LoadingSpinner.js
+// Import Modules
 import React from 'react';
+
+//Import StyleSheets
 import './LoadingSpinner.css';
 
 const LoadingSpinner = () => {

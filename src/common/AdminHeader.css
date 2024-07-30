@@ -1,53 +1,105 @@
-/* AdmHeader.css */
-
-.admsite-header {
-    background-color: #3e5656;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.admsite-header__wrapper {
+.admin-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    padding: 10px 10px 10px 15px;
+    background-color: #3e5656;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.admlogo img {
-    max-height: 40px;
+.menu-admin {
+    padding-right: 10px;
+    position: relative;
 }
 
-
-
-.adminheader-dropdown {
-    color: #afaeae;
-    border: none;
-    background-color: transparent;
-    padding-top: 8px;
-    /* 上の余白を追加 */
+.admin-navigation {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 200px;
 }
 
-.adminheader-dropdown:hover {
-    color: #f0ebeb;
-    /* ホバー時の文字色 */
-    background-color: transparent;
-    border: none;
+@media screen and (max-width: 550px) {
+    .admin-navigation {
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        width: 180px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
 }
 
-.admbutton-link {
-    background-color: #9b3333;
-    color: #ffffff;
-    font-weight: bold;
-    border-radius: 40px;
+.admin-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.admbutton-link:hover {
-    background-color: #e92a2a;
-    color: #ffffff;
-    /* Ensure text color stays white on hover */
-    border-radius: 20px;
+.admin-navigation ul li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.admin-navigation ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.admin-navigation button {
+    all: unset;
+}
+
+.hamburger {
+    display: block;
+    width: 30px;
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger span:nth-child(3) {
+    bottom: 0;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+.admim-logo {
+    flex: 1;
+    text-align: center;
 }
 
 .admin-icon {
@@ -59,10 +111,46 @@
 }
 
 .admin-icon:focus {
-    outline: 2px solid #343A40;
+    outline: 2px solid #3e5656;
 }
 
-.menu-admin {
+.sub-menu {
+    display: none;
+}
+
+.sub-menu.open {
+    display: block;
+}
+
+.admin-navigation ul .sub-menu li a {
+    position: relative;
+    text-decoration: none;
+}
+
+.admin-navigation ul .sub-menu li a::after {
+    content: '';
+    position: absolute;
+    left: 15%;
+    bottom: 0;
+    width: 70%;
+    height: 2px;
+    background-color: #355757;
+    transition: transform 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.admin-navigation ul .sub-menu li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.admin-navigation ul .sub-menu li {
+    padding: 10px 20px;
+    border-bottom: none;
+}
+
+.menu-admin-data {
     position: absolute;
     top: 70px;
     right: 5px;
@@ -76,7 +164,7 @@
 }
 
 @media screen and (max-width: 550px) {
-    .menu-user {
+    .menu-admin-data {
         position: absolute;
         top: 70px;
         right: 5px;
@@ -90,13 +178,13 @@
     }
 }
 
-.menu-admin p {
+.menu-admin-data p {
     padding: 15px 20px;
     border-bottom: 1px solid #ccc;
     margin: 0;
 }
 
-.user-text {
+.admin-text {
     display: inline-flex;
     text-align: center;
 }
@@ -110,4 +198,24 @@
     text-align: center;
     margin: 0 auto;
     display: block;
+}
+
+.logout-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logout-modal-container .logout-modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }

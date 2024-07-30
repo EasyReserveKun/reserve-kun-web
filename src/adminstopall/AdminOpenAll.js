@@ -63,7 +63,6 @@ function AdminOpenAll() {
 
             setWarnText(data);
             setShowWarn(true);
-            // 解除後にデータをリフレッシュ
             await flagCheck();
         } catch (error) {
             console.error('Fetch Error:', error);

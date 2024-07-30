@@ -1,5 +1,8 @@
-import './Code.css';
+// Import Modules
 import React, { useState } from 'react';
+
+//Import StyleSheets
+import './Code.css';
 
 const Code = ({ onCode, error, onCancel }) => {
     const [code, setCode] = useState('');
