@@ -1,4 +1,3 @@
-// Import Modules
 import React, { useState, useEffect, useCallback } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
@@ -6,27 +5,27 @@ import { getApiUrl } from '../GetApiUrl';
 //Import StyleSheets
 import '../common/Form.css';
 import './AdminOpen.css';
-import StartComfirm from '../common/StartConfirm'; // 修正：StartConfirmのインポート
-
-//Import Component
+import StartComfirm from '../common/StartConfirm';
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpen() {
     const [cookie] = useCookies();
-    const [data, setData] = useState([]); // データを保存するための状態
-    const [loading, setLoading] = useState(true); // データ取得中のローディング状態
-    const [error, setError] = useState(null); // エラーを保存するための状態
-    const [showConfirm, setShowConfirm] = useState(false); // モーダル表示の状態
-    const [selectedReservation, setSelectedReservation] = useState(null); // 選択された予約情報
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [selectedReservation, setSelectedReservation] = useState(null);
+    const [filterDate, setFilterDate] = useState('');
+    const [filterEmployee, setFilterEmployee] = useState('all');
 
-    // キャンセル操作を行う関数
     const cancelReservation = async (date, time, eid) => {
         const requestData = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ date, time, eid }) // 必要な情報をリクエストボディに含める
+            body: JSON.stringify({ date, time, eid })
         };
 
         try {
@@ -34,26 +33,24 @@ function AdminOpen() {
             if (response.ok) {
                 const data = await response.text();
                 console.log(data);
-                // キャンセル成功後にデータを再取得してテーブルを更新
                 fetchReservedTimes();
-                setShowConfirm(false); // モーダルを閉じる
+                setShowConfirm(false);
             } else {
                 throw new Error(response.statusText);
             }
         } catch (error) {
             console.error('Cancel Error:', error);
-            setError(error); // エラーを状態に保存
+            setError(error);
         }
     };
 
-    // データ取得関数
     const fetchReservedTimes = useCallback(async () => {
         const requestData = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ })
+            body: JSON.stringify({})
         };
 
         try {
@@ -61,26 +58,41 @@ function AdminOpen() {
             if (response.ok) {
                 const result = await response.json();
                 console.log(result);
-                // CSV文字列をパースして2次元配列に変換
                 const parsedData = result.map(item => item.split(','));
-                setData(parsedData); // データを状態に保存
-                setLoading(false); // ローディング状態を解除
+                setData(parsedData);
+                setFilteredData(parsedData);
+                setLoading(false);
             } else {
                 throw new Error(response.statusText);
             }
         } catch (error) {
-            setError(error); // エラーを状態に保存
-            setLoading(false); // ローディング状態を解除
+            setError(error);
+            setLoading(false);
         }
     }, []);
 
     useEffect(() => {
-        fetchReservedTimes(); // コンポーネントがマウントされたときにデータを取得
+        fetchReservedTimes();
     }, [fetchReservedTimes]);
+
+    const handleFilterChange = useCallback(() => {
+        let filtered = data;
+        if (filterDate) {
+            filtered = filtered.filter(row => row[0].includes(filterDate));
+        }
+        if (filterEmployee !== 'all') {
+            filtered = filtered.filter(row => row[7].includes(filterEmployee)); // 従業員名でフィルタリング
+        }
+        setFilteredData(filtered);
+    }, [data, filterDate, filterEmployee]);
+
+    useEffect(() => {
+        handleFilterChange();
+    }, [filterDate, filterEmployee, handleFilterChange]);
 
     const handleCancelClick = (date, time, eid) => {
         setSelectedReservation({ date, time, eid });
-        setShowConfirm(true); // モーダルを表示
+        setShowConfirm(true);
     };
 
     const handleConfirm = () => {
@@ -90,64 +102,80 @@ function AdminOpen() {
     };
 
     const handleCancel = () => {
-        setShowConfirm(false); // モーダルを閉じる
+        setShowConfirm(false);
     };
 
-    if (cookie.admin != null) {
-        return (
-            <>
-                <AdmHeader />
-                <div className="data-container">
-                    <h2>予約停止の管理</h2>
-                    {loading && <p>Loading...</p>}
-                    {error && <p>Error: {error.message}</p>}
-                    {data.length > 0 && (
-                        <table className="data-table">
-                            <thead>
-                                <tr>
-                                    <th>日付</th>
-                                    <th>時間</th>
-                                    <th>従業員</th>
-                                    <th>受付開始</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {data.map((row, index) => (
-                                    <tr key={index}>
-                                        <td>{row[0]}</td>
-                                        <td>{row[1]}</td>
-                                        <td>{row[7]}</td> {/* ここは従業員のデータに合わせてください */}
-                                        <td>
-                                            <button 
-                                                className="cancel-button" 
-                                                onClick={() => handleCancelClick(row[0], row[1], row[2])} // 日付、時間、従業員名を渡す
-                                            >
-                                                開始
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )}
-                </div>
-                {showConfirm && (
-                    <StartComfirm
-                        onCancel={handleCancel}
-                        onConfirm={handleConfirm}
+    return cookie.admin ? (
+        <>
+            <AdmHeader />
+            <div className="data-container">
+                <h2>予約停止の管理</h2>
+                <p>以下の一覧は、予約の受付を停止している従業員です。「開始ボタン」で予約受付の停止を解除し、受付を開始します。</p>
+                <div className="filter-container">
+                    <input
+                        type="date"
+                        value={filterDate}
+                        onChange={(e) => setFilterDate(e.target.value)}
+                        placeholder="日付で絞り込み"
                     />
+                    <select
+                        value={filterEmployee}
+                        onChange={(e) => setFilterEmployee(e.target.value)}
+                    >
+                        <option value="all">全員</option>
+                        <option value="田中太郎">田中太郎</option>
+                        <option value="佐藤花子">佐藤花子</option>
+                        <option value="鈴木一郎">鈴木一郎</option>
+                        <option value="高橋美咲">高橋美咲</option>
+                        <option value="中村健太">中村健太</option>
+                    </select>
+                </div>
+                {loading && <p className="loading">データを読み込み中...</p>}
+                {error && <p className="error">エラー: {error.message}</p>}
+                {filteredData.length > 0 && (
+                    <table className="data-table">
+                        <thead>
+                            <tr>
+                                <th>日付</th>
+                                <th>時間</th>
+                                <th>従業員</th>
+                                <th>受付開始</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredData.map((row, index) => (
+                                <tr key={index}>
+                                    <td>{row[0]}</td>
+                                    <td>{row[1]}</td>
+                                    <td>{row[7]}</td>
+                                    <td>
+                                        <button
+                                            className="cancel-button"
+                                            onClick={() => handleCancelClick(row[0], row[1], row[2])}
+                                        >
+                                            開始
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 )}
-            </>
-        );
-    } else {
-        return (
-            <div className="no-access">
-                <h1>アクセス権限がありません</h1>
-                <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
-                <a href="/" className="home-button">ホームページに戻る</a>
             </div>
-        );
-    }
+            {showConfirm && (
+                <StartComfirm
+                    onCancel={handleCancel}
+                    onConfirm={handleConfirm}
+                />
+            )}
+        </>
+    ) : (
+        <div className="no-access">
+            <h1>アクセス権限がありません</h1>
+            <p>このページを表示するための権限がありません。管理者にお問い合わせください。</p>
+            <a href="/" className="home-button">ホームページに戻る</a>
+        </div>
+    );
 }
 
 export default AdminOpen;

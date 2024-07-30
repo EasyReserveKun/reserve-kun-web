@@ -2,7 +2,7 @@
 .data-container {
     padding: 20px;
     margin: 0 auto;
-    max-width: 1000px; /* テーブルの最大幅を設定 */
+    max-width: 1200px; /* テーブルの最大幅を設定 */
 }
 
 /* テーブル全体のスタイル */
@@ -10,34 +10,95 @@
     width: 100%;
     border-collapse: collapse; /* セルの境界線を重ねて表示 */
     margin: 20px 0; /* 上下のマージン */
+    font-family: 'Arial', sans-serif;
 }
 
 /* テーブルヘッダーのスタイル */
 .data-table thead {
-    background-color: #f4f4f4; /* ヘッダーの背景色 */
+    background-color: #1a1b53; /* ヘッダーの背景色 */
+    color: white; /* ヘッダーのテキストカラー */
 }
 
 .data-table th {
-    padding: 10px; /* ヘッダーのセルのパディング */
-    text-align: left; /* テキストを左揃え */
+    padding: 12px; /* ヘッダーのセルのパディング */
+    text-align: center; 
     border-bottom: 2px solid #ddd; /* 下の境界線 */
+    font-weight: bold;
 }
 
-/* テーブルボディのスタイル */
 .data-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* 偶数行の背景色 */
+    background-color: #f2f2f2; /* ストライプ行の背景色 */
 }
 
-.data-table td {
-    padding: 10px; /* セルのパディング */
-    border-bottom: 1px solid #ddd; /* 下の境界線 */
+.data-table tbody tr:hover {
+    background-color: #ddd; /* ホバー時の背景色 */
 }
 
-/* テーブルのセルの境界線を細くし、ホバー時に色を変更 */
-.data-table td, .data-table th {
-    border: 1px solid #ddd;
+/* ボタンのスタイル */
+.cancel-button {
+    background-color: #607d8b; /* 落ち着いたグレー系の背景色 */
+    color: white; /* ボタンのテキストカラー */
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px; /* ボタンのパディングをコンパクトに */
+    cursor: pointer;
+    font-size: 12px; /* フォントサイズを小さく */
+    transition: background-color 0.3s ease;
 }
 
-.data-table tr:hover {
-    background-color: #f1f1f1; /* ホバー時の行の背景色 */
+.cancel-button:hover {
+    background-color: #455a64; /* ホバー時の背景色を少し暗く */
+}
+.no-access {
+    text-align: center;
+    padding: 50px;
+    font-family: 'Arial', sans-serif;
+}
+
+.no-access h1 {
+    color: #f44336; /* アクセス権限エラーメッセージの色 */
+}
+
+.home-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #4CAF50;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.home-button:hover {
+    background-color: #45a049;
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap; /* 要素を折り返す */
+    gap: 1rem; /* 要素間の隙間 */
+    margin-bottom: 1rem; /* 下の余白 */
+}
+
+/* フィルター要素のスタイル */
+.filter-container input,
+.filter-container select {
+    flex: 1; /* 要素が同じ幅になるようにする */
+    min-width: 200px; /* 最小幅を設定 */
+    padding: 0.5rem; /* 内部余白 */
+    border: 1px solid #ccc; /* 枠線 */
+    border-radius: 4px; /* 角を丸くする */
+}
+
+/* スマートフォン表示時のスタイル */
+@media (max-width: 600px) {
+    .filter-container {
+        flex-direction: column; /* 縦並びにする */
+    }
+
+    .filter-container input,
+    .filter-container select {
+        width: 100%; /* 幅を100%にする */
+        margin-bottom: 1rem; /* 要素間の隙間 */
+    }
 }
