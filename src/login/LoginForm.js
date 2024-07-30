@@ -13,11 +13,11 @@ import Footer from "../common/Footer"
 
 
 const LoginForm = () => {
-  const navigate = useNavigate('');
+  const navigate = useNavigate();
   const [inputCid, setInputCid] = useState('');
   const [inputPassword, setInputPassword] = useState('')
   const [loginError, setLoginError] = useState('')
-  const [cookie, setCookie,] = useCookies();
+  const [cookie, setCookie] = useCookies();
 
   const handleChangeCid = (event) => { setInputCid(event.target.value); }
   const handleChangePassword = (event) => { setInputPassword(event.target.value) }
@@ -34,21 +34,10 @@ const LoginForm = () => {
     setLoginError("");
     //let errorMessage = await validation();
 
-    if (!inputCid.trim()) {
-      setLoginError("IDを入力してください");
-      return null;
-    }
-    if (inputCid.length > 30) {
-      setLoginError("IDは30文字以下で入力してください");
-      return null;
-    }
-    if (!inputPassword.trim()) {
-      setLoginError("パスワードを入力してください");
-      return null;
-    }
-    if (inputPassword.length > 60) {
-      setLoginError("パスワードは60文字以下で入力してください");
-      return null;
+    const error = validationInput();
+    if (error) {
+      setLoginError(error);
+      return;
     }
 
     let requestData = {
@@ -58,8 +47,9 @@ const LoginForm = () => {
       },
       body: JSON.stringify({ cid: inputCid, password: inputPassword })
     }
-    const responce = await fetch(getApiUrl() + "/customer/login", requestData);
-    const data = await responce.json();
+    const response = await fetch(getApiUrl() + "/customer/login", requestData);
+    const data = await response.json();
+
     if (data.status === "Success") {
       setCookie('token', data.token, { path: '/' });
       setLoginError("")
@@ -73,20 +63,21 @@ const LoginForm = () => {
     }
   }
 
-  // const validation = () => {
-  //   if (!inputCid.trim()) {
-  //     return "IDを入力してください";
-  //   }
-  //   if (inputCid.length > 30) {
-  //     return "IDは30文字以下で入力してください";
-  //   }
-  //   if (!inputPassword.trim()) {
-  //     return "パスワードを入力してください";
-  //   }
-  //   if (inputPassword.length > 60) {
-  //     return "パスワードは60文字以下で入力してください";
-  //   }
-  // }
+  const validationInput = () => {
+    if (!inputCid.trim()) {
+      return "IDを入力してください";
+    }
+    if (inputCid.length > 30) {
+      return "IDは30文字以下で入力してください";
+    }
+    if (!inputPassword.trim()) {
+      return "パスワードを入力してください";
+    }
+    if (inputPassword.length > 60) {
+      return "パスワードは60文字以下で入力してください";
+    }
+    return null;
+  }
 
   return (
     <>
