@@ -1,7 +1,3 @@
-/* ReservationList.css */
-
-/* 既存のスタイルはそのまま */
-
 .reservation-list {
     max-width: 1200px;
     margin: 0 auto;
@@ -20,7 +16,8 @@
     flex-wrap: wrap;
 }
 
-.employee-filter, .date-filter {
+.employee-filter,
+.date-filter {
     display: flex;
     align-items: center;
 }
@@ -37,7 +34,8 @@
     white-space: nowrap;
 }
 
-.employee-filter select, .date-filter input {
+.employee-filter select,
+.date-filter input {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -59,7 +57,7 @@
 .reservation-items-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* ボックス間の間隔 */
+    gap: 10px;
 }
 
 .reservation-item {
@@ -67,22 +65,21 @@
     padding: 8px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(16.666% - 10px); /* 6列表示に設定 */
+    width: calc(16.666% - 10px);
     box-sizing: border-box;
-    min-width: 150px; /* ボックスが小さくなりすぎないように設定 */
-    word-wrap: break-word; /* 長い単語を折り返す */
-    white-space: pre-wrap; /* 長いテキストを折り返す */
+    min-width: 150px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
-/* 項目のスタイル調整 */
 .reservation-item p span.label {
-    color: #666; /* 項目の文字色を薄く */
-    font-weight: bold; /* 項目の文字を太く */
+    color: #666;
+    font-weight: bold;
 }
 
 .reservation-item p span.value {
-    color: #020202; /* 情報の文字色 */
-    font-weight: normal; /* 情報の文字を通常の太さに */
+    color: #020202;
+    font-weight: normal;
 }
 
 .reservation-item p {
@@ -97,27 +94,29 @@
     color: #666;
 }
 
-/* レスポンシブ調整 */
 @media (max-width: 600px) {
     .filters-container {
-        flex-direction: column; /* モバイルビューでは縦に並べる */
-        gap: 10px; /* スペースを調整 */
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .employee-filter, .date-filter {
-        flex-direction: column; /* ラベルと入力要素を縦に並べる */
-        gap: 5px; /* ラベルと入力要素の間にスペースを調整 */
+    .employee-filter,
+    .date-filter {
+        flex-direction: column;
+        gap: 5px;
     }
 
-    .employee-filter select, .date-filter input {
-        width: 100%; /* フィルター要素の幅を100%にする */
+    .employee-filter select,
+    .date-filter input {
+        width: 100%;
         padding: 8px;
-        font-size: 14px; /* フォントサイズを調整 */
+        font-size: 14px;
     }
 
-    .employee-filter label, .date-filter label {
-        margin-right: 0; /* モバイルビューではマージンを削除 */
-        margin-bottom: 0; /* ラベルと入力要素の間のスペース調整 */
+    .employee-filter label,
+    .date-filter label {
+        margin-right: 0;
+        margin-bottom: 0;
     }
 
     .reservation-list {
@@ -129,12 +128,10 @@
     }
 
     .reservation-item {
-        width: 100%; /* モバイルビューでは全幅に設定 */
+        width: 100%;
         padding: 8px;
     }
 }
-
-
 
 .delete-button.disabled {
     background-color: gray;
