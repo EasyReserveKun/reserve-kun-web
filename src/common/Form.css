@@ -1,7 +1,5 @@
 /* Form共通StyleSheet
    Login やSign up等で適用 */
-
-/* フォームの枠や背景を設定 */
 .form-container {
   width: 320px;
   margin: 20px auto;
@@ -12,8 +10,6 @@
   background-color: #f9f9f9;
 }
 
-
-/* フォームのタイトルのスタイル */
 .form-title {
   text-align: center;
   font-size: 24px;
@@ -24,7 +20,6 @@
   border-radius: 8px 8px 0 0;
 }
 
-/* inputやlabel，送信ボタンのスタイル */
 .form-style {
   display: flex;
   flex-direction: column;
@@ -55,7 +50,6 @@
   background-color: #45a049;
 }
 
-/* アカウントをお持ち(でない)方はこちら のスタイル */
 .another-link {
   text-align: center;
   margin-top: 20px;

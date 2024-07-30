@@ -16,22 +16,16 @@ h2 {
 .tab-buttons {
     display: flex;
     align-items: center;
-    /* 垂直方向の中央揃え */
     justify-content: center;
-    /* 横方向の中央揃え */
     gap: 0;
-    /* タブ間の隙間をなくす */
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
 .tab-title {
     margin-right: 50px;
-    /* 予約情報の文字との間隔を保つ */
     border-bottom: 2px solid #333;
-    /* 下線を追加 */
     padding-bottom: 5px;
-    /* 下線との間隔を設定 */
 }
 
 .tab-button {
@@ -85,11 +79,11 @@ h2 {
     border-radius: 45px;
     transition: background-color 0.3s ease;
     font-weight: bold;
-  
-  }
-  
-  .home-button:hover {
+
+}
+
+.home-button:hover {
     background-color: #ababab;
     text-decoration: none;
     color: #ffffff;
-  }
+}

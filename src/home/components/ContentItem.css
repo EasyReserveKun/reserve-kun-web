@@ -1,4 +1,3 @@
-/* 全体のスタイル */
 .content-item {
   display: flex;
   align-items: center;
@@ -7,41 +6,34 @@
   justify-content: space-between;
 }
 
-/* 写真に適応されるスタイル */
 .img-content img {
   max-width: 80%;
   align-items: right;
   height: auto;
 }
 
-/* 紹介文に適応されるスタイル */
 .text-content {
   font-size: 16px;
   text-align: left;
 }
 
-.text-content h5{
+.text-content h5 {
   font-size: 20px;
   text-align: center;
 }
 
-.text-content h5:first-letter { /* 最初の一文字を大きくする */
+.text-content h5:first-letter {
   font-size: 2em;
   color: #7779d7;
   font-weight: bold;
 }
 
-
-
-
-/* リンク全体のスタイル */
 .link-style {
-  color: inherit; /* 親要素からの継承色を使用 */
-  text-decoration: none; /* 下線を除去 */
+  color: inherit;
+  text-decoration: none;
 }
 
-/* リンクにホバーしたときのスタイル */
 .link-style:hover {
   color: #82cd8f;
-  text-decoration: none; /* 下線を除去 */
+  text-decoration: none;
 }

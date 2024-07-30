@@ -5,7 +5,6 @@
     font-family: Arial, sans-serif;
 }
 
-
 .faq-container p {
     line-height: 1.6;
     margin-bottom: 10px;
@@ -20,8 +19,6 @@
     margin-bottom: 20px;
 }
 
-
-
 .faq-container h3 {
     position: relative;
     color: #158b2b;
@@ -31,7 +28,6 @@
     margin: 1.5em 0;
     text-align: center;
     margin: 20px auto;
-   
     max-width: 800px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }

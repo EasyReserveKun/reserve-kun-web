@@ -1,5 +1,3 @@
-
-/* 全体のスタイル */
 .batch-form-container {
     padding: 20px;
     max-width: 900px;
@@ -9,26 +7,23 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* テーブルのスタイリング */
 .employee-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-/* テーブルヘッダーのスタイリング */
 .employee-table thead {
     background-color: #4CAF50;
     color: white;
 }
 
-/* テーブルのヘッダーセルとデータセル */
-.employee-table th, .employee-table td {
+.employee-table th,
+.employee-table td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
 }
 
-/* ボタンのスタイリング */
 .release-button {
     background-color: #4CAF50;
     color: white;
@@ -43,12 +38,10 @@
     transition: background-color 0.3s ease;
 }
 
-/* ボタンのホバー効果 */
 .release-button:hover {
     background-color: #45a049;
 }
 
-/* 警告メッセージのスタイリング */
 .no-access {
     text-align: center;
     margin: 40px 0;
@@ -80,9 +73,9 @@
 }
 
 .release-button.disabled {
-    background-color: #d3d3d3; /* グレー */
-    border: 1px solid #a9a9a9; /* グレーのボーダー */
-    color: #808080; /* グレーの文字色 */
-    cursor: not-allowed; /* カーソルを禁止マークに */
-    pointer-events: none; /* クリックを無効にする */
+    background-color: #d3d3d3;
+    border: 1px solid #a9a9a9;
+    color: #808080;
+    cursor: not-allowed;
+    pointer-events: none;
 }
