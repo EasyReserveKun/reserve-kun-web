@@ -1,3 +1,4 @@
+// Import Modules
 import React, { useState, useEffect, useCallback } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
@@ -5,12 +6,12 @@ import { getApiUrl } from '../GetApiUrl';
 //Import StyleSheets
 import '../common/Form.css';
 import './AdminOpen.css';
+
+//Import Component
 import StartComfirm from '../common/StartConfirm';
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpen() {
-
-    
     const [cookie] = useCookies();
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -83,7 +84,7 @@ function AdminOpen() {
             filtered = filtered.filter(row => row[0].includes(filterDate));
         }
         if (filterEmployee !== 'all') {
-            filtered = filtered.filter(row => row[7].includes(filterEmployee)); // 従業員名でフィルタリング
+            filtered = filtered.filter(row => row[7].includes(filterEmployee));
         }
         setFilteredData(filtered);
     }, [data, filterDate, filterEmployee]);
@@ -108,6 +109,7 @@ function AdminOpen() {
     };
 
     return cookie.admin ? (
+        //予約停止解除の表示
         <>
             <AdmHeader />
             <div className="data-container">
