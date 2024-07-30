@@ -1,8 +1,13 @@
+// Import Modules
 import React, { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { getApiUrl } from '../GetApiUrl';
-import Warn from '../common/Warn';
+
+//Import StyleSheets
 import './AdminOpenAll.css';
+
+//Import Component
+import Warn from '../common/Warn';
 import AdmHeader from '../common/AdminHeader';
 
 function AdminOpenAll() {
@@ -101,8 +106,8 @@ function AdminOpenAll() {
                                     <tr key={employee.id}>
                                         <td>{employee.name}</td>
                                         <td>
-                                            <button 
-                                                type="button" 
+                                            <button
+                                                type="button"
                                                 onClick={() => openReservation(employee.id)}
                                                 className={`release-button ${employee.isActive ? 'disabled' : ''}`}
                                                 disabled={employee.isActive} // 解除済みの場合に無効化
